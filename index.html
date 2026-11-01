@@ -29,11 +29,11 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 .dayhead .eyebrow{font-size:11px;color:var(--orange);font-weight:900;letter-spacing:.16em}.dayhead h2{font-size:clamp(27px,5vw,44px);letter-spacing:-.05em;margin:7px 0 4px;line-height:1}
 .dayhead p{margin:0;color:#bbb;font-size:13px}.daynum{font-size:48px;line-height:.8;font-weight:950;color:#333}
 .alert{margin:14px 0;border:2px solid var(--red);background:#fff0eb;padding:13px 15px;font-size:13px;line-height:1.55}
-.alert strong{color:var(--red)}
+.alert strong{color:var(--red)}.meetflag{display:inline-block;background:var(--red);color:#fff;padding:4px 7px;font-size:10px;font-weight:950;letter-spacing:.08em;margin-bottom:7px}
 .section-label{margin:22px 0 10px;font-size:11px;font-weight:950;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
 .timeline{display:flex;flex-direction:column;gap:10px}
 .stopcard{background:var(--panel);border:2px solid var(--ink);padding:15px;position:relative}
-.stopcard.transport{border-left:7px solid var(--orange)}
+.stopcard.transport{border-left:7px solid var(--orange)}.stopcard.walk{border-left:7px solid #244d83}.stopcard.walk .station{background:#244d83}.stopcard.walk .station.to{background:#dce7f6;color:#111}.stopcard.walk .station.to small{color:#244d83}
 .stopcard h3{font-size:17px;margin:0 0 7px;font-weight:950;letter-spacing:-.02em}
 .stopcard p{font-size:13px;line-height:1.55;margin:5px 0;color:#45433e}
 .time{display:inline-block;background:var(--yellow);border:1px solid var(--ink);padding:4px 7px;font-size:12px;font-weight:950;margin-bottom:8px}
@@ -86,13 +86,13 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 <section id="apps" class="page">
 <div class="dayhead"><div><div class="eyebrow">TRANSPORT TOOLS</div><h2>交通 APP</h2><p>依城市整理；iPhone 連結優先使用 App Store 官方頁。</p></div></div>
 <div class="appgrid" id="appGrid"></div>
-<div class="note"><b>關於「點一下就帶入站點與日期」：</b>目前這些交通業者沒有對外提供可保證在 iPhone 上直接啟動 App、同時預填指定站點與未來日期的通用公開連結。因此我不會偽造 App deep link。每段交通會提供已填起訖站的 Google Maps 大眾運輸路線連結；日期及班次仍需在各業者 App 內確認。App Store 連結則可直接安裝／開啟對應 App。</div>
+<div class="note"><b>關於「點一下就帶入站點與日期」：</b>每段公交卡會開啟對應城市的官方路線規劃器，並保留已填起訖站的 Google Maps 公交路線；步行卡會開啟 Google Maps 步行導航。業者沒有公開可驗證、可同時預填起訖站與未來日期的 iOS App 深層連結格式，因此不會假造自動搜尋功能。App Store 連結只作為尚未安裝時的下載入口。</div>
 </section>
 <section id="expenses" class="page">
 <div class="dayhead"><div><div class="eyebrow">BUDGET / BOOKING</div><h2>費用總覽</h2><p>金額照原始行程保留；未填項目不自行估價。</p></div></div>
 <div id="expenseContent"></div>
 </section>
-<div class="footer">本手冊依你提供的行程內容編排。原始資料中未列明的公車路線、部分站點、班次及票價，均標示為「出發前／當日確認」。冬季班表可能調整，請以營運商 App 當日結果為準。</div>
+<div class="footer">本手冊依原始 639 行行程重整。公交段落按城市指定 Ruter／Reis／Svipper／Waltti／HSL；步行段落使用 Google Maps walking 導航。交通業者沒有公開可驗證的 iOS App deep link 格式可保證預填站點與日期，因此交通卡優先開啟官方規劃器並保留 Google Maps 路線，不使用虛構的 App scheme。原始未提供的住宿地址／站牌仍標示待補；冬季班表以當日業者資訊為準。</div>
 </main>
 <script>
 const days = [
@@ -138,8 +138,8 @@ const days = [
 {type:"place",title:"Svolvær 飯店／行李",desc:"地址：Sjøgata 2–4, 8300 Svolvær。原始資料註明住宿順序可能相反，請先依訂房確認單判斷行李放置地點。"},
 {type:"transport",title:"Svolvær → Skårungen Sauna",time:"原始候選班次：13:55–14:11／15:00–15:17／15:35–16:52／15:40–15:57／16:15–16:32／20:05–20:21／21:40–22:22",from:"Svolvær（站牌待 Reis 確認）",to:"Sandvika Kryss",mode:"公車＋步行",desc:"到 Sandvika Kryss 下車，再步行至 Ørsvågveien 40, 8310 Kabelvåg。原始時刻中 15:35–16:52 看起來與其他班次時間差距異常，務必重新查核，勿直接照抄搭乘。",map:true,app:"Reis"},
 {type:"place",title:"Skårungen Sauna",desc:"地址：Ørsvågveien 40, 8310 Kabelvåg。原始計畫前一星期依天氣再購買 SPA／桑拿。"},
-{type:"transport",title:"Skårungen → Svolvær",time:"原始候選班次：17:46–18:05／21:21–21:40／22:56–23:15",from:"Sandvika Kryss",to:"Svolvær（實際下車站待 Reis 確認）",mode:"步行＋公車",desc:"從桑拿步行回 Sandvika Kryss 搭車。請以 Reis 確認最後一班及停靠站。",map:true,app:"Reis"},
-{type:"place",title:"返回 Svolvær 飯店",desc:"Sjøgata 2–4。逛街、吃飯、採買隔日用品。"},
+{type:"transport",title:"Sandvika Kryss → Svolvær 公交",time:"原始候選班次：17:46–18:05／21:21–21:40／22:56–23:15",from:"Sandvika Kryss",to:"Svolvær（實際下車站待 Reis 確認）",mode:"公交",desc:"搭 Reis 公交返回 Svolvær；請確認最後一班及實際下車站。",map:true,app:"Reis"},
+{type:"place",title:"返回 Svolvær 飯店",desc:"Sjøgata 2–4。"},
 {type:"note",title:"Plan B：搭船",desc:"原始備案：18:24–21:24，Reis App 上查詢。這是備案，不代表當日一定有船；須查清楚碼頭、航線、票價與營運日。"}
 ]},
 {date:"11/28",dow:"六",city:"Svolvær → Tromsø",title:"一日團・取行李・夜船",alerts:["21:00 左右抵達 Svolvær kystrutekai；原始船班 22:15 出發。原始抵達 Tromsø 時間寫 14:15（隔日），請以 Hurtigruten 訂位確認時間及船名。"],items:[
@@ -149,7 +149,7 @@ const days = [
 {type:"place",title:"Sakura Lofoten Svolvær",desc:"步行前往。原始備註：三文魚飯。請確認營業時間。"},
 {type:"place",title:"Svolvær 市區自由活動",desc:"逛街、採買，並注意回寄存點拿行李的時間。"},
 {type:"place",title:"取回行李",time:"出發碼頭前",desc:"回 Thon Hotel Lofoten 領取全部行李，確認件數。"},
-{type:"transport",title:"步行前往 Svolvær 碼頭",time:"約 21:00 抵達港口",from:"Thon Hotel Lofoten",to:"Svolvær kystrutekai",mode:"步行",desc:"前往 Hurtigruten 沿海航線碼頭。",map:true},
+{type:"walk",title:"步行前往 Svolvær 碼頭",time:"約 21:00 抵達港口",from:"Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway",to:"Svolvær kystrutekai",mode:"步行",map:true,mapMode:"walking",desc:"前往 Hurtigruten 沿海航線碼頭。"},
 {type:"transport",title:"Svolvær → Tromsø 夜船",time:"原始船班 22:15–隔日 14:15",from:"Svolvær kystrutekai",to:"Tromsø Havn Prostneset",mode:"Hurtigruten 沿海船",desc:"原始行程記錄 22:15 出發、14:15 抵達（11/29）。請核對船票上的日期、到港時間、碼頭及登船截止時間。",app:"Hurtigruten"}
 ]},
 {date:"11/29",dow:"日",city:"Tromsø",title:"抵達特羅姆瑟・市區",items:[
@@ -160,7 +160,7 @@ const days = [
 {type:"place",title:"返回飯店",desc:"確認 11/30 公車日票與 Ersfjordbotn 班次。"}
 ]},
 {date:"11/30",dow:"一",city:"Tromsø",title:"Ersfjordbotn 峽灣・北極教堂",alerts:["當日預計買公車日票。Ersfjordbotn 班次請核對方向、站名及冬季班表；不要只依靠舊時刻。"],items:[
-{type:"ticket",title:"購買 Svipper 公車日票",time:"上車前",desc:"在 Svipper App 選擇正確成人票種與區域／票區，確認日票適用範圍與生效時間。上車前啟用。",app:"Svipper"},
+
 {type:"place",title:"Tgtg／Quality Hotel Saga",desc:"原始行程記錄 Tgtg，並推薦 Quality Hotel Saga。原文未提供 Tgtg 的確切店家或預約時段，需自行在 App 確認。"},
 {type:"transport",title:"Tromsø → Ersfjordbotn",time:"原始候選班次：09:16–10:11／12:46–13:42／13:58–14:49",from:"Tromsø Prostneset 2",to:"Ersfjordbotn",mode:"公車",desc:"原始站點寫 Prostneset 2 → Ersfjordbotn。建議出發前在 Svipper 搜尋同名站牌並核對路線／方向。",map:true,app:"Svipper"},
 {type:"place",title:"Ersfjordbotn 峽灣徒步",desc:"安排峽灣散步。冬季日照短、路面可能結冰，請穿防滑鞋並預留回程候車時間。"},
@@ -168,7 +168,6 @@ const days = [
 {type:"transport",title:"Ersfjordbotn → 北極教堂",from:"Ersfjordbotn",to:"Tromsdalen kirke",mode:"公車",desc:"原始指定下車站 Tromsdalen kirke。回程班次與轉乘方式請以 Svipper 當日規劃器為準。",map:true,app:"Svipper"},
 {type:"place",title:"北極教堂",desc:"Tromsdalen kirke。參觀後步行前往 Tromsø 大橋。",map:true},
 {type:"place",title:"Tromsø 大橋",desc:"步行過橋回市區；注意冬季風勢、結冰及天黑時間。",map:true},
-{type:"place",title:"回市區・晚餐・飯店",desc:"市區逛街、找紀念品。海鮮餐／鯨魚肉尚未決定；晚餐後返回飯店。"}
 ]},
 {date:"12/01",dow:"二",city:"Tromsø",title:"觀景點・破冰團",alerts:["破冰團 19:00 集合，18:30 抵達；不要壓線。集合地址 Søndre Tollbodgate 11。"],items:[
 {type:"ticket",title:"公車日票（視行程決定）",desc:"原始行程註記 maybe。若當日多次搭乘可評估日票；購買前比較單程票與日票價格。",app:"Svipper"},
@@ -182,10 +181,10 @@ const days = [
 ]},
 {date:"12/02",dow:"三",city:"Tromsø → Rovaniemi",title:"飛往羅瓦涅米・極光團",alerts:["07:30 必須抵達 Tromsø 機場，10:30 起飛。請事先確認住宿到機場的第一班公車是否來得及；原始資料未列上車站／路線。"],items:[
 {type:"place",title:"飯店 Check-out",time:"清晨",desc:"確認退房方式、行李及早餐安排。"},
-{type:"transport",title:"飯店 → Tromsø Airport",time:"07:30 前抵達機場",from:"住宿（地址／站牌待補）",to:"Tromsø Airport",mode:"公車／計程車待確認",desc:"原始資料只有交通箭頭，沒有起站與班次。請在 Svipper 查第一班可抵達機場的車；若時間不可靠，預約計程車。",map:true,app:"Svipper"},
+{type:"transport",title:"飯店 → Tromsø Airport",time:"07:30 前抵達機場",from:"Balsfjordgata 5, 9007 Tromsø, Norway",to:"Tromsø Airport",mode:"公交／計程車待確認",desc:"原始資料只有交通箭頭，沒有起站與班次。請在 Svipper 查第一班可抵達機場的車；若時間不可靠，預約計程車。",map:true,app:"Svipper"},
 {type:"place",title:"Tromsø 機場報到",time:"10:30 起飛",desc:"航段：Tromsø → Rovaniemi。"},
 {type:"place",title:"Rovaniemi 機場抵達",time:"12:30",desc:"抵達後領行李。"},
-{type:"transport",title:"Rovaniemi Airport → 飯店",from:"Rovaniemi Airport",to:"飯店（地址未提供）",mode:"公車／接駁待確認",desc:"原始資料未提供住宿地址、上車站、下車站與路線。使用 Waltti／Linkkari 路線規劃器核對；也可比較機場接駁／計程車。",map:true,app:"Waltti"},
+{type:"transport",title:"Rovaniemi Airport → 飯店",from:"Rovaniemi Airport",to:"飯店（地址未提供）",mode:"公交（接駁待確認）",desc:"原始資料未提供住宿地址、上車站、下車站與路線。使用 Waltti／Linkkari 路線規劃器核對；也可比較機場接駁／計程車。",map:true,app:"Waltti"},
 {type:"place",title:"飯店 Check-in",time:"15:00 後",desc:"若可提前入住，住宿方會通知。"},
 {type:"place",title:"Eurospar 採買／簡單用餐",desc:"準備隔日用品。"},
 {type:"place",title:"極光團集合",time:"19:30 抵達等候；20:00 集合；約 5 小時",desc:"集合地址：Ruokasenkatu 3, 96100 Rovaniemi, Finland。確切集合時間原始資料寫 14:00–17:30 間通知，請留意訊息。",map:true},
@@ -205,7 +204,7 @@ const days = [
 {type:"place",title:"Osaka Teppanyaki Rovaniemi",desc:"地址：Kauppakeskus Rinteenkulma 1.krs, Koskikatu 25, 96200 Rovaniemi, Finland。原始資料附店家照片，請確認營業時間。",map:true},
 {type:"place",title:"市區景點／採買",desc:"原始行程尚未決定景點；請注意不要離寄存點及火車站太遠。"},
 {type:"place",title:"取回行李",time:"前往火車站前",desc:"回寄存點取行李，確認全部行李與車票。"},
-{type:"transport",title:"前往 Rovaniemi 火車站",time:"20:15 左右抵達等候",from:"行李寄存點／市區",to:"Rovaniemi Railway Station",mode:"步行／公車依寄存點位置",desc:"原始行程未列寄存點地址，請按實際寄存地點規劃路線。",map:true},
+{type:"walk",title:"行李寄存點 → Rovaniemi 火車站",time:"20:15 左右抵達等候",from:"Rovaniemi luggage storage (confirm exact address)",to:"Rovaniemi Railway Station",mode:"步行",map:true,mapMode:"walking",desc:"原始行程未列寄存點地址，請按實際寄存地點規劃步行路線。"},
 {type:"transport",title:"Rovaniemi → Helsinki",time:"21:00 出發",from:"Rovaniemi Railway Station",to:"Helsinki Central Railway Station",mode:"VR 夜間火車",desc:"已列購票平台 VR.fi。請確認車廂、臥舖／座位、月台及車票上的抵達時間。",app:"VR"}
 ]},
 {date:"12/05",dow:"六",city:"Helsinki",title:"抵達赫爾辛基・市區",items:[
@@ -222,10 +221,196 @@ const days = [
 {date:"12/07",dow:"一",city:"Helsinki → 台北",title:"返程",alerts:["12:45 左右抵達赫爾辛基機場；15:45 起飛。請先確認從飯店到中央車站／機場的交通方式與車次。"],items:[
 {type:"place",title:"飯店 Check-out",desc:"確認退房、行李及護照。"},
 {type:"place",title:"最後採買",desc:"依時間在市區購物；注意不要錯過前往機場的交通。"},
-{type:"transport",title:"市區 → Helsinki Airport",time:"12:45 左右抵達機場",from:"飯店／市區（地址未提供）",to:"Helsinki Airport",mode:"HSL 火車／公車",desc:"原始資料只列「赫爾辛基火車站 → 赫爾辛基機場」，未列具體站點與班次。可由 Helsinki Central Railway Station 搭 I／P 火車，或搭 600 號公車；請用 HSL App 確認當日班次及 ABC 票。",map:true,app:"HSL"},
+{type:"transport",title:"Helsinki Central Railway Station → Helsinki Airport",time:"12:45 左右抵達機場",from:"Helsinki Central Railway Station",to:"Helsinki Airport",mode:"HSL I／P 火車（或 600 號公交）",desc:"原始行程順序為飯店 Check-out → 最後採買 → Helsinki Central Railway Station → Helsinki Airport。由中央車站搭 I／P 火車最直接；若改搭 600 號公交，請在 HSL 規劃器確認當日路線及 ABC 票。",map:true,app:"HSL"},
 {type:"place",title:"Helsinki Airport 報到",time:"12:45 抵達；15:45 起飛",desc:"赫爾辛基 → 台北。"}
 ]}
 ];
+
+
+// User-requested corrections based on the original 639-line itinerary.
+const WALK=(title,from,to,desc="步行路線；冬季請預留結冰路面與天候緩衝。")=>({type:"walk",title,from,to,mode:"步行",desc,map:true,mapMode:"walking"});
+const BUS=(title,from,to,desc="請用該城市公交 APP 核對當日路線、方向與站牌。",app=null,time=null)=>({type:"transport",title,from,to,mode:"公交",desc,app,map:true,mapMode:"transit",time});
+function addAfter(date,title,items){const d=days.find(x=>x.date===date);if(!d)return;const i=d.items.findIndex(x=>x.title===title);if(i>=0)d.items.splice(i+1,0,...items);}
+function addBefore(date,title,items){const d=days.find(x=>x.date===date);if(!d)return;const i=d.items.findIndex(x=>x.title===title);if(i>=0)d.items.splice(i,0,...items);}
+// All ordinary public road transport in these cities is labelled 公交, not the generic 公車/電車混稱.
+for(const d of days) for(const it of d.items){if(it.mode){it.mode=it.mode.replaceAll("公車＋步行","公交").replaceAll("步行＋公車","公交").replaceAll("公車或步行","公交").replaceAll("公車","公交");}}
+// Walking legs explicitly shown as transport cards, with route endpoints and walking navigation.
+addAfter("11/24","MUNCH → 聖誕市集／Karl Johans Gate",[
+ WALK("Bjørvika → Jernbanetorget／Karl Johans Gate（步行替代方案）","Bjørvika / MUNCH Museum","Jernbanetorget / Karl Johans gate","原始行程提供公交或步行兩種方式；此卡是步行替代路線，若搭公交則使用前一張公交卡。")
+]);
+addAfter("11/24","前往 Engebret Cafe",[
+ WALK("Kvadraturen 公交站 → Engebret Cafe","Kvadraturen","Bankplassen 1, 0151 Oslo, Norway","依原始行程：Nationaltheatret → Kvadraturen 下車後，再步行到餐廳。20:15 預約，20:45 前抵達。")
+]);
+addAfter("11/25","飯店 Check-in",[
+ WALK("飯店 → 商場採買（視體力）","Storvollveien 142, 8370 Leknes","Leknes shopping centre / Leknes sentrum","入住後步行採買隔日食物；若商場未開或天候不佳，以 Google Maps 當日步行導航為準。"),
+]);
+addAfter("11/25","再看看要不要去商場逛逛，準備明天吃的",[
+ WALK("商場 → Airbnb 飯店","Leknes shopping centre / Leknes sentrum","Storvollveien 142, 8370 Leknes","採買後步行回住宿。")
+]);
+// Day 4 starts from the hotel; group meeting and return legs are explicit.
+addBefore("11/26","一日團集合",[
+ WALK("飯店 → 一日團集合點","Storvollveien 142, 8370 Leknes","Circle K Leknes, Storgata 35, 8370 Leknes, Norway","08:00 抵達等候，08:30 正式集合；步行路線請依住宿實際入口導航。")
+]);
+addAfter("11/26","一日團集合",[
+ WALK("一日團集合點 → 市區逛街／用餐","Circle K Leknes, Storgata 35, 8370 Leknes, Norway","Leknes sentrum","一日團結束後步行逛街、吃飯並採買隔日食物。")
+]);
+addAfter("11/26","一日團結束後自由活動",[
+ WALK("市區逛街／用餐 → 飯店","Leknes sentrum","Storvollveien 142, 8370 Leknes","逛街、吃飯並採買隔日食物後，步行回飯店。")
+]);
+// Day 5: add exact Svolvær accommodation and post-sauna sequence.
+const d1127=days.find(x=>x.date==="11/27");
+if(d1127){const h=d1127.items.find(x=>x.title==="Svolvær 飯店／行李");if(h){h.desc="Google Maps：Sjøgata 2-4, 8300 Svolvær, Norway。依你的原始備註，住宿順序可能相反，請以訂房確認單為準。";h.address="Sjøgata 2-4, 8300 Svolvær, Norway";}}
+addAfter("11/27","Leknes → Svolvær",[
+ WALK("Svolvær 公交下車站 → 飯店","Svolvær bus terminal / actual Reis stop to confirm","Sjøgata 2-4, 8300 Svolvær, Norway","抵達 Svolvær 後步行至住宿；請以 Reis 顯示的實際下車站替換起點。")
+]);
+addBefore("11/27","Svolvær → Skårungen Sauna",[
+ WALK("Svolvær 飯店 → 公交站","Sjøgata 2-4, 8300 Svolvær, Norway","Svolvær bus terminal / actual Reis stop to confirm","從飯店步行至搭車站；請在 Reis 核對實際站牌。")
+]);
+addAfter("11/27","Skårungen Sauna",[
+ WALK("Skårungen Sauna → Sandvika Kryss 公交站","Ørsvågveien 40, 8310 Kabelvåg","Sandvika Kryss","先步行到 Sandvika Kryss，再搭 Reis 公交返回 Svolvær。")
+]);
+addAfter("11/27","Sandvika Kryss → Svolvær 公交",[
+ WALK("Svolvær 公交下車點 → 飯店","Svolvær bus terminal / Svolvær sentrum","Sjøgata 2-4, 8300 Svolvær, Norway","搭公交回到 Svolvær 後，步行回飯店。請以 Reis 當日顯示的實際下車站替換起點。")
+]);
+addAfter("11/27","返回 Svolvær 飯店",[
+ WALK("飯店 → 市區逛街／吃飯／採買明日食物","Sjøgata 2-4, 8300 Svolvær, Norway","Svolvær sentrum","依原始行程：逛逛、看想買什麼及吃飯，準備 11/28 的食物。"),
+ WALK("市區 → 飯店","Svolvær sentrum","Sjøgata 2-4, 8300 Svolvær, Norway","逛完後步行返回飯店。")
+]);
+// Day 6: walking to luggage storage, tour, restaurant, shopping, luggage and quay are separate.
+addBefore("11/28","寄存行李",[
+ WALK("飯店 → Thon Hotel Lofoten 寄存行李","Sjøgata 2-4, 8300 Svolvær, Norway","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","退房後步行到寄存點；先確認是否接受非住客寄存及櫃檯時間。")
+]);
+addBefore("11/28","一日團集合",[
+ WALK("寄存行李 → 一日團集合點","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","08:30 抵達等候，09:00 正式集合。集合點與寄存點為同一飯店位置，依團方指示到指定入口／櫃檯。")
+]);
+addAfter("11/28","一日團集合",[
+ WALK("一日團結束 → Sakura Lofoten","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","Sakura Lofoten Svolvær","一日團約 6 小時，結束後步行前往吃三文魚飯。")
+]);
+addAfter("11/28","⭐Sakura Lofoten Svolvær 三文魚飯",[
+ WALK("Sakura → Svolvær 市區逛街","Sakura Lofoten Svolvær","Svolvær sentrum","用餐後步行逛街、採買。"),
+]);
+addAfter("11/28","逛逛或看想去哪買啥",[
+ WALK("市區 → Thon Hotel Lofoten 取行李","Svolvær sentrum","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","回寄存點取回全部行李，核對件數。")
+]);
+addAfter("11/28","拿行李",[
+ WALK("Thon Hotel Lofoten → Svolvær 碼頭","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","Svolvær kystrutekai","21:00 左右抵達港口；請預留拖行李步行時間。")
+]);
+addBefore("11/28","Svolvær → Tromsø 夜船",[
+ {type:"place",title:"Svolvær kystrutekai 碼頭（獨立節點）",time:"21:00 左右抵達港口；22:15 開船",desc:"先確認船公司、船名、登船口、行李與登船截止時間。碼頭本身是抵達後的獨立地點，不與船班交通合併。",address:"Svolvær kystrutekai",map:true}
+]);
+// Day 7 accommodation and walking itinerary.
+const d1129=days.find(x=>x.date==="11/29"); if(d1129){const h=d1129.items.find(x=>x.title==="飯店 Check-in");if(h)h.desc="住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。15:00 後可 Check-in；先確認能否提早寄放行李。";}
+addAfter("11/29","Tromsø 碼頭下船",[
+ WALK("Tromsø Havn Prostneset → 飯店","Tromsø Havn Prostneset","Balsfjordgata 5, 9007 Tromsø, Norway","下船後拖行李步行至住宿；若天候不佳或行李較多，改搭計程車。")
+]);
+addAfter("11/29","飯店 Check-in",[
+ WALK("飯店 → 市區散步","Balsfjordgata 5, 9007 Tromsø, Norway","Tromsø sentrum / Tromsø bibliotek","依原始順序：圖書館 → 鹿肉熱狗 → 麥當勞 → 北極之門；圖書館若來不及，改 12/01。")
+]);
+addAfter("11/29","市區散步",[
+ WALK("市區 → Eurospar 採買","Tromsø sentrum","Eurospar Tromsø","採買隔日用品及食物。")
+]);
+addAfter("11/29","超市採買",[
+ WALK("Eurospar → 飯店","Eurospar Tromsø","Balsfjordgata 5, 9007 Tromsø, Norway","採買後步行回飯店。")
+]);
+// Day 8: start at the Tromsø hotel, make post-bridge evening sequence explicit.
+addBefore("11/30","Tgtg／Quality Hotel Saga",[
+ WALK("飯店 → Tgtg／Quality Hotel Saga","Balsfjordgata 5, 9007 Tromsø, Norway","Quality Hotel Saga, Tromsø","從住宿步行前往原始行程註記的 Tgtg／Quality Hotel Saga。")
+]);
+addAfter("11/30","Tgtg／Quality Hotel Saga",[
+ {type:"ticket",title:"購買 Svipper 公車日票",time:"搭乘公交前",desc:"在 Svipper App 選擇正確成人票種與票區，確認日票有效範圍與生效時間；上車前啟用。",app:"Svipper"},
+ WALK("Quality Hotel Saga → Prostneset 2 公交站","Quality Hotel Saga, Tromsø","Tromsø Prostneset 2","前往原始行程指定的 Prostneset 2 站搭乘公交前往 Ersfjordbotn。")
+]);
+addAfter("11/30","北極教堂",[
+ WALK("北極教堂 → Tromsø 大橋","Tromsdalen kirke","Tromsø Bridge","參觀結束後步行過橋回市區。")
+]);
+addAfter("11/30","Ersfjordbotn 峽灣徒步",[
+ WALK("Ersfjordbotn 峽灣 → Bryggejentene AS","Ersfjordbotn","Bryggejentene AS, Ersfjordbotn","峽灣步行後前往原始推薦的餐廳；實際步行距離依步道起點而異。")
+]);
+addAfter("11/30","Tromsø 大橋",[
+ WALK("Tromsø 大橋 → 市區逛街／紀念品","Tromsø Bridge","Tromsø sentrum","回市區逛逛；紀念品店待你決定，Google Maps 可直接查看附近商店。"),
+ WALK("市區 → 晚餐","Tromsø sentrum","Tromsø sentrum restaurant area","原始備註：海鮮餐／鯨魚肉待找。可先用地圖看附近餐廳，晚餐地點尚未定。"),
+ WALK("晚餐 → Tromsø 飯店","Tromsø sentrum restaurant area","Balsfjordgata 5, 9007 Tromsø, Norway","用餐後步行回住宿。")
+]);
+// Day 9: explicit start from accommodation and walk legs around gathering.
+addBefore("12/01","公車日票（視行程決定）",[
+ {type:"place",title:"飯店出發",desc:"住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。先從飯店出發，再依當日公交搭乘次數決定是否買日票。",address:"Balsfjordgata 5, 9007 Tromsø, Norway",map:true}
+]);
+addBefore("12/01","Koseverden & KoseligCafe",[
+ WALK("飯店 → Koseverden & Koselig Cafe","Balsfjordgata 5, 9007 Tromsø, Norway","Storgata 45, 9008 Tromsø, Norway","從住宿步行前往早午餐。")
+]);
+addAfter("12/01","晚餐／集合前簡餐",[
+ WALK("晚餐 → 破冰團集合點","Tromsø sentrum","Søndre Tollbodgate 11, 9008 Tromsø, Norway","18:30 左右抵達等候，19:00 正式集合，活動約 3.5 小時。")
+]);
+addAfter("12/01","破冰團集合",[
+ WALK("破冰團結束 → 飯店","Søndre Tollbodgate 11, 9008 Tromsø, Norway","Balsfjordgata 5, 9007 Tromsø, Norway","活動結束後步行返回住宿；若天候不佳可改搭計程車。")
+]);
+// Day 10 hotel address and explicit airport / evening walking.
+const d1202=days.find(x=>x.date==="12/02"); if(d1202){const h=d1202.items.find(x=>x.title==="飯店 Check-out");if(h)h.desc="住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。先 Check-out、取行李。";}
+addBefore("12/02","極光團集合",[
+ WALK("超市／晚餐 → 極光團集合點","Eurospar Rovaniemi / Rovaniemi city centre","Ruokasenkatu 3, 96100 Rovaniemi, Finland","原始行程是先採買、簡單吃飯，再步行至集合點；19:30 抵達等候，20:00 正式集合，約 5 小時。")
+]);
+addAfter("12/02","極光團集合",[
+ WALK("極光團結束 → 飯店","Ruokasenkatu 3, 96100 Rovaniemi, Finland","Rovaniemi hotel (address not provided)","活動結束後步行回飯店；若團方提供接送，依訂單安排。")
+]);
+// Day 11 starts at hotel, explicit walking to husky tour and post-tour town walk.
+addBefore("12/03","哈士奇團集合",[
+ WALK("飯店 → 哈士奇團集合點","Rovaniemi hotel (address not provided)","Santa's Hotel Santa Claus, Korkalonkatu 29, 96200 Rovaniemi, Finland","10:30 抵達等候，11:00 正式集合，活動約 3 小時。住宿地址未提供，請依實際訂房位置導航。")
+]);
+addAfter("12/03","市區逛街／晚餐",[
+ WALK("市區 → 飯店","Rovaniemi city centre","Rovaniemi hotel (address not provided)","逛街／用餐後步行回飯店。")
+]);
+// Day 12 explicit luggage storage -> restaurant -> sightseeing -> shopping -> luggage -> station.
+addBefore("12/04","寄放行李",[
+ WALK("飯店 → 行李寄存點","Rovaniemi hotel (address not provided)","Rovaniemi luggage storage (confirm exact address)","退房後前往寄存點；Visit Rovaniemi 網頁先確認確切地址、開放時間與關門時間。")
+]);
+addBefore("12/04","Osaka Teppanyaki Rovaniemi",[
+ WALK("行李寄存點 → Osaka Teppanyaki","Rovaniemi luggage storage (confirm exact address)","Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland","午餐地址已列；寄存點地址尚待確認。")
+]);
+addAfter("12/04","Osaka Teppanyaki Rovaniemi",[
+ WALK("餐廳 → 待安排景點","Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland","Rovaniemi city centre attractions","景點待找；先保留市中心範圍，不安排遠距離移動。")
+]);
+addAfter("12/04","市區景點／採買",[
+ WALK("景點 → 市區逛街","Rovaniemi city centre attractions","Rovaniemi city centre","依原始行程回市區逛逛。"),
+ WALK("市區 → 行李寄存點取行李","Rovaniemi city centre","Rovaniemi luggage storage (confirm exact address)","取回行李後直接前往火車站；請依實際寄存地址導航。")
+]);
+// Day 13: train arrival -> hotel luggage drop -> meal, and walking day legs.
+addAfter("12/05","Helsinki Central Railway Station 抵達",[
+ WALK("中央車站 → 飯店寄放行李／車站寄存","Helsinki Central Railway Station","Helsinki hotel (address not provided)","先詢問飯店能否寄存；若不行，改用車站行李寄存。飯店地址未提供。")
+]);
+addAfter("12/05","韓式炸雞",[
+ WALK("韓式炸雞 → 咖啡／桑拿／景點","Kauppakeskus Kluuvi, Aleksanterinkatu 9, Helsinki","Cafe Fazer / Cafe Regatta / Helsinki attractions","依原始行程候選順序自由安排，請按實際選定地點逐一導航。")
+]);
+addAfter("12/05","咖啡／桑拿／市區景點",[
+ WALK("市區 → 飯店","Helsinki city centre","Helsinki hotel (address not provided)","行程結束後步行回飯店；如住宿不在市中心，請依實際地址重新導航。")
+]);
+// Day 14 and 15: start/end from hotel, show walk legs and transit airport leg separately.
+addBefore("12/06","紅白教堂",[
+ WALK("飯店 → 赫爾辛基紅白教堂","Helsinki hotel (address not provided)","Helsinki Cathedral, Unioninkatu 29, Helsinki","從飯店出發；住宿地址未提供，導航起點可改為實際地址。")
+]);
+addAfter("12/06","紅白教堂",[
+ WALK("紅白教堂 → 岩石教堂","Helsinki Cathedral, Unioninkatu 29, Helsinki","Temppeliaukio Church, Lutherinkatu 3, Helsinki","步行前往岩石教堂；請確認開放時間及禮拜活動。")
+]);
+addAfter("12/06","岩石教堂",[
+ WALK("岩石教堂 → 飯店","Temppeliaukio Church, Lutherinkatu 3, Helsinki","Helsinki hotel (address not provided)","參觀後步行回飯店。")
+]);
+addBefore("12/07","最後採買",[
+ WALK("飯店 → 市區最後採買","Helsinki hotel (address not provided)","Helsinki city centre","退房後先寄放或帶行李；預留前往機場時間。")
+]);
+addBefore("12/07","Helsinki Central Railway Station → Helsinki Airport",[
+ WALK("最後採買 → Helsinki Central Railway Station","Helsinki city centre","Helsinki Central Railway Station","回到中央車站後再搭 HSL I／P 火車前往機場。")
+]);
+
+// City app mapping is explicit on each bus segment; no tram/train is mislabeled as bus.
+for(const d of days) for(const it of d.items){
+ if(it.type==="transport" && it.mode==="公交"){
+  const city=d.city||"";
+  if(/Oslo|奧斯陸/.test(city)) it.app="Ruter";
+  else if(/Leknes|Svolvær|羅弗敦|羅浮敦/.test(city)) it.app="Reis";
+  else if(/Tromsø|特羅姆瑟/.test(city)) it.app="Svipper";
+  else if(/Rovaniemi|羅瓦涅米/.test(city)) it.app="Waltti";
+  else if(/Helsinki|赫爾辛基/.test(city)) it.app="HSL";
+ }
+}
 
 const apps=[
 {city:"OSLO",name:"Ruter",desc:"奧斯陸市區公車、電車、地鐵、船與區域票；可買 24 小時票。",store:"https://apps.apple.com/no/app/ruter-mobility-in-oslo-viken/id993620197",web:"https://ruter.no/en/plan-journey/"},
@@ -265,26 +450,30 @@ const expenses=[
 ["♨️","羅弗敦 SPA / Skårungen","前一星期看氣象再買","Skårungen"]
 ];
 
-function mapUrl(a,b){return "https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(a)+"&destination="+encodeURIComponent(b)+"&travelmode=transit";}
-function appLink(name){return ({Ruter:apps[0].store,Vy:"https://apps.apple.com/tw/app/vy/id439655098",Reis:apps[2].store,Svipper:"https://apps.apple.com/tw/app/svipper/id6502283055",Waltti:apps[4].store,HSL:"https://apps.apple.com/tw/app/hsl/id1340229182",VR:"https://www.vr.fi/en",Hurtigruten:"https://www.hurtigruten.com/en"})[name]||"#";}
+function mapUrl(a,b,mode="transit"){
+ const q="?api=1&origin="+encodeURIComponent(a)+"&destination="+encodeURIComponent(b)+"&travelmode="+mode;
+ return "https://www.google.com/maps/dir/"+q;
+}
+function appLink(name){return ({Ruter:"https://reise.ruter.no/",Vy:"https://www.vy.no/en/",Reis:"https://www.reisnordland.no/ny-reiseplanlegger",Svipper:"https://svipper.no/menu/travel/",Waltti:"https://rovaniemi.digitransit.fi/?locale=en",HSL:"https://www.hsl.fi/en/hsl/journey-planner",VR:"https://www.vr.fi/en/timetables",Hurtigruten:"https://www.hurtigruten.com/en"})[name]||"#";}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function renderDay(i){
  const d=days[i]; let h=`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
  (d.alerts||[]).forEach(x=>h+=`<div class="alert"><strong>時間／交通提醒</strong><br>${esc(x)}</div>`);
  h+=`<div class="section-label">ROUTE & STOPS / 站點與行程</div><div class="timeline">`;
  d.items.forEach((it,n)=>{
-  const transport=["transport","ticket"].includes(it.type);
-  h+=`<article class="stopcard ${transport?"transport":""}">`;
+  const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk";
+  h+=`<article class="stopcard ${transport?"transport":walking?"walk":""}">`;
   if(it.time)h+=`<span class="time">${esc(it.time)}</span>`;
+  if(/集合|碼頭（獨立節點）|火車站|機場報到/.test(it.title))h+=`<div class="meetflag">MEETING / DEPARTURE POINT</div>`;
   h+=`<h3>${transport?"↗ ":""}${esc(it.title)}</h3>`;
-  if(it.from||it.to)h+=`<div class="stations"><div class="station"><small>BOARD / 上車・起點</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>EXIT / 下車・終點</small><b>${esc(it.to||"待確認")}</b></div></div>`;
+  if(it.from||it.to){const walking=it.type==="walk"||it.mode==="步行";h+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;}
   if(it.desc)h+=`<p>${esc(it.desc)}</p>`;
   if(it.duration||it.mode||it.price)h+=`<div class="meta">${it.mode?`<span class="pill">${esc(it.mode)}</span>`:""}${it.duration?`<span class="pill">${esc(it.duration)}</span>`:""}${it.price?`<span class="pill warn">${esc(it.price)}</span>`:""}</div>`;
   h+=`<div class="actions">`;
-  if(it.map&&it.from&&it.to)h+=`<a class="linkbtn orange" target="_blank" rel="noopener" href="${mapUrl(it.from,it.to)}">Google Maps 路線 ↗</a>`;
-  if(it.app)h+=`<a class="linkbtn" target="_blank" rel="noopener" href="${appLink(it.app)}">開啟 ${esc(it.app)} ↗</a>`;
+  if(it.map&&it.from&&it.to)h+=`<a class="linkbtn orange" target="_blank" rel="noopener" href="${mapUrl(it.from,it.to,it.mapMode||(it.type==="walk"?"walking":"transit"))}">Google Maps ${it.type==="walk"?"步行導航":"公交路線"} ↗</a>`;
+  if(it.app)h+=`<a class="linkbtn" target="_blank" rel="noopener" href="${appLink(it.app)}">${esc(it.app)} 規劃器 ↗</a>`;
   if(it.links)it.links.forEach(l=>h+=`<a class="linkbtn light" target="_blank" rel="noopener" href="${esc(l[1])}">${esc(l[0])} ↗</a>`);
-  if(it.map&&!it.from&&!it.to)h+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(it.desc||it.title)}">地圖位置 ↗</a>`;
+  if(it.map&&!it.from&&!it.to){const q=it.address||it.desc||it.title;h+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}">Google Maps 地點 ↗</a>`;}
   h+=`</div></article>`;
  });
  h+=`</div><div class="daynav"><button id="prevDay" ${i===0?"disabled":""}>← 前一天</button><button id="nextDay" ${i===days.length-1?"disabled":""}>後一天 →</button></div>`;
@@ -300,7 +489,7 @@ document.getElementById("daySelect").innerHTML=days.map((d,i)=>`<option value="$
 document.getElementById("daySelect").onchange=e=>showDay(+e.target.value);
 renderDay(0);
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===b.dataset.page));window.scrollTo({top:0,behavior:"smooth"});});
-document.getElementById("appGrid").innerHTML=apps.map(a=>`<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p><a href="${esc(a.store)}" target="_blank" rel="noopener">iPhone / App 連結 ↗</a><a href="${esc(a.web)}" target="_blank" rel="noopener">官方網站 ↗</a></article>`).join("");
+document.getElementById("appGrid").innerHTML=apps.map(a=>`<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p><a href="${esc(a.web)}" target="_blank" rel="noopener">官方規劃器／網站 ↗</a><a href="${esc(a.store)}" target="_blank" rel="noopener">尚未安裝？下載 APP ↗</a></article>`).join("");
 const total=68518+11286+18016+16572+12017+6750+3631+4720+2093+14855+14918+3534+2798;
 document.getElementById("expenseContent").innerHTML=`<div class="expense"><div class="total">NT$ ${total.toLocaleString("en-US")} <small class="muted">已填新台幣項目小計</small></div><p>不含 KRW 團費、未填的市區交通、SPA、網路與其他未定費用；不同幣別不混加。</p><table><thead><tr><th>類別</th><th>項目</th><th>金額</th><th>平台</th></tr></thead><tbody>${expenses.map(x=>`<tr><td>${x[0]}</td><td>${esc(x[1])}</td><td><b>${esc(x[2])}</b></td><td>${esc(x[3])}</td></tr>`).join("")}</tbody></table></div>`;
 </script>
