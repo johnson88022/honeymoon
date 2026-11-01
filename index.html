@@ -31,13 +31,27 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 .alert{margin:14px 0;border:2px solid var(--red);background:#fff0eb;padding:13px 15px;font-size:13px;line-height:1.55}
 .alert strong{color:var(--red)}.meetflag{display:inline-block;background:var(--red);color:#fff;padding:4px 7px;font-size:10px;font-weight:950;letter-spacing:.08em;margin-bottom:7px}
 .section-label{margin:22px 0 10px;font-size:11px;font-weight:950;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
-.timeline{display:flex;flex-direction:column;gap:10px}
-.stopcard{background:var(--panel);border:2px solid var(--ink);padding:15px;position:relative}
-.stopcard.transport{border-left:7px solid var(--orange)}.stopcard.walk{border-left:7px solid #244d83}.stopcard.walk .station{background:#244d83}.stopcard.walk .station.to{background:#dce7f6;color:#111}.stopcard.walk .station.to small{color:#244d83}
-.stopcard h3{font-size:17px;margin:0 0 7px;font-weight:950;letter-spacing:-.02em}
+.timeline{display:flex;flex-direction:column;gap:9px}
+.stopcard{background:var(--panel);border:2px solid var(--ink);padding:14px 15px;position:relative;border-radius:2px}
+.stopcard.transport,.stopcard.walk{border-left:7px solid var(--orange)}
+.stopcard.transport .station,.stopcard.walk .station{background:var(--ink);color:#fff}
+.stopcard.transport .station.to,.stopcard.walk .station.to{background:var(--orange);color:#111}
+.stopcard.transport .station small,.stopcard.walk .station small{color:#ffb092}
+.stopcard.transport .station.to small,.stopcard.walk .station.to small{color:#49200f}
+.stopcard.alternative{border-left-color:var(--blue);background:#f1f3f6}
+.stopcard.alternative .station.to{background:#dce7f6;color:#111}
+.stopcard.alternative .station.to small{color:var(--blue)}
+.alt-details{background:var(--panel);border:2px solid var(--ink);border-left:7px solid var(--blue)}
+.alt-details summary{cursor:pointer;list-style:none;padding:13px 15px;font-size:13px;font-weight:950;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.alt-details summary::-webkit-details-marker{display:none}
+.alt-details summary:after{content:"＋ 展開";font-size:10px;color:var(--blue);white-space:nowrap}
+.alt-details[open] summary:after{content:"－ 收合"}
+.alt-details .stopcard{border:0;border-top:1px solid var(--line);background:transparent}
+
+.stopcard h3{font-size:16px;margin:0 0 7px;font-weight:950;letter-spacing:-.02em;line-height:1.35}
 .stopcard p{font-size:13px;line-height:1.55;margin:5px 0;color:#45433e}
 .time{display:inline-block;background:var(--yellow);border:1px solid var(--ink);padding:4px 7px;font-size:12px;font-weight:950;margin-bottom:8px}
-.stations{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.stations{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0}
 .station{background:var(--ink);color:white;padding:10px 11px;min-width:0}
 .station small{display:block;color:#ff9c76;font-size:9px;font-weight:900;letter-spacing:.12em;margin-bottom:4px}
 .station b{font-size:14px;overflow-wrap:anywhere}
@@ -45,20 +59,20 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .pill{font-size:10px;font-weight:850;border:1px solid var(--ink);padding:4px 7px;background:#fff}
 .pill.warn{background:#ffe0d5;border-color:var(--red);color:#9e2118}
-.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .linkbtn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:var(--ink);color:white;border:1px solid var(--ink);padding:9px 11px;font-size:11px;font-weight:900}
-.linkbtn.orange{background:var(--orange);color:#111}.linkbtn.light{background:transparent;color:var(--ink)}
+.linkbtn.orange{background:var(--orange);color:#111}.linkbtn.light{background:transparent;color:var(--ink)}.linkbtn.app{background:#244d83;border-color:#244d83;color:#fff}.linkbtn.small{padding:8px 9px}
 .note{background:#efeddf;border:1px dashed #777;padding:11px 13px;font-size:12px;line-height:1.55;margin-top:10px}
 .daynav{display:flex;justify-content:space-between;gap:8px;margin-top:18px}
 .daynav button{background:var(--ink);color:#fff;border:0;padding:12px 16px;font-weight:900}
 .daynav button:disabled{opacity:.25}
 .page{display:none}.page.active{display:block}
 .appgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.appcard,.expense,.citycard{background:var(--panel);border:2px solid var(--ink);padding:16px}
+.appcard,.expense,.citycard{background:var(--panel);border:2px solid var(--ink);padding:15px;border-radius:2px}
 .appcard h3{margin:0 0 5px;font-size:18px}.appcard p,.expense p{font-size:12px;color:#555;line-height:1.5}
 .appcard .city{font-size:10px;font-weight:900;color:var(--orange);letter-spacing:.12em}
 .appcard a{display:inline-block;margin:5px 7px 0 0;font-size:11px;font-weight:900}
-.expense table{width:100%;border-collapse:collapse;font-size:12px}.expense th,.expense td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left}.expense th{background:var(--ink);color:white}
+.expense{overflow:hidden}.expense table{width:100%;border-collapse:collapse;font-size:12px}.expense table + h3{margin-top:25px}.expense h3{font-size:15px;margin:20px 0 8px}.expense .total{font-size:25px}.expense .currency-block{border:1px solid var(--line);padding:12px;margin:14px 0;background:#fbfaf6}.expense .currency-block.krw{border-left:6px solid var(--orange)}.expense .currency-block.twd{border-left:6px solid var(--ink)}.expense .currency-block .total{margin:0 0 6px}.expense td.amount{text-align:right;white-space:nowrap;font-weight:900}.expense td:last-child{white-space:nowrap}@media(max-width:760px){.expense table{display:block;overflow-x:auto;white-space:nowrap}.currency-block{padding:10px!important}.dayhead p{line-height:1.45}.section-label{margin-top:18px}}.expense th,.expense td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left}.expense th{background:var(--ink);color:white}
 .total{font-size:28px;font-weight:950;margin:15px 0}.muted{color:var(--muted)}
 .mobile-dayselect{display:none;width:100%;padding:12px;border:2px solid var(--ink);background:var(--panel);font-weight:900;margin-bottom:12px}
 .footer{margin-top:35px;border-top:2px solid var(--ink);padding-top:12px;color:var(--muted);font-size:11px;line-height:1.6}
@@ -86,13 +100,13 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 <section id="apps" class="page">
 <div class="dayhead"><div><div class="eyebrow">TRANSPORT TOOLS</div><h2>交通 APP</h2><p>依城市整理；iPhone 連結優先使用 App Store 官方頁。</p></div></div>
 <div class="appgrid" id="appGrid"></div>
-<div class="note"><b>關於「點一下就帶入站點與日期」：</b>每段公交卡會開啟對應城市的官方路線規劃器，並保留已填起訖站的 Google Maps 公交路線；步行卡會開啟 Google Maps 步行導航。業者沒有公開可驗證、可同時預填起訖站與未來日期的 iOS App 深層連結格式，因此不會假造自動搜尋功能。App Store 連結只作為尚未安裝時的下載入口。</div>
+<div class="note"><b>關於「點一下就帶入站點與日期」：</b>交通卡的 Google Maps 連結會以起訖點開啟導航；iPhone 已安裝 Google Maps 時通常會交由 App 開啟。各城市交通 APP 按鈕改為該 APP 的 Apple App Store 官方頁，官方網頁規劃器另列一個按鈕。若 APP 已安裝，App Store 官方頁會顯示「開啟」；若未安裝可直接下載。交通業者未公開可驗證、能從外部網頁直接開啟 APP 並預填站點與日期的 iOS 深層連結，因此不會使用未驗證的 app scheme。</div>
 </section>
 <section id="expenses" class="page">
 <div class="dayhead"><div><div class="eyebrow">BUDGET / BOOKING</div><h2>費用總覽</h2><p>金額照原始行程保留；未填項目不自行估價。</p></div></div>
 <div id="expenseContent"></div>
 </section>
-<div class="footer">本手冊依原始 639 行行程重整。公交段落按城市指定 Ruter／Reis／Svipper／Waltti／HSL；步行段落使用 Google Maps walking 導航。交通業者沒有公開可驗證的 iOS App deep link 格式可保證預填站點與日期，因此交通卡優先開啟官方規劃器並保留 Google Maps 路線，不使用虛構的 App scheme。原始未提供的住宿地址／站牌仍標示待補；冬季班表以當日業者資訊為準。</div>
+<div class="footer">本手冊依原始 639 行行程重整。公交與步行使用相同交通色；替代方案收合顯示。Google Maps 連結帶入起訖點；城市 APP 使用官方 App Store 頁，官方網頁規劃器獨立列出。交通業者未公開可驗證的 iOS 深層連結以從外部網頁直接開啟 APP 並預填站點與日期，故不使用未驗證 scheme。原始未提供的住宿地址／站牌仍標示待補；冬季班表以當日業者資訊為準。</div>
 </main>
 <script>
 const days = [
@@ -236,7 +250,7 @@ function addBefore(date,title,items){const d=days.find(x=>x.date===date);if(!d)r
 for(const d of days) for(const it of d.items){if(it.mode){it.mode=it.mode.replaceAll("公車＋步行","公交").replaceAll("步行＋公車","公交").replaceAll("公車或步行","公交").replaceAll("公車","公交");}}
 // Walking legs explicitly shown as transport cards, with route endpoints and walking navigation.
 addAfter("11/24","MUNCH → 聖誕市集／Karl Johans Gate",[
- WALK("Bjørvika → Jernbanetorget／Karl Johans Gate（步行替代方案）","Bjørvika / MUNCH Museum","Jernbanetorget / Karl Johans gate","原始行程提供公交或步行兩種方式；此卡是步行替代路線，若搭公交則使用前一張公交卡。")
+ ({...WALK("Bjørvika → Jernbanetorget／Karl Johans Gate（步行替代方案）","Bjørvika / MUNCH Museum","Jernbanetorget / Karl Johans gate","原始行程提供公交或步行兩種方式；此卡是步行替代路線，若搭公交則使用前一張公交卡。"),alternative:true})
 ]);
 addAfter("11/24","前往 Engebret Cafe",[
  WALK("Kvadraturen 公交站 → Engebret Cafe","Kvadraturen","Bankplassen 1, 0151 Oslo, Norway","依原始行程：Nationaltheatret → Kvadraturen 下車後，再步行到餐廳。20:15 預約，20:45 前抵達。")
@@ -417,11 +431,11 @@ const apps=[
 {city:"NORWAY / TRAIN",name:"Vy",desc:"Oslo S ⇄ Oslo Airport 區域火車購票與即時班次；可查月台與延誤。",store:"https://apps.apple.com/tw/app/vy/id439655098",web:"https://www.vy.no/en/train/oslo-gardermoen"},
 {city:"LOFOTEN",name:"Reis",desc:"Nordland 公車、快船與渡輪查詢及購票。搜尋 Leknes、Svolvær、Sandvika Kryss。",store:"https://apps.apple.com/tw/app/reis/id1574137854",web:"https://www.reisnordland.no/reis-appen"},
 {city:"TROMSØ",name:"Svipper",desc:"Troms 地區公車／快船查詢、即時班次與票券；可查 Prostneset、Ersfjordbotn、Sjømannsskolen。",store:"https://apps.apple.com/tw/app/svipper/id6502283055",web:"https://svipper.no/menu/travel/the-svipper-app/?sprak=3"},
-{city:"ROVANIEMI",name:"Waltti Mobile",desc:"Rovaniemi（Linkkari）市區公車單程票／日票與路線查詢。",store:"https://apps.apple.com/fi/app/waltti-mobile/id1467878273",web:"https://waltti.fi/en/cities/rovaniemi/"},
+{city:"ROVANIEMI",name:"Waltti Mobile",desc:"Rovaniemi（Linkkari）市區公車單程票／日票與路線查詢。",store:"https://apps.apple.com/tw/app/waltti-mobile/id1467878273",web:"https://waltti.fi/en/cities/rovaniemi/"},
 {city:"HELSINKI",name:"HSL",desc:"赫爾辛基地區公車、電車、地鐵與 I／P 機場火車；機場通常需 ABC 票。",store:"https://apps.apple.com/tw/app/hsl/id1340229182",web:"https://www.hsl.fi/en/tickets-and-fares/hsl-app"},
-{city:"NIGHT TRAIN",name:"VR Matkalla",desc:"芬蘭長途／夜間火車票與班次。",store:"https://www.vr.fi/en",web:"https://www.vr.fi/en"},
-{city:"SEA ROUTE",name:"Hurtigruten",desc:"Svolvær → Tromsø 沿海航線訂位、登船資訊與船班確認。",store:"https://www.hurtigruten.com/en",web:"https://www.hurtigruten.com/en"},
-{city:"AURORA",name:"Aurora Now",desc:"極光預報參考工具；仍需配合雲量、天氣與現地安全判斷。",store:"https://auroranow.app/",web:"https://auroranow.app/"}
+{city:"NIGHT TRAIN",name:"VR Matkalla",desc:"芬蘭長途／夜間火車票與班次。",store:"https://apps.apple.com/tw/app/vr-matkalla/id1410647394",web:"https://www.vr.fi/en/timetables"},
+{city:"SEA ROUTE",name:"Hurtigruten",desc:"Svolvær → Tromsø 沿海航線訂位、登船資訊與船班確認。",store:"",web:"https://www.hurtigruten.com/en"},
+{city:"AURORA",name:"Aurora Now",desc:"極光預報參考工具；仍需配合雲量、天氣與現地安全判斷。",store:"",web:"https://auroranow.app/"}
 ];
 
 const expenses=[
@@ -454,27 +468,35 @@ function mapUrl(a,b,mode="transit"){
  const q="?api=1&origin="+encodeURIComponent(a)+"&destination="+encodeURIComponent(b)+"&travelmode="+mode;
  return "https://www.google.com/maps/dir/"+q;
 }
-function appLink(name){return ({Ruter:"https://reise.ruter.no/",Vy:"https://www.vy.no/en/",Reis:"https://www.reisnordland.no/ny-reiseplanlegger",Svipper:"https://svipper.no/menu/travel/",Waltti:"https://rovaniemi.digitransit.fi/?locale=en",HSL:"https://www.hsl.fi/en/hsl/journey-planner",VR:"https://www.vr.fi/en/timetables",Hurtigruten:"https://www.hurtigruten.com/en"})[name]||"#";}
+const appStores={Ruter:"https://apps.apple.com/tw/app/ruter/id993620197",Vy:"https://apps.apple.com/tw/app/vy/id439655098",Reis:"https://apps.apple.com/tw/app/reis/id1574137854",Svipper:"https://apps.apple.com/tw/app/svipper/id6502283055",Waltti:"https://apps.apple.com/tw/app/waltti-mobile/id1467878273",HSL:"https://apps.apple.com/tw/app/hsl/id1340229182",VR:"https://apps.apple.com/tw/app/vr-matkalla/id1410647394"};
+function appLink(name){return appStores[name]||"";}
+function plannerLink(name){return ({Ruter:"https://reise.ruter.no/",Vy:"https://www.vy.no/en/train/oslo-gardermoen",Reis:"https://www.reisnordland.no/ny-reiseplanlegger",Svipper:"https://svipper.no/menu/travel/",Waltti:"https://rovaniemi.digitransit.fi/?locale=en",HSL:"https://www.hsl.fi/en/hsl/journey-planner",VR:"https://www.vr.fi/en/timetables",Hurtigruten:"https://www.hurtigruten.com/en"})[name]||"";}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function renderDay(i){
  const d=days[i]; let h=`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
  (d.alerts||[]).forEach(x=>h+=`<div class="alert"><strong>時間／交通提醒</strong><br>${esc(x)}</div>`);
  h+=`<div class="section-label">ROUTE & STOPS / 站點與行程</div><div class="timeline">`;
  d.items.forEach((it,n)=>{
-  const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk";
-  h+=`<article class="stopcard ${transport?"transport":walking?"walk":""}">`;
-  if(it.time)h+=`<span class="time">${esc(it.time)}</span>`;
-  if(/集合|碼頭（獨立節點）|火車站|機場報到/.test(it.title))h+=`<div class="meetflag">MEETING / DEPARTURE POINT</div>`;
-  h+=`<h3>${transport?"↗ ":""}${esc(it.title)}</h3>`;
-  if(it.from||it.to){const walking=it.type==="walk"||it.mode==="步行";h+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;}
-  if(it.desc)h+=`<p>${esc(it.desc)}</p>`;
-  if(it.duration||it.mode||it.price)h+=`<div class="meta">${it.mode?`<span class="pill">${esc(it.mode)}</span>`:""}${it.duration?`<span class="pill">${esc(it.duration)}</span>`:""}${it.price?`<span class="pill warn">${esc(it.price)}</span>`:""}</div>`;
-  h+=`<div class="actions">`;
-  if(it.map&&it.from&&it.to)h+=`<a class="linkbtn orange" target="_blank" rel="noopener" href="${mapUrl(it.from,it.to,it.mapMode||(it.type==="walk"?"walking":"transit"))}">Google Maps ${it.type==="walk"?"步行導航":"公交路線"} ↗</a>`;
-  if(it.app)h+=`<a class="linkbtn" target="_blank" rel="noopener" href="${appLink(it.app)}">${esc(it.app)} 規劃器 ↗</a>`;
-  if(it.links)it.links.forEach(l=>h+=`<a class="linkbtn light" target="_blank" rel="noopener" href="${esc(l[1])}">${esc(l[0])} ↗</a>`);
-  if(it.map&&!it.from&&!it.to){const q=it.address||it.desc||it.title;h+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}">Google Maps 地點 ↗</a>`;}
-  h+=`</div></article>`;
+  const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk"||(it.mode||"").includes("步行");
+  const makeCard=()=>{
+   let c=`<article class="stopcard ${transport||walking?"transport":""} ${it.alternative?"alternative":""}">`;
+   if(it.time)c+=`<span class="time">${esc(it.time)}</span>`;
+   // Meeting prompts belong only on an upcoming group meeting node, never on return/departure-after-completion nodes.
+   if(it.type==="place" && /集合$/.test(it.title))c+=`<div class="meetflag">MEETING POINT</div>`;
+   else if(it.type==="place" && /機場報到|碼頭（獨立節點）/.test(it.title))c+=`<div class="meetflag">DEPARTURE POINT</div>`;
+   c+=`<h3>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
+   if(it.from||it.to)c+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;
+   if(it.desc)c+=`<p>${esc(it.desc)}</p>`;
+   if(it.duration||it.mode||it.price)c+=`<div class="meta">${it.mode?`<span class="pill">${esc(it.mode)}</span>`:""}${it.duration?`<span class="pill">${esc(it.duration)}</span>`:""}${it.price?`<span class="pill warn">${esc(it.price)}</span>`:""}</div>`;
+   c+=`<div class="actions">`;
+   if(it.map&&it.from&&it.to)c+=`<a class="linkbtn orange" target="_blank" rel="noopener" href="${mapUrl(it.from,it.to,it.mapMode||(walking?"walking":"transit"))}">Google Maps ${walking?"步行導航":"交通路線"} ↗</a>`;
+   if(it.app){const store=appLink(it.app),planner=plannerLink(it.app);if(store)c+=`<a class="linkbtn app" rel="noopener" href="${store}">${esc(it.app)} APP 開啟／下載 ↗</a>`;if(planner)c+=`<a class="linkbtn light small" target="_blank" rel="noopener" href="${planner}">官方網頁規劃器 ↗</a>`;}
+   if(it.links)it.links.forEach(l=>c+=`<a class="linkbtn light" target="_blank" rel="noopener" href="${esc(l[1])}">${esc(l[0])} ↗</a>`);
+   if(it.map&&!it.from&&!it.to){const q=it.address||it.desc||it.title;c+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}">Google Maps 地點 ↗</a>`;}
+   c+=`</div></article>`;return c;
+  };
+  if(it.alternative)h+=`<details class="alt-details"><summary>替代交通方案｜點擊展開查看</summary>${makeCard()}</details>`;
+  else h+=makeCard();
  });
  h+=`</div><div class="daynav"><button id="prevDay" ${i===0?"disabled":""}>← 前一天</button><button id="nextDay" ${i===days.length-1?"disabled":""}>後一天 →</button></div>`;
  document.getElementById("dayContent").innerHTML=h;
@@ -489,8 +511,17 @@ document.getElementById("daySelect").innerHTML=days.map((d,i)=>`<option value="$
 document.getElementById("daySelect").onchange=e=>showDay(+e.target.value);
 renderDay(0);
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===b.dataset.page));window.scrollTo({top:0,behavior:"smooth"});});
-document.getElementById("appGrid").innerHTML=apps.map(a=>`<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p><a href="${esc(a.web)}" target="_blank" rel="noopener">官方規劃器／網站 ↗</a><a href="${esc(a.store)}" target="_blank" rel="noopener">尚未安裝？下載 APP ↗</a></article>`).join("");
+document.getElementById("appGrid").innerHTML=apps.map(a=>`<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p><div class="actions"><a class="linkbtn light" href="${esc(a.web)}" target="_blank" rel="noopener">官方網站／規劃器 ↗</a>${a.store?`<a class="linkbtn app" href="${esc(a.store)}" target="_blank" rel="noopener">iPhone APP 開啟／下載 ↗</a>`:""}</div></article>`).join("");
 const total=68518+11286+18016+16572+12017+6750+3631+4720+2093+14855+14918+3534+2798;
-document.getElementById("expenseContent").innerHTML=`<div class="expense"><div class="total">NT$ ${total.toLocaleString("en-US")} <small class="muted">已填新台幣項目小計</small></div><p>不含 KRW 團費、未填的市區交通、SPA、網路與其他未定費用；不同幣別不混加。</p><table><thead><tr><th>類別</th><th>項目</th><th>金額</th><th>平台</th></tr></thead><tbody>${expenses.map(x=>`<tr><td>${x[0]}</td><td>${esc(x[1])}</td><td><b>${esc(x[2])}</b></td><td>${esc(x[3])}</td></tr>`).join("")}</tbody></table></div>`;
+const krwTotal=496934+410572+608688+264260;
+const twdExpenses=expenses.filter(x=>!String(x[2]).includes("KRW"));
+const krwExpenses=expenses.filter(x=>String(x[2]).includes("KRW"));
+const twdRows=twdExpenses.map(x=>`<tr><td>${x[0]}</td><td>${esc(x[1])}</td><td class="amount">${esc(x[2])==="未填"?"未填":"NT$ "+esc(x[2])}</td><td>${esc(x[3])}</td></tr>`).join("");
+const krwRows=krwExpenses.map(x=>{const amount=Number(String(x[2]).replace(/[^0-9]/g,""));return `<tr><td>${esc(x[1])}</td><td class="amount">₩ ${amount.toLocaleString("en-US")}</td><td>${esc(x[3])}</td></tr>`;}).join("");
+document.getElementById("expenseContent").innerHTML=`<div class="expense">
+<div class="currency-block twd"><div class="total">NT$ ${total.toLocaleString("en-US")}</div><b>新台幣已填項目小計</b><p>僅統計原始行程中以新台幣記錄的金額；未填與待確認項目不納入。</p></div>
+<div class="currency-block krw"><div class="total">₩ ${krwTotal.toLocaleString("en-US")}</div><b>韓幣團費結算（KRW）</b><p>以下四筆團費以韓圜原幣逐筆列出，不混入新台幣小計。</p><table><thead><tr><th>團費項目</th><th style="text-align:right">韓幣金額</th><th>平台</th></tr></thead><tbody>${krwRows}<tr><td><b>韓幣團費合計</b></td><td class="amount"><b>₩ ${krwTotal.toLocaleString("en-US")}</b></td><td>4 筆</td></tr></tbody></table></div>
+<h3>新台幣費用明細</h3><table><thead><tr><th>類別</th><th>項目</th><th style="text-align:right">金額</th><th>平台</th></tr></thead><tbody>${twdRows}</tbody></table>
+<p>以上尚未包含未填的市區交通、SPA、網路與其他未定費用。韓幣如需折算台幣，請依實際刷卡日匯率及銀行手續費計算。</p></div>`;
 </script>
 </body></html>
