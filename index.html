@@ -98,15 +98,15 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 <div class="content"><div id="dayContent"></div></div></div>
 </section>
 <section id="apps" class="page">
-<div class="dayhead"><div><div class="eyebrow">TRANSPORT TOOLS</div><h2>交通 APP</h2><p>依城市整理；iPhone 連結優先使用 App Store 官方頁。</p></div></div>
+<div class="dayhead"><div><div class="eyebrow">TRANSPORT TOOLS</div><h2>交通 APP</h2><p>依城市整理，僅列出行程中需要使用的 APP。</p></div></div>
 <div class="appgrid" id="appGrid"></div>
-<div class="note"><b>iPhone APP 開啟方式：</b>「iPhone 開啟 APP」會開啟該 APP 專屬的 Safari 頁面，透過 Apple Smart App Banner 顯示原生「開啟」或「檢視」按鈕；已安裝時按「開啟」會進入 APP，未安裝時可前往 App Store。這是 Apple 官方支援的網站導流方式。交通業者沒有公開可驗證的自訂 URL Scheme／Universal Link，因此不使用猜測的 scheme。Safari Smart App Banner 不會在 Chrome 及其他瀏覽器顯示；其他瀏覽器可用獨立 App Store 頁面。</div>
+
 </section>
 <section id="expenses" class="page">
 <div class="dayhead"><div><div class="eyebrow">BUDGET / BOOKING</div><h2>費用總覽</h2><p>金額照原始行程保留；未填項目不自行估價。</p></div></div>
 <div id="expenseContent"></div>
 </section>
-<div class="footer">本手冊依原始 639 行行程重整。公交與步行使用相同交通色；替代方案收合顯示。Google Maps 連結帶入起訖點；城市 APP 另有專屬 Safari Smart App Banner 頁：若已安裝，可按 Apple 原生「開啟」進入 APP；未安裝則可前往 App Store。此方式需在 iPhone Safari 使用，非 Safari 瀏覽器請使用 App Store 頁。原始未提供的住宿地址／站牌仍標示待補；冬季班表以當日業者資訊為準。</div>
+<div class="footer">本手冊依原始 639 行行程重整。公交與步行使用相同交通色；替代方案收合顯示。交通節點僅標示建議使用的 APP 名稱。Google Maps 連結帶入起訖點；原始未提供的住宿地址／站牌仍標示待補；冬季班表以當日業者資訊為準。</div>
 </main>
 <script>
 const days = [
@@ -179,7 +179,7 @@ const days = [
 {type:"transport",title:"Tromsø → Ersfjordbotn",time:"原始候選班次：09:16–10:11／12:46–13:42／13:58–14:49",from:"Tromsø Prostneset 2",to:"Ersfjordbotn",mode:"公車",desc:"原始站點寫 Prostneset 2 → Ersfjordbotn。建議出發前在 Svipper 搜尋同名站牌並核對路線／方向。",map:true,app:"Svipper"},
 {type:"place",title:"Ersfjordbotn 峽灣徒步",desc:"安排峽灣散步。冬季日照短、路面可能結冰，請穿防滑鞋並預留回程候車時間。"},
 {type:"place",title:"Bryggejentene AS",desc:"原始推薦下午用餐地點。請確認營業時間及從步道前往的交通。"},
-{type:"transport",title:"Ersfjordbotn → 北極教堂",from:"Ersfjordbotn",to:"Tromsdalen kirke",mode:"公車",desc:"原始指定下車站 Tromsdalen kirke。回程班次與轉乘方式請以 Svipper 當日規劃器為準。",map:true,app:"Svipper"},
+{type:"transport",title:"Ersfjordbotn → 北極教堂",from:"Ersfjordbotn",to:"Tromsdalen kirke",mode:"公車",desc:"原始指定下車站 Tromsdalen kirke。回程班次與轉乘方式請以 Svipper 當日資訊為準。",map:true,app:"Svipper"},
 {type:"place",title:"北極教堂",desc:"Tromsdalen kirke。參觀後步行前往 Tromsø 大橋。",map:true},
 {type:"place",title:"Tromsø 大橋",desc:"步行過橋回市區；注意冬季風勢、結冰及天黑時間。",map:true},
 ]},
@@ -513,12 +513,6 @@ function mapUrl(a,b,mode="transit"){
  const q="?api=1&origin="+encodeURIComponent(a)+"&destination="+encodeURIComponent(b)+"&travelmode="+mode;
  return "https://www.google.com/maps/dir/"+q;
 }
-const appIds={Ruter:"993620197",Vy:"439655098",Reis:"1574137854",Svipper:"6502283055",Waltti:"1467878273",HSL:"1340229182",VR:"1410647394", "Aurora Now":"1037695306"};
-const appSlugs={Ruter:"ruter",Vy:"vy",Reis:"reis",Svipper:"svipper",Waltti:"waltti",HSL:"hsl",VR:"vr", "Aurora Now":"aurora-now"};
-const appStores={Ruter:"https://apps.apple.com/tw/app/ruter/id993620197",Vy:"https://apps.apple.com/tw/app/vy/id439655098",Reis:"https://apps.apple.com/tw/app/reis/id1574137854",Svipper:"https://apps.apple.com/tw/app/svipper/id6502283055",Waltti:"https://apps.apple.com/tw/app/waltti-mobile/id1467878273",HSL:"https://apps.apple.com/tw/app/hsl/id1340229182",VR:"https://apps.apple.com/tw/app/vr-matkalla/id1410647394"};
-function appLink(name){return appStores[name]||"";}
-function appLaunchLink(name){return appSlugs[name]?"app-open/"+appSlugs[name]+".html":"";}
-function plannerLink(name){return ({Ruter:"https://reise.ruter.no/",Vy:"https://www.vy.no/en/train/oslo-gardermoen",Reis:"https://www.reisnordland.no/ny-reiseplanlegger",Svipper:"https://svipper.no/menu/travel/",Waltti:"https://rovaniemi.digitransit.fi/?locale=en",HSL:"https://www.hsl.fi/en/hsl/journey-planner",VR:"https://www.vr.fi/en/timetables",Hurtigruten:"https://www.hurtigruten.com/en"})[name]||"";}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function renderDay(i){
  const d=days[i]; let h=`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
@@ -537,7 +531,7 @@ function renderDay(i){
    if(it.duration||it.mode||it.price)c+=`<div class="meta">${it.mode?`<span class="pill">${esc(it.mode)}</span>`:""}${it.duration?`<span class="pill">${esc(it.duration)}</span>`:""}${it.price?`<span class="pill warn">${esc(it.price)}</span>`:""}</div>`;
    c+=`<div class="actions">`;
    if(it.map&&it.from&&it.to)c+=`<a class="linkbtn orange" target="_blank" rel="noopener" href="${mapUrl(it.from,it.to,it.mapMode||(walking?"walking":"transit"))}">Google Maps ${walking?"步行導航":"交通路線"} ↗</a>`;
-   if(it.app){const store=appLink(it.app),launch=appLaunchLink(it.app),planner=plannerLink(it.app);if(launch)c+=`<a class="linkbtn app" href="${launch}">iPhone 開啟 ${esc(it.app)} ↗</a>`;if(store)c+=`<a class="linkbtn light small" target="_blank" rel="noopener" href="${store}">App Store 頁面</a>`;if(planner)c+=`<a class="linkbtn light small" target="_blank" rel="noopener" href="${planner}">官方網頁規劃器 ↗</a>`;}
+   if(it.app)c+=`<span class="pill">${it.app==="Hurtigruten"?"搭乘業者":"使用 APP"}：${esc(it.app)}</span>`;
    if(it.links)it.links.forEach(l=>c+=`<a class="linkbtn light" target="_blank" rel="noopener" href="${esc(l[1])}">${esc(l[0])} ↗</a>`);
    if(it.map&&!it.from&&!it.to){const q=it.address||it.desc||it.title;c+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}">Google Maps 地點 ↗</a>`;}
    c+=`</div></article>`;return c;
@@ -558,7 +552,7 @@ document.getElementById("daySelect").innerHTML=days.map((d,i)=>`<option value="$
 document.getElementById("daySelect").onchange=e=>showDay(+e.target.value);
 renderDay(0);
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===b.dataset.page));window.scrollTo({top:0,behavior:"smooth"});});
-document.getElementById("appGrid").innerHTML=apps.map(a=>{const slug=appSlugs[a.name];return `<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p><div class="actions"><a class="linkbtn light" href="${esc(a.web)}" target="_blank" rel="noopener">官方網站／規劃器 ↗</a>${slug?`<a class="linkbtn app" href="app-open/${slug}.html">iPhone 開啟 APP ↗</a>`:""}${a.store?`<a class="linkbtn light small" href="${esc(a.store)}" target="_blank" rel="noopener">App Store 頁面</a>`:""}</div></article>`;}).join("");
+document.getElementById("appGrid").innerHTML=apps.filter(a=>!["Hurtigruten","Airportbus.fi"].includes(a.name)).map(a=>`<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p></article>`).join("");
 document.getElementById("dayCount").textContent=days.length+" DAYS";
 const total=68518+11286+18016+16572+12017+6750+3631+4720+2093+14855+14918+3534+2798;
 const krwTotal=496934+410572+608688+264260;
