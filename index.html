@@ -240,15 +240,13 @@ const days = [
 ]}
 ];
 
-
-// User-requested corrections based on the original 639-line itinerary.
 const WALK=(title,from,to,desc="步行路線；冬季請預留結冰路面與天候緩衝。")=>({type:"walk",title,from,to,mode:"步行",desc,map:true,mapMode:"walking"});
 const BUS=(title,from,to,desc="請用該城市公交 APP 核對當日路線、方向與站牌。",app=null,time=null)=>({type:"transport",title,from,to,mode:"公交",desc,app,map:true,mapMode:"transit",time});
 function addAfter(date,title,items){const d=days.find(x=>x.date===date);if(!d)return;const i=d.items.findIndex(x=>x.title===title);if(i>=0)d.items.splice(i+1,0,...items);}
 function addBefore(date,title,items){const d=days.find(x=>x.date===date);if(!d)return;const i=d.items.findIndex(x=>x.title===title);if(i>=0)d.items.splice(i,0,...items);}
-// All ordinary public road transport in these cities is labelled 公交, not the generic 公車/電車混稱.
+
 for(const d of days) for(const it of d.items){if(it.mode){it.mode=it.mode.replaceAll("公車＋步行","公交").replaceAll("步行＋公車","公交").replaceAll("公車或步行","公交").replaceAll("公車","公交");}}
-// Walking legs explicitly shown as transport cards, with route endpoints and walking navigation.
+
 addAfter("11/24","MUNCH → 聖誕市集／Karl Johans Gate",[
  ({...WALK("Bjørvika → Jernbanetorget／Karl Johans Gate（步行替代方案）","Bjørvika / MUNCH Museum","Jernbanetorget / Karl Johans gate","原始行程提供公交或步行兩種方式；此卡是步行替代路線，若搭公交則使用前一張公交卡。"),alternative:true})
 ]);
@@ -261,7 +259,6 @@ addAfter("11/25","飯店 Check-in",[
 addAfter("11/25","再看看要不要去商場逛逛，準備明天吃的",[
  WALK("商場 → Airbnb 飯店","Leknes shopping centre / Leknes sentrum","Storvollveien 142, 8370 Leknes","採買後步行回住宿。")
 ]);
-// Day 4 starts from the hotel; group meeting and return legs are explicit.
 addBefore("11/26","一日團集合",[
  WALK("飯店 → 一日團集合點","Storvollveien 142, 8370 Leknes","Circle K Leknes, Storgata 35, 8370 Leknes, Norway","08:00 抵達等候，08:30 正式集合；步行路線請依住宿實際入口導航。")
 ]);
@@ -271,7 +268,7 @@ addAfter("11/26","一日團集合",[
 addAfter("11/26","一日團結束後自由活動",[
  WALK("市區逛街／用餐 → 飯店","Leknes sentrum","Storvollveien 142, 8370 Leknes","逛街、吃飯並採買隔日食物後，步行回飯店。")
 ]);
-// Day 5: add exact Svolvær accommodation and post-sauna sequence.
+
 const d1127=days.find(x=>x.date==="11/27");
 if(d1127){const h=d1127.items.find(x=>x.title==="Svolvær 飯店／行李");if(h){h.desc="Google Maps：Sjøgata 2-4, 8300 Svolvær, Norway。依你的原始備註，住宿順序可能相反，請以訂房確認單為準。";h.address="Sjøgata 2-4, 8300 Svolvær, Norway";}}
 addAfter("11/27","Leknes → Svolvær",[
@@ -290,7 +287,7 @@ addAfter("11/27","返回 Svolvær 飯店",[
  WALK("飯店 → 市區逛街／吃飯／採買明日食物","Sjøgata 2-4, 8300 Svolvær, Norway","Svolvær sentrum","依原始行程：逛逛、看想買什麼及吃飯，準備 11/28 的食物。"),
  WALK("市區 → 飯店","Svolvær sentrum","Sjøgata 2-4, 8300 Svolvær, Norway","逛完後步行返回飯店。")
 ]);
-// Day 6: walking to luggage storage, tour, restaurant, shopping, luggage and quay are separate.
+
 addBefore("11/28","寄存行李",[
  WALK("飯店 → Thon Hotel Lofoten 寄存行李","Sjøgata 2-4, 8300 Svolvær, Norway","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","退房後步行到寄存點；先確認是否接受非住客寄存及櫃檯時間。")
 ]);
@@ -312,7 +309,7 @@ addAfter("11/28","拿行李",[
 addBefore("11/28","Svolvær → Tromsø 夜船",[
  {type:"place",title:"Svolvær kystrutekai 碼頭（獨立節點）",time:"21:00 左右抵達港口；22:15 開船",desc:"先確認船公司、船名、登船口、行李與登船截止時間。碼頭本身是抵達後的獨立地點，不與船班交通合併。",address:"Svolvær kystrutekai",map:true}
 ]);
-// Day 7 accommodation and walking itinerary.
+
 const d1129=days.find(x=>x.date==="11/29"); if(d1129){const h=d1129.items.find(x=>x.title==="飯店 Check-in");if(h)h.desc="住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。15:00 後可 Check-in；先確認能否提早寄放行李。";}
 addAfter("11/29","Tromsø 碼頭下船",[
  WALK("Tromsø Havn Prostneset → 飯店","Tromsø Havn Prostneset","Balsfjordgata 5, 9007 Tromsø, Norway","下船後拖行李步行至住宿；若天候不佳或行李較多，改搭計程車。")
@@ -326,7 +323,7 @@ addAfter("11/29","市區散步",[
 addAfter("11/29","超市採買",[
  WALK("Eurospar → 飯店","Eurospar Tromsø","Balsfjordgata 5, 9007 Tromsø, Norway","採買後步行回飯店。")
 ]);
-// Day 8: start at the Tromsø hotel, make post-bridge evening sequence explicit.
+
 addBefore("11/30","Tgtg／Quality Hotel Saga",[
  WALK("飯店 → Tgtg／Quality Hotel Saga","Balsfjordgata 5, 9007 Tromsø, Norway","Quality Hotel Saga, Tromsø","從住宿步行前往原始行程註記的 Tgtg／Quality Hotel Saga。")
 ]);
@@ -345,7 +342,7 @@ addAfter("11/30","Tromsø 大橋",[
  WALK("市區 → 晚餐","Tromsø sentrum","Tromsø sentrum restaurant area","原始備註：海鮮餐／鯨魚肉待找。可先用地圖看附近餐廳，晚餐地點尚未定。"),
  WALK("晚餐 → Tromsø 飯店","Tromsø sentrum restaurant area","Balsfjordgata 5, 9007 Tromsø, Norway","用餐後步行回住宿。")
 ]);
-// Day 9: explicit start from accommodation and walk legs around gathering.
+
 addBefore("12/01","公車日票（視行程決定）",[
  {type:"place",title:"飯店出發",desc:"住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。先從飯店出發，再依當日公交搭乘次數決定是否買日票。",address:"Balsfjordgata 5, 9007 Tromsø, Norway",map:true}
 ]);
@@ -358,7 +355,7 @@ addAfter("12/01","晚餐／集合前簡餐",[
 addAfter("12/01","破冰團集合",[
  WALK("破冰團結束 → 飯店","Søndre Tollbodgate 11, 9008 Tromsø, Norway","Balsfjordgata 5, 9007 Tromsø, Norway","活動結束後步行返回住宿；若天候不佳可改搭計程車。")
 ]);
-// Day 10 hotel address and explicit airport / evening walking.
+
 const d1202=days.find(x=>x.date==="12/02"); if(d1202){const h=d1202.items.find(x=>x.title==="飯店 Check-out");if(h)h.desc="住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。先 Check-out、取行李。";}
 addBefore("12/02","極光團集合",[
  WALK("超市／晚餐 → 極光團集合點","Eurospar Rovaniemi / Rovaniemi city centre","Ruokasenkatu 3, 96100 Rovaniemi, Finland","原始行程是先採買、簡單吃飯，再步行至集合點；19:30 抵達等候，20:00 正式集合，約 5 小時。")
@@ -366,14 +363,14 @@ addBefore("12/02","極光團集合",[
 addAfter("12/02","極光團集合",[
  WALK("極光團結束 → 飯店","Ruokasenkatu 3, 96100 Rovaniemi, Finland","Rovaniemi hotel (address not provided)","活動結束後步行回飯店；若團方提供接送，依訂單安排。")
 ]);
-// Day 11 starts at hotel, explicit walking to husky tour and post-tour town walk.
+
 addBefore("12/03","哈士奇團集合",[
  WALK("飯店 → 哈士奇團集合點","Rovaniemi hotel (address not provided)","Santa's Hotel Santa Claus, Korkalonkatu 29, 96200 Rovaniemi, Finland","10:30 抵達等候，11:00 正式集合，活動約 3 小時。住宿地址未提供，請依實際訂房位置導航。")
 ]);
 addAfter("12/03","市區逛街／晚餐",[
  WALK("市區 → 飯店","Rovaniemi city centre","Rovaniemi hotel (address not provided)","逛街／用餐後步行回飯店。")
 ]);
-// Day 12 explicit luggage storage -> restaurant -> sightseeing -> shopping -> luggage -> station.
+
 addBefore("12/04","寄放行李",[
  WALK("飯店 → 行李寄存點","Rovaniemi hotel (address not provided)","Rovaniemi luggage storage (confirm exact address)","退房後前往寄存點；Visit Rovaniemi 網頁先確認確切地址、開放時間與關門時間。")
 ]);
@@ -387,7 +384,7 @@ addAfter("12/04","市區景點／採買",[
  WALK("景點 → 市區逛街","Rovaniemi city centre attractions","Rovaniemi city centre","依原始行程回市區逛逛。"),
  WALK("市區 → 行李寄存點取行李","Rovaniemi city centre","Rovaniemi luggage storage (confirm exact address)","取回行李後直接前往火車站；請依實際寄存地址導航。")
 ]);
-// Day 13: train arrival -> hotel luggage drop -> meal, and walking day legs.
+
 addAfter("12/05","Helsinki Central Railway Station 抵達",[
  WALK("中央車站 → 飯店寄放行李／車站寄存","Helsinki Central Railway Station","Helsinki hotel (address not provided)","先詢問飯店能否寄存；若不行，改用車站行李寄存。飯店地址未提供。")
 ]);
@@ -397,7 +394,7 @@ addAfter("12/05","韓式炸雞",[
 addAfter("12/05","咖啡／桑拿／市區景點",[
  WALK("市區 → 飯店","Helsinki city centre","Helsinki hotel (address not provided)","行程結束後步行回飯店；如住宿不在市中心，請依實際地址重新導航。")
 ]);
-// Day 14 and 15: start/end from hotel, show walk legs and transit airport leg separately.
+
 addBefore("12/06","紅白教堂",[
  WALK("飯店 → 赫爾辛基紅白教堂","Helsinki hotel (address not provided)","Helsinki Cathedral, Unioninkatu 29, Helsinki","從飯店出發；住宿地址未提供，導航起點可改為實際地址。")
 ]);
@@ -407,6 +404,7 @@ addAfter("12/06","紅白教堂",[
 addAfter("12/06","岩石教堂",[
  WALK("岩石教堂 → 飯店","Temppeliaukio Church, Lutherinkatu 3, Helsinki","Helsinki hotel (address not provided)","參觀後步行回飯店。")
 ]);
+
 addBefore("12/07","最後採買",[
  WALK("飯店 → 市區最後採買","Helsinki hotel (address not provided)","Helsinki city centre","退房後先寄放或帶行李；預留前往機場時間。")
 ]);
@@ -414,7 +412,6 @@ addBefore("12/07","Helsinki Central Railway Station → Helsinki Airport",[
  WALK("最後採買 → Helsinki Central Railway Station","Helsinki city centre","Helsinki Central Railway Station","回到中央車站後再搭 HSL I／P 火車前往機場。")
 ]);
 
-// City app mapping is explicit on each bus segment; no tram/train is mislabeled as bus.
 for(const d of days) for(const it of d.items){
  if(it.type==="transport" && it.mode==="公交"){
   const city=d.city||"";
@@ -481,7 +478,6 @@ function renderDay(i){
   const makeCard=()=>{
    let c=`<article class="stopcard ${transport||walking?"transport":""} ${it.alternative?"alternative":""}">`;
    if(it.time)c+=`<span class="time">${esc(it.time)}</span>`;
-   // Meeting prompts belong only on an upcoming group meeting node, never on return/departure-after-completion nodes.
    if(it.type==="place" && /集合$/.test(it.title))c+=`<div class="meetflag">MEETING POINT</div>`;
    else if(it.type==="place" && /機場報到|碼頭（獨立節點）/.test(it.title))c+=`<div class="meetflag">DEPARTURE POINT</div>`;
    c+=`<h3>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
