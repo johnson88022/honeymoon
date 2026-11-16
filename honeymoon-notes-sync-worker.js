@@ -124,7 +124,8 @@ async function loadLatestHtmlFromGitHub(env, request = null) {
   if (!response.ok) return null;
   const file = await response.json();
   const etag = file.sha ? `"${file.sha}"` : "";
-  if (etag && request?.headers.get("If-None-Match") === etag) {
+  const incomingTag = request?.headers.get("If-None-Match")?.replace(/^W\//, "");
+  if (etag && incomingTag === etag) {
     return new Response(null, { status: 304, headers: { etag, "cache-control": "no-store" } });
   }
   if (file.encoding === "none" && file.sha) {
