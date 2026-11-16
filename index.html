@@ -6,6 +6,16 @@
 <title>NORDIC / TRIP 2026</title>
 <style>
 :root{--bg:#e9e6df;--ink:#111;--muted:#68665f;--line:#b9b5ac;--orange:#ff5a1f;--yellow:#f4e54d;--panel:#f7f5ef;--red:#d92d20;--green:#1b6d4b;--blue:#244d83}
+/* Refined editorial styling */
+:root{--bg:#f3f1ec;--ink:#222823;--muted:#73776f;--line:#dddcd5;--orange:#bd815d;--yellow:#eadcc9;--panel:#fffefa;--blue:#526b70}
+body{font-family:Inter,"Noto Sans TC",Arial,system-ui,sans-serif;letter-spacing:.005em}
+.top{border-bottom:3px solid var(--orange);background:#252c28;padding-top:20px;padding-bottom:20px}
+.brand{letter-spacing:.16em}.hero{padding-top:38px;padding-bottom:26px}h1{letter-spacing:-.055em;font-weight:850}.dates{border:1px solid var(--line);background:#fffefa;border-radius:4px;font-weight:750}
+.tabs{border-bottom:1px solid var(--line);gap:8px}.tab{border:1px solid var(--line);border-radius:5px 5px 0 0;background:#eeece6;font-weight:750}.tab.active{background:var(--ink);color:white;border-color:var(--ink)}
+.sidebar{border:1px solid var(--line);border-radius:8px;box-shadow:0 5px 18px #2228230a}.sidehead{border-radius:7px 7px 0 0}.daylink.active{background:#e8ded2}.daylink.active small{color:#56564f}
+.dayhead{border-radius:8px;border-left:5px solid var(--orange);background:#29332f}.stopcard,.alt-details,.appcard,.expense,.citycard{border:1px solid var(--line);border-radius:7px;box-shadow:0 3px 12px #22282308}.stopcard.transport,.stopcard.walk{border-left:4px solid var(--orange)}.section-label{letter-spacing:.18em}
+.weather-panel{background:#edf1ef;border:1px solid #d6dfda;border-radius:9px;padding:17px;box-shadow:none}.weather-card{border:1px solid #e1e5e1;border-radius:7px;box-shadow:0 2px 8px #2333290a;padding:14px}.weather-legend span{border-radius:20px;border-color:#d5ded8}.weather-metric{border:0;border-radius:5px;background:#f4f6f3}.weather-alert{border-radius:4px}.weather-source{font-size:10px}
+.notes-panel{border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:8px;box-shadow:0 3px 14px #2228230a}.notes-panel textarea{border:1px solid var(--line);border-radius:5px}.notes-tools button,.notes-upload{border:0;border-radius:5px;background:#29332f}.notes-tools .export-notes{background:#e8ded2;color:#29332f}.footer{border-top:1px solid var(--line)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans TC",system-ui,sans-serif}
 button,a{font:inherit}a{color:inherit}button{cursor:pointer}
 .top{background:var(--ink);color:#fff;padding:18px max(18px,calc((100vw - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:5px solid var(--orange)}
@@ -97,7 +107,6 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 .weather-metric{border:1px solid #d8e1e5;background:#f4f7f8;padding:7px 8px;min-width:0}.weather-metric small{display:block;font-size:9px;color:#647781;font-weight:800}.weather-metric b{display:block;font-size:14px;margin-top:2px;color:#1d3039;overflow-wrap:anywhere}
 .weather-alert{margin-top:9px;padding:8px 9px;border-left:4px solid #6b8794;background:#f1f5f6;font-size:10px;line-height:1.5}.weather-alert.warning{border-color:#d18a16;background:#fff6e5}.weather-alert.danger{border-color:#c83b32;background:#fff0ee}.weather-alert a{font-weight:900}
 .weather-state{font-size:11px;color:#52616a;line-height:1.55}.weather-source{margin-top:10px;font-size:9px;color:#65747c;line-height:1.55}.weather-source a{font-weight:800}.weather-status{font-weight:900}
-.weather-proxy-config{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid #cbd7dc}.weather-proxy-config label{font-size:10px;font-weight:900}.weather-proxy-config input{flex:1;min-width:180px;border:1px solid #9caeb7;padding:7px 8px;font-size:10px;background:#fff}.weather-proxy-config button{border:1px solid #263f4c;background:#263f4c;color:#fff;padding:7px 10px;font-size:10px;font-weight:900;cursor:pointer}.weather-proxy-config small{width:100%;font-size:9px;color:#65747c}
 @media(max-width:760px){.weather-panel{padding:12px}.weather-grid{grid-template-columns:1fr 1fr}.weather-card{padding:10px}.weather-temp{font-size:23px}}
 @media(max-width:420px){.weather-grid{grid-template-columns:1fr}.weather-metrics{gap:5px}}
 .notes-panel{background:#fffdf7;border:2px solid var(--ink);border-top:7px solid var(--yellow);padding:15px;margin:0 0 18px;box-shadow:4px 4px 0 rgba(17,17,17,.10)}
@@ -138,7 +147,7 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 <div class="dayhead"><div><div class="eyebrow">TO REVIEW / BEFORE DEPARTURE</div><h2>待決定事項</h2><p>把尚未定案、需要天氣／營業時間／交通確認的內容集中記錄。</p></div></div>
 <div id="pendingContent" class="appgrid"></div>
 </section>
-<div class="footer">本手冊依原始 639 行行程重整。公交與步行使用相同交通色；替代方案收合顯示。交通節點僅標示建議使用的 APP 名稱。Google Maps 連結帶入起訖點；日期均標示星期；尚未決定事項集中於「待決定事項」分頁；冬季班表以當日業者資訊為準。天氣由 Open-Meteo 提供，MET Norway 作為備援；警報依所在地官方來源顯示。</div>
+<div class="footer">逐日行程、交通站點、票券與費用整理。冬季班表以當日業者資訊為準；天氣預報由 Open-Meteo 提供。</div>
 </main>
 <script>
 const days = [
@@ -663,7 +672,8 @@ try{
 function getPageNote(key){return pageNotes[key]||{text:"",photos:[]};}
 function notesPanelHTML(key,label){
  const item=getPageNote(key);
- return `<section class="notes-panel" data-notes-key="${esc(key)}"><div class="notes-head"><strong>✎ ${esc(label||"本頁個人筆記")}</strong><small>內容會自動保存在目前瀏覽器</small></div><textarea class="notes-text" placeholder="在這一頁記下提醒、備註、預約資訊……">${esc(item.text||"")}</textarea><div class="notes-tools"><label class="notes-upload">＋ 上傳圖片<input class="notes-file" type="file" accept="image/*" multiple></label><button type="button" class="save-notes">儲存筆記</button><button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">${(item.photos||[]).length} 張圖片</span></div><div class="notes-photos">${(item.photos||[]).map((src,n)=>`<div class="notes-photo"><img src="${src}" alt="筆記圖片 ${n+1}"><button type="button" data-photo-index="${n}" aria-label="刪除圖片">×</button></div>`).join("")}</div></section>`;
+ const editable=!!item.editing;
+ return `<section class="notes-panel ${editable?"is-editing":"is-locked"}" data-notes-key="${esc(key)}"><div class="notes-head"><strong>✎ ${esc(label||"本頁個人筆記")}</strong><small>${editable?"編輯中":"已儲存 · 按「編輯」修改"}</small></div><textarea class="notes-text" ${editable?"":"readonly"} placeholder="在這一頁記下提醒、備註、預約資訊……">${esc(item.text||"")}</textarea><div class="notes-tools">${editable?`<label class="notes-upload">＋ 上傳圖片<input class="notes-file" type="file" accept="image/*" multiple></label><button type="button" class="save-notes">儲存</button>`:`<button type="button" class="edit-notes">編輯</button>`}<button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">${(item.photos||[]).length} 張圖片</span></div><div class="notes-photos">${(item.photos||[]).map((src,n)=>`<div class="notes-photo">${editable?`<button type="button" data-photo-index="${n}" aria-label="刪除圖片">×</button>`:""}<img src="${src}" alt="筆記圖片 ${n+1}"></div>`).join("")}</div></section>`;
 }
 function persistNotes(){try{localStorage.setItem(NOTES_STORAGE_KEY,JSON.stringify(pageNotes));return true;}catch(e){alert("瀏覽器儲存空間不足。請減少圖片數量，或先匯出 HTML 備份。");return false;}}
 function exportNotesHTML(){
@@ -678,12 +688,12 @@ function exportNotesHTML(){
 function bindNotes(root=document){
  root.querySelectorAll(".notes-panel").forEach(panel=>{
   if(panel.dataset.bound==="1")return;panel.dataset.bound="1";
-  const key=panel.dataset.notesKey,area=panel.querySelector(".notes-text"),status=panel.querySelector(".notes-status");
-  const save=()=>{pageNotes[key]={...getPageNote(key),text:area.value};if(persistNotes())status.textContent="已儲存 · "+(pageNotes[key].photos||[]).length+" 張圖片";};
-  area.addEventListener("input",save);
-  panel.querySelector(".save-notes").addEventListener("click",save);
-  panel.querySelector(".export-notes").addEventListener("click",()=>{save();exportNotesHTML();});
-  panel.querySelector(".notes-file").addEventListener("change",async e=>{
+  const key=panel.dataset.notesKey,area=panel.querySelector(".notes-text");
+  const save=()=>{pageNotes[key]={...getPageNote(key),text:area.value,editing:false};if(persistNotes()){panel.outerHTML=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));bindNotes(document);}};
+  panel.querySelector(".edit-notes")?.addEventListener("click",()=>{pageNotes[key]={...getPageNote(key),editing:true};panel.outerHTML=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));bindNotes(document);document.querySelector(`[data-notes-key="${CSS.escape(key)}"] .notes-text`)?.focus();});
+  panel.querySelector(".save-notes")?.addEventListener("click",save);
+  panel.querySelector(".export-notes").addEventListener("click",()=>{if(!area.readOnly)save();exportNotesHTML();});
+  panel.querySelector(".notes-file")?.addEventListener("change",async e=>{
    const files=[...e.target.files];if(!files.length)return;
    const current=getPageNote(key);current.photos=current.photos||[];
    for(const file of files){
@@ -692,7 +702,7 @@ function bindNotes(root=document){
     const data=await new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.readAsDataURL(file);});
     current.photos.push(data);
    }
-   pageNotes[key]={...current,text:area.value};
+   pageNotes[key]={...current,text:area.value,editing:true};
    if(persistNotes()){const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);}
    e.target.value="";
   });
@@ -722,11 +732,7 @@ const weatherPlaces={
  "12/07":[["Helsinki 赫爾辛基",60.1699,24.9384],["Dubai 杜拜（轉機）",25.2048,55.2708]],
  "12/08":[["Dubai 杜拜",25.2048,55.2708],["Taipei 台北（抵達）",25.0330,121.5654]]
 };
-// Deploy weather-proxy-worker.js to Cloudflare Workers, then paste its URL here.
-// The proxy is needed because MET Norway requires a unique User-Agent header.
-let METNO_PROXY_BASE = (()=>{try{return localStorage.getItem("nordicTripMetNoProxy")||"";}catch(e){return "";}})();
 const weatherCache=new Map();
-const alertCache=new Map();
 function weatherInfo(code){
  const m={0:["☀️","晴朗"],1:["🌤️","大致晴朗"],2:["⛅","局部多雲"],3:["☁️","陰天"],45:["🌫️","霧"],48:["🌫️","霧凇"],51:["🌦️","毛毛雨"],53:["🌦️","毛毛雨"],55:["🌧️","較強毛毛雨"],56:["🌧️","凍毛毛雨"],57:["🌧️","凍毛毛雨"],61:["🌧️","小雨"],63:["🌧️","中雨"],65:["🌧️","大雨"],66:["🌧️","凍雨"],67:["🌧️","強凍雨"],71:["🌨️","小雪"],73:["🌨️","中雪"],75:["❄️","大雪"],77:["🌨️","雪粒"],80:["🌦️","陣雨"],81:["🌧️","較強陣雨"],82:["⛈️","強陣雨"],85:["🌨️","陣雪"],86:["❄️","強陣雪"],95:["⛈️","雷雨"],96:["⛈️","雷雨／冰雹"],99:["⛈️","強雷雨／冰雹"]};
  return m[Number(code)]||["🌡️","天氣資訊"];
@@ -735,19 +741,15 @@ function weatherDate(d){const [m,day]=d.date.split("/");return `2026-${m.padStar
 async function fetchJson(url,timeout=12000){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);try{const r=await fetch(url,{signal:controller.signal,cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);return await r.json();}finally{clearTimeout(timer);}}
 function weatherRequest(lat,lon){
  const key=lat+","+lon;if(weatherCache.has(key))return weatherCache.get(key);
- const params=new URLSearchParams({latitude:lat,longitude:lon,current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",hourly:"temperature_2m,precipitation_probability,rain_probability,snowfall_probability,snowfall,weather_code",daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,snowfall_sum,wind_speed_10m_max,sunrise,sunset",timezone:"auto",forecast_days:"16"});
- const promise=fetchJson("https://api.open-meteo.com/v1/forecast?"+params.toString()).catch(async primaryError=>{
-  if(!METNO_PROXY_BASE)throw new Error("主要來源失敗；尚未設定 MET Norway 備援代理");
-  const url=METNO_PROXY_BASE.replace(/\/$/,"")+`/locationforecast?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
-  const data=await fetchJson(url);return {__provider:"MET Norway",__fallback:true,properties:data.properties};
- });
+ const params=new URLSearchParams({latitude:lat,longitude:lon,current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",hourly:"temperature_2m,precipitation_probability,rain_probability,snowfall",daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,snowfall_sum,wind_speed_10m_max,sunrise,sunset",timezone:"auto",forecast_days:"16"});
+ const promise=fetchJson("https://api.open-meteo.com/v1/forecast?"+params.toString());
  weatherCache.set(key,promise);promise.catch(()=>weatherCache.delete(key));return promise;
 }
 function dateMetricsFromHourly(data,dayDate){
  const h=data.hourly;if(!h?.time)return {};
  const ix=[];h.time.forEach((t,i)=>{if(t.slice(0,10)===dayDate)ix.push(i)});
  const max=(key)=>{const vals=ix.map(i=>h[key]?.[i]).filter(v=>v!==null&&v!==undefined&&Number.isFinite(Number(v)));return vals.length?Math.max(...vals):null;};
- return {rainProbability:max("rain_probability")??max("precipitation_probability"),snowProbability:max("snowfall_probability"),snowfall:max("snowfall")};
+ return {rainProbability:max("rain_probability")??max("precipitation_probability"),snowfall:max("snowfall")};
 }
 function metNoDay(data,dayDate){
  const rows=data.properties?.timeseries||[];const selected=rows.filter(x=>x.time?.slice(0,10)===dayDate);if(!selected.length)return null;
@@ -756,13 +758,12 @@ function metNoDay(data,dayDate){
  let rain=null,code=null;for(const x of selected){const d=x.data?.next_6_hours?.details||x.data?.next_1_hours?.details||{};if(Number.isFinite(d.probability_of_precipitation))rain=Math.max(rain??0,d.probability_of_precipitation);}
  const symbol=closest.data?.next_1_hours?.summary?.symbol_code||closest.data?.next_6_hours?.summary?.symbol_code||"";
  const sym=symbol.toLowerCase();if(sym.includes("snow"))code=73;else if(sym.includes("rain"))code=61;else if(sym.includes("thunder"))code=95;else if(sym.includes("fog"))code=45;else if(sym.includes("cloudy"))code=3;else if(sym.includes("partlycloudy"))code=2;else code=1;
- return {max:temps.length?Math.max(...temps):null,min:temps.length?Math.min(...temps):null,temp:closest.data?.instant?.details?.air_temperature??null,code,rainProbability:rain,snowProbability:null,source:"MET Norway"};
+ return {max:temps.length?Math.max(...temps):null,min:temps.length?Math.min(...temps):null,temp:closest.data?.instant?.details?.air_temperature??null,code,rainProbability:rain};
 }
 function metric(label,value){return `<div class="weather-metric"><small>${label}</small><b>${value}</b></div>`;}
 function weatherAlertHTML(alertState){
- if(alertState?.unsupported)return `<div class="weather-alert">⚠️ <b>官方警報：</b>此地點不在 MET Norway 警報資料涵蓋範圍。請使用所在地官方警報網站確認：<a href="${alertState.url}" target="_blank" rel="noopener">查看官方警報 ↗</a></div>`;
- if(alertState?.error)return `<div class="weather-alert">⚠️ <b>天氣警報：</b>警報來源暫時無法連線，請點官方網站再次確認：<a href="https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings" target="_blank" rel="noopener">MET Norway 警報 ↗</a></div>`;
- const items=alertState?.items||[];if(!items.length)return `<div class="weather-alert">✓ <b>天氣警報：</b>目前未查到此座標的有效警報（MET Norway）。</div>`;
+ if(alertState?.official)return `<div class="weather-alert">⚠️ <b>官方天氣警報：</b><a href="${alertState.url}" target="_blank" rel="noopener">查看所在地警報 ↗</a></div>`;
+ const items=alertState?.items||[];if(!items.length)return `<div class="weather-alert">✓ <b>天氣警報：</b>目前未查到有效警報。</div>`;
  return items.map(a=>{const p=a.properties||{};const level=p.riskMatrixColor||p.awareness_level||"yellow";const cls=/red/i.test(level)?"danger":/orange/i.test(level)?"warning":"";const title=p.event||p.title||"氣象警報";const desc=(p.description||p.instruction||p.consequences||"").replace(/<[^>]*>/g," ").slice(0,220);return `<div class="weather-alert ${cls}">⚠️ <b>${esc(String(level).toUpperCase())}｜${esc(title)}</b>${desc?`<br>${esc(desc)}`:""}${p.onset?`<br>開始：${esc(p.onset)}`:""}${p.expires?`　有效至：${esc(p.expires)}`:""}</div>`;}).join("");
 }
 const alertOfficial={
@@ -771,39 +772,32 @@ const alertOfficial={
  "Rovaniemi":"https://en.ilmatieteenlaitos.fi/warnings","Santa Claus Village":"https://en.ilmatieteenlaitos.fi/warnings","Helsinki":"https://en.ilmatieteenlaitos.fi/warnings","Suomenlinna":"https://en.ilmatieteenlaitos.fi/warnings","Tallinn":"https://www.ilmateenistus.ee/ilm/prognoosid/hoiatused/?lang=en","Dubai":"https://www.ncm.gov.ae/?lang=en"
 };
 function officialAlertFor(place){const key=Object.keys(alertOfficial).find(k=>place.includes(k));return alertOfficial[key]||"https://www.meteoalarm.org/";}
-function alertRequest(lat,lon){const key=lat+","+lon;if(alertCache.has(key))return alertCache.get(key);const promise=(async()=>{if(!METNO_PROXY_BASE)throw new Error("proxy not configured");const url=METNO_PROXY_BASE.replace(/\/$/,"")+`/metalerts?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;return await fetchJson(url);})();alertCache.set(key,promise);promise.catch(()=>alertCache.delete(key));return promise;}
 async function alertForLocation(place,lat,lon){
- // MetAlerts coverage is Nordic/Arctic; do not claim zero alerts elsewhere.
- const isNorway=lat>57&&lat<72&&lon>4&&lon<32;
- if(!isNorway)return {unsupported:true,url:officialAlertFor(place)};
- try{const data=await alertRequest(lat,lon);return {items:data.features||[]};}catch(e){return {error:true};}
+ return {official:true,url:officialAlertFor(place)};
 }
 function weatherCardHTML(place,dayDate,data,alertState){
- if(data.__fallback){const d=metNoDay(data,dayDate);if(!d)return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">備援來源目前沒有這一天的預報資料（MET Norway 約提供未來 9 天）。</p>${weatherAlertHTML(alertState)}</article>`;
-  const [icon,desc]=weatherInfo(d.code);return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><div class="weather-main"><div class="weather-icon">${icon}</div><div><div class="weather-temp">${d.temp!==null?Math.round(d.temp)+"°C":(d.max!==null?Math.round(d.max)+"°C":"—")}</div><div class="weather-desc">備援預報 · ${desc}</div></div></div><div class="weather-metrics">${metric("氣溫範圍",d.min!==null&&d.max!==null?`${Math.round(d.min)}° / ${Math.round(d.max)}°C`:"—")}${metric("降雨機率",d.rainProbability!==null?Math.round(d.rainProbability)+"%":"來源未提供")}${metric("降雪機率","來源未提供")}${metric("天氣來源","MET Norway 備援")}</div>${weatherAlertHTML(alertState)}</article>`;
- }
  const idx=data.daily?.time?.indexOf(dayDate)??-1;
- if(idx<0)return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">主要來源與備援來源目前都沒有這一天的預報。Open-Meteo 最長 16 天、MET Norway 約 9 天，請接近日期再更新。</p>${weatherAlertHTML(alertState)}</article>`;
+ if(idx<0)return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">目前沒有這一天的預報資料，請接近日期再更新。</p>${weatherAlertHTML(alertState)}</article>`;
  const current=data.current;const isNow=current?.time?.slice(0,10)===dayDate;const [icon,desc]=weatherInfo(isNow?current.weather_code:data.daily.weather_code[idx]);
- const hourly=dateMetricsFromHourly(data,dayDate);const rain=hourly.rainProbability??data.daily.precipitation_probability_max?.[idx]??null;const snow=hourly.snowProbability;
+ const hourly=dateMetricsFromHourly(data,dayDate);const rain=hourly.rainProbability??data.daily.precipitation_probability_max?.[idx]??null;
  const temp=isNow?`${Math.round(current.temperature_2m)}°C`:`${Math.round(data.daily.temperature_2m_min[idx])}° / ${Math.round(data.daily.temperature_2m_max[idx])}°C`;
  const details=isNow?`${Math.round(current.apparent_temperature)}°C 體感 · 濕度 ${Math.round(current.relative_humidity_2m)}% · 風速 ${Math.round(current.wind_speed_10m)} km/h`:`降水量 ${Number(data.daily.precipitation_sum?.[idx]??0).toFixed(1)} mm · 降雪量 ${Number(data.daily.snowfall_sum?.[idx]??0).toFixed(1)} cm · 最大風速 ${Math.round(data.daily.wind_speed_10m_max?.[idx]??0)} km/h`;
  const sunrise=data.daily.sunrise?.[idx]?.slice(11,16),sunset=data.daily.sunset?.[idx]?.slice(11,16);
- return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><div class="weather-main"><div class="weather-icon">${icon}</div><div><div class="weather-temp">${temp}</div><div class="weather-desc">${isNow?"目前天氣":"當日預報"} · Open-Meteo 主要來源 · ${desc}</div></div></div><div class="weather-metrics">${metric("降雨機率",rain!==null?Math.round(rain)+"%":"—")}${metric("降雪機率",snow!==null?Math.round(snow)+"%":"—")}${metric("降水／降雪",details)}${metric("日照時間",sunrise&&sunset?`日出 ${sunrise} · 日落 ${sunset}`:"—")}</div>${weatherAlertHTML(alertState)}</article>`;
+ return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><div class="weather-main"><div class="weather-icon">${icon}</div><div><div class="weather-temp">${temp}</div><div class="weather-desc">${isNow?"目前天氣":"當日預報"} · ${desc}</div></div></div><div class="weather-metrics">${metric("降雨機率",rain!==null?Math.round(rain)+"%":"—")}${metric("降水／降雪",details)}${metric("日照時間",sunrise&&sunset?`日出 ${sunrise} · 日落 ${sunset}`:"—")}</div>${weatherAlertHTML(alertState)}</article>`;
 }
 async function loadWeatherForDay(i){
  const d=days[i],root=document.getElementById("weatherGrid");if(!root)return;const locations=weatherPlaces[d.date]||[];const target=weatherDate(d);
  if(!locations.length){root.innerHTML='<p class="weather-state">此日期尚未設定天氣地點。</p>';return;}
- root.innerHTML=locations.map(x=>`<article class="weather-card"><div class="weather-place">${esc(x[0])}</div><p class="weather-state">正在取得主要來源與警報資料……</p></article>`).join("");
+ root.innerHTML=locations.map(x=>`<article class="weather-card"><div class="weather-place">${esc(x[0])}</div><p class="weather-state">正在取得預報資料……</p></article>`).join("");
  const results=await Promise.all(locations.map(async loc=>{const [weather,alerts]=await Promise.all([weatherRequest(loc[1],loc[2]).then(data=>({data})).catch(error=>({error})),alertForLocation(loc[0],loc[1],loc[2])]);return {loc,...weather,alerts};}));
  const liveRoot=document.getElementById("weatherGrid");if(!liveRoot||liveRoot.dataset.day!==d.date)return;
- liveRoot.innerHTML=results.map(({loc,data,error,alerts})=>error?`<article class="weather-card"><div class="weather-place">${esc(loc[0])}</div><p class="weather-state">主要天氣來源失敗：${esc(error.message||"連線錯誤")}。${METNO_PROXY_BASE?"正在使用備援來源但仍無法取得資料。":"請先設定下方備援代理網址，啟用 MET Norway 自動備援。"}</p>${weatherAlertHTML(alerts)}</article>`:weatherCardHTML(loc[0],target,data,alerts)).join("");
+ liveRoot.innerHTML=results.map(({loc,data,error,alerts})=>error?`<article class="weather-card"><div class="weather-place">${esc(loc[0])}</div><p class="weather-state">目前無法載入預報：${esc(error.message||"連線錯誤")}。</p>${weatherAlertHTML(alerts)}</article>`:weatherCardHTML(loc[0],target,data,alerts)).join("");
 }
 
 function renderDay(i){
  const d=days[i]; let h=notesPanelHTML("itinerary-"+d.date, "DAY "+String(i+1).padStart(2,"0")+" · "+d.date+" 個人筆記")+`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026（星期${esc(d.dow)}）</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
  (d.alerts||[]).forEach(x=>h+=`<div class="alert"><strong>時間／交通提醒</strong><br>${esc(x)}</div>`);
- h+=`<section class="weather-panel"><div class="weather-top"><strong>☁ 當地天氣 / 即時與逐日預報</strong><small>依當日行程地點 · 每個地點獨立顯示</small></div><div class="weather-legend"><span>🌡 氣溫</span><span>🌧 降雨機率</span><span>❄ 降雪機率</span><span>⚠ 官方天氣警報</span></div><div class="weather-grid" id="weatherGrid" data-day="${esc(d.date)}"><p class="weather-state">正在載入氣象資料……</p></div><div class="weather-source">主要來源：<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>（最多 16 天）；備援：<a href="https://api.met.no/" target="_blank" rel="noopener">MET Norway</a>（約 9 天）。MET Norway 警報僅適用其涵蓋區域；其他地區提供官方警報入口。${METNO_PROXY_BASE?`<br><b>備援代理：</b>${esc(METNO_PROXY_BASE)}`:`<br><b>啟用備援：</b>請部署隨附的 weather-proxy-worker.js，並將 Worker 網址填入程式中的 METNO_PROXY_BASE。`} 機率為當日逐時預報中的最高值；若來源未提供，會明確標示而不自行推算。<div class="weather-proxy-config"><label for="weatherProxyInput">MET Norway 備援 Worker 網址</label><input id="weatherProxyInput" type="url" placeholder="部署 Worker 後貼上 https://xxx.workers.dev" value="${esc(METNO_PROXY_BASE)}"><button id="saveWeatherProxy" type="button">儲存並測試備援</button><small id="weatherProxyStatus">${METNO_PROXY_BASE?"已設定備援代理。":"尚未設定；主要 API 失敗時無法自動切換。"}</small></div></div></section>`;
+ h+=`<section class="weather-panel"><div class="weather-top"><strong>☁ 當地天氣</strong><small>依當日行程地點</small></div><div class="weather-legend"><span>🌡 氣溫</span><span>🌧 降雨機率</span><span>⚠ 官方警報</span></div><div class="weather-grid" id="weatherGrid" data-day="${esc(d.date)}"><p class="weather-state">正在載入氣象資料……</p></div><div class="weather-source">資料來源：<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>。警報請以所在地官方資訊為準。</div></section>`;
  h+=`<div class="section-label">ROUTE & STOPS / 站點與行程</div><div class="timeline">`;
  d.items.forEach((it,n)=>{
   const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk"||(it.mode||"").includes("步行");
@@ -831,8 +825,6 @@ function renderDay(i){
  document.getElementById("dayContent").innerHTML=h;
  bindNotes(document.getElementById("dayContent"));
  loadWeatherForDay(i);
- const proxyInput=document.getElementById("weatherProxyInput"),proxyButton=document.getElementById("saveWeatherProxy"),proxyStatus=document.getElementById("weatherProxyStatus");
- if(proxyButton)proxyButton.onclick=()=>{const value=(proxyInput.value||"").trim().replace(/\/$/,"");if(value&&!/^https:\/\//i.test(value)){proxyStatus.textContent="網址必須以 https:// 開頭。";return;}METNO_PROXY_BASE=value;try{localStorage.setItem("nordicTripMetNoProxy",value);}catch(e){}weatherCache.clear();alertCache.clear();proxyStatus.textContent=value?"已儲存，正在重新載入天氣與警報……":"已清除備援網址。";loadWeatherForDay(i);};
  document.getElementById("prevDay").onclick=()=>showDay(i-1);
  document.getElementById("nextDay").onclick=()=>showDay(i+1);
  document.getElementById("daySelect").value=i;
