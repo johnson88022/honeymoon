@@ -993,7 +993,20 @@ function weatherInfo(code){
  return m[Number(code)]||["🌡️","天氣資訊"];
 }
 function weatherDate(d){const [m,day]=d.date.split("/");return `2026-${m.padStart(2,"0")}-${day.padStart(2,"0")}`;}
-async function fetchJson(url,timeout=12000){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);try{const r=await fetch(url,{signal:controller.signal,cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);return await r.json();}finally{clearTimeout(timer);}}
+async function fetchJson(url,timeout=30000){
+ let lastError;
+ for(let attempt=0;attempt<3;attempt++){
+  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);
+  try{
+   const r=await fetch(url,{signal:controller.signal,cache:"no-store"});
+   if(!r.ok)throw new Error("HTTP "+r.status);
+   return await r.json();
+  }catch(error){lastError=error.name==="AbortError"?new Error("天氣服務回應逾時，請稍後重試"):error;
+   if(attempt<2)await new Promise(resolve=>setTimeout(resolve,700*(attempt+1)));
+  }finally{clearTimeout(timer);}
+ }
+ throw lastError;
+}
 function weatherRequest(lat,lon){
  const key=lat+","+lon;if(weatherCache.has(key))return weatherCache.get(key);
  const params=new URLSearchParams({latitude:lat,longitude:lon,current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",hourly:"temperature_2m,precipitation_probability,rain_probability,snowfall",daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,snowfall_sum,wind_speed_10m_max,sunrise,sunset",timezone:"auto",forecast_days:"16"});
@@ -1046,17 +1059,24 @@ async function loadWeatherForDay(i){
  host.innerHTML=`<section class="weather-panel"><div class="weather-top"><div><strong>LOCAL FORECAST <span>· 當地天氣</span></strong><small>${esc(d.date)} · 依行程地點</small></div>${locations.length?`<label class="weather-location-picker"><span>地點</span><select id="weatherLocationSelect" aria-label="選擇天氣地點">${locations.map((loc,index)=>`<option value="${index}">${esc(loc[0])}</option>`).join("")}</select></label>`:""}</div><div class="weather-current" id="weatherCurrent" data-day="${esc(d.date)}"></div><div class="weather-source">資料來源 <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · 警報請查所在地官方資訊</div></section>`;
  const display=document.getElementById("weatherCurrent");
  if(!locations.length){display.innerHTML='<p class="weather-state">此日期尚未設定天氣地點。</p>';return;}
- display.innerHTML='<p class="weather-state">正在取得預報資料……</p>';
- const selector=document.getElementById("weatherLocationSelect");let selectedIndex=0;let latestResults=[];
- const renderSelected=()=>{
+ const selector=document.getElementById("weatherLocationSelect");let selectedIndex=0;let requestId=0;
+ const renderSelected=async()=>{
+  const thisRequest=++requestId;
   const live=document.getElementById("weatherCurrent");if(!live||live.dataset.day!==d.date)return;
-  const entry=latestResults[selectedIndex];if(!entry){live.innerHTML='<p class="weather-state">正在取得預報資料……</p>';return;}
-  live.innerHTML=entry.error?`<div class="weather-card"><div class="weather-place">${esc(entry.loc[0])}</div><p class="weather-state">目前無法載入預報：${esc(entry.error.message||"連線錯誤")}。</p>${weatherAlertHTML(entry.alerts)}</div>`:weatherCardHTML(entry.loc[0],target,entry.data,entry.alerts);
+  const loc=locations[selectedIndex];if(!loc)return;
+  live.innerHTML=`<p class="weather-state">正在載入 ${esc(loc[0])} 的預報……</p>`;
+  try{
+   const data=await weatherRequest(loc[1],loc[2]);
+   const current=document.getElementById("weatherCurrent");if(thisRequest!==requestId||!current||current.dataset.day!==d.date)return;
+   current.innerHTML=weatherCardHTML(loc[0],target,data,{official:true,url:officialAlertFor(loc[0])});
+  }catch(error){
+   const current=document.getElementById("weatherCurrent");if(thisRequest!==requestId||!current||current.dataset.day!==d.date)return;
+   current.innerHTML=`<div class="weather-card"><div class="weather-place">${esc(loc[0])}</div><p class="weather-state">目前無法載入預報：${esc(error.message||"連線錯誤")}。</p><button type="button" class="weather-retry">重新載入</button>${weatherAlertHTML({official:true,url:officialAlertFor(loc[0])})}</div>`;
+   current.querySelector(".weather-retry")?.addEventListener("click",renderSelected,{once:true});
+  }
  };
  selector?.addEventListener("change",()=>{selectedIndex=Number(selector.value)||0;renderSelected();});
- const results=await Promise.all(locations.map(async loc=>{const [weather,alerts]=await Promise.all([weatherRequest(loc[1],loc[2]).then(data=>({data})).catch(error=>({error})),alertForLocation(loc[0],loc[1],loc[2])]);return {loc,...weather,alerts};}));
- const live=document.getElementById("weatherCurrent");if(!live||live.dataset.day!==d.date)return;
- latestResults=results;renderSelected();
+ renderSelected();
 }
 
 function renderDay(i){
