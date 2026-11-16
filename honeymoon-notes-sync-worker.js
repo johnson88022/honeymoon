@@ -119,6 +119,19 @@ async function loadLatestHtmlFromGitHub(env) {
   }});
   if (!response.ok) return null;
   const file = await response.json();
+  if (file.encoding === "none" && file.sha) {
+    const raw = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/blobs/${file.sha}`, { headers: {
+      "authorization": `Bearer ${env.GH_TOKEN}`,
+      "accept": "application/vnd.github.raw",
+      "x-github-api-version": "2022-11-28",
+      "user-agent": "honeymoon-notes-sync"
+    }});
+    if (!raw.ok) return null;
+    return new Response(raw.body, { headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store"
+    }});
+  }
   if (file.encoding !== "base64" || typeof file.content !== "string") return null;
   const binary = atob(file.content.replace(/\s/g, ""));
   const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
