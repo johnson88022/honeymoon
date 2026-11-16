@@ -122,7 +122,7 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 </head>
 <body>
 <header class="top"><div class="brand">NORDIC <span>/</span> TRIP</div><small>FIELD GUIDE · 2026</small></header>
-<div class="notes-backup"><button id="export-notes-html" type="button">下載含筆記的 HTML</button></div>
+<div class="notes-backup"><small>每次儲存筆記或圖片，會自動下載含最新內容的 HTML。</small><button id="export-notes-html" type="button">下載含筆記的 HTML</button></div>
 <section class="hero"><div><h1>北歐蜜月<br>交通手冊</h1><p>逐日行程・車站指引・票券・費用</p></div><div class="dates">2026.11.23（一） — 12.08（二）</div></section>
 <nav class="tabs" aria-label="主選單">
 <button class="tab active" data-page="itinerary">每日行程</button><button class="tab" data-page="apps">交通 APP</button><button class="tab" data-page="expenses">費用總覽</button><button class="tab" data-page="pending">待決定事項</button>
@@ -692,7 +692,7 @@ function bindNotes(root=document){
  root.querySelectorAll(".notes-panel").forEach(panel=>{
   if(panel.dataset.bound==="1")return;panel.dataset.bound="1";
   const key=panel.dataset.notesKey,area=panel.querySelector(".notes-text");
-  const save=()=>{pageNotes[key]={...getPageNote(key),text:area.value,editing:false};if(persistNotes()){panel.outerHTML=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));bindNotes(document);}};
+  const save=()=>{pageNotes[key]={...getPageNote(key),text:area.value,editing:false};if(persistNotes()){panel.outerHTML=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));bindNotes(document);setTimeout(exportNotesHTML,0);}};
   panel.querySelector(".edit-notes")?.addEventListener("click",()=>{pageNotes[key]={...getPageNote(key),editing:true};panel.outerHTML=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));bindNotes(document);document.querySelector(`[data-notes-key="${CSS.escape(key)}"] .notes-text`)?.focus();});
   panel.querySelector(".save-notes")?.addEventListener("click",save);
   panel.querySelector(".export-notes").addEventListener("click",()=>{if(!area.readOnly)save();exportNotesHTML();});
@@ -706,12 +706,12 @@ function bindNotes(root=document){
     current.photos.push(data);
    }
    pageNotes[key]={...current,text:area.value,editing:true};
-   if(persistNotes()){const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);}
+   if(persistNotes()){const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);setTimeout(exportNotesHTML,0);}
    e.target.value="";
   });
   panel.querySelectorAll("[data-photo-index]").forEach(btn=>btn.addEventListener("click",()=>{
-   const item=getPageNote(key);item.photos.splice(Number(btn.dataset.photoIndex),1);pageNotes[key]=item;persistNotes();
-   const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);
+   const item=getPageNote(key);item.photos.splice(Number(btn.dataset.photoIndex),1);pageNotes[key]=item;if(!persistNotes())return;
+   const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);setTimeout(exportNotesHTML,0);
   }));
  });
 }
