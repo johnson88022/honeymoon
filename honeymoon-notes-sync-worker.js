@@ -30,6 +30,38 @@ async function sign(value, keyText) {
   return base64url(new Uint8Array(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(value))));
 }
 
+function embeddedNotes(html) {
+  const match = html.match(/<script\b[^>]*\bid=["']embedded-notes-data["'][^>]*>([\s\S]*?)<\/script>/i);
+  if (!match) return {};
+  try { return JSON.parse(match[1]); } catch { return {}; }
+}
+
+function mergeNotesIntoHtml(incomingHtml, currentHtml) {
+  const incoming = embeddedNotes(incomingHtml);
+  const current = embeddedNotes(currentHtml);
+  const merged = { ...incoming };
+  for (const [key, oldNote] of Object.entries(current)) {
+    const newNote = incoming[key];
+    if (!newNote) { merged[key] = oldNote; continue; }
+    const oldTime = Number(oldNote?.updatedAt) || 0;
+    const newTime = Number(newNote?.updatedAt) || 0;
+    const oldHasContent = !!(oldNote?.text || oldNote?.photos?.length);
+    const newHasContent = !!(newNote?.text || newNote?.photos?.length);
+    if (oldTime > newTime || (!oldTime && !newTime && oldHasContent && !newHasContent)) merged[key] = oldNote;
+  }
+  const data = JSON.stringify(merged).replace(/</g, "\\u003c");
+  const tag = `<script id="embedded-notes-data" type="application/json">${data}</script>`;
+  if (/<script\b[^>]*\bid=["']embedded-notes-data["'][^>]*>[\s\S]*?<\/script>/i.test(incomingHtml)) {
+    return incomingHtml.replace(/<script\b[^>]*\bid=["']embedded-notes-data["'][^>]*>[\s\S]*?<\/script>/i, tag);
+  }
+  return incomingHtml.replace(/<\/head>/i, `${tag}</head>`);
+}
+
+function decodeBase64Text(value) {
+  const binary = atob(value.replace(/\s/g, ""));
+  return new TextDecoder().decode(Uint8Array.from(binary, character => character.charCodeAt(0)));
+}
+
 async function hasSession(request, env) {
   const token = cookieValue(request, "notes_session");
   if (!token || !env.GH_TOKEN) return false;
@@ -60,13 +92,16 @@ async function saveToGitHub(html, env) {
   };
   const current = await fetch(`${api}?ref=${BRANCH}`, { headers });
   if (!current.ok) throw new Error(`GitHub could not read index.html (${current.status}).`);
-  const { sha } = await current.json();
-  const bytes = new TextEncoder().encode(html);
+  const currentFile = await current.json();
+  const currentHtml = currentFile.encoding === "base64" && typeof currentFile.content === "string"
+    ? decodeBase64Text(currentFile.content) : "";
+  const safeHtml = currentHtml ? mergeNotesIntoHtml(html, currentHtml) : html;
+  const bytes = new TextEncoder().encode(safeHtml);
   if (bytes.length > MAX_HTML_BYTES) throw new Error("HTML exceeds the 20 MB save limit.");
   const body = {
     message: "Save travel notes",
     branch: BRANCH,
-    sha,
+    sha: currentFile.sha,
     content: bytesToBase64(bytes)
   };
   const updated = await fetch(api, { method: "PUT", headers: { ...headers, "content-type": "application/json" }, body: JSON.stringify(body) });
