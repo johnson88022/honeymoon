@@ -74,6 +74,25 @@ async function saveToGitHub(html, env) {
   return await updated.json();
 }
 
+async function loadLatestHtmlFromGitHub(env) {
+  const api = `https://api.github.com/repos/${OWNER}/${REPO}/contents/index.html?ref=${BRANCH}`;
+  const response = await fetch(api, { headers: {
+    "authorization": `Bearer ${env.GH_TOKEN}`,
+    "accept": "application/vnd.github+json",
+    "x-github-api-version": "2022-11-28",
+    "user-agent": "honeymoon-notes-sync"
+  }});
+  if (!response.ok) return null;
+  const file = await response.json();
+  if (file.encoding !== "base64" || typeof file.content !== "string") return null;
+  const binary = atob(file.content.replace(/\s/g, ""));
+  const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
+  return new Response(bytes, { headers: {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "no-store"
+  }});
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -158,6 +177,13 @@ export default {
         }
       }
       return json({ error: "Not found." }, 404, cors);
+    }
+
+    if ((path === "/" || path === "/index.html") && request.method === "GET") {
+      try {
+        const latestHtml = await loadLatestHtmlFromGitHub(env);
+        if (latestHtml) return latestHtml;
+      } catch {}
     }
 
     return env.ASSETS.fetch(request);
