@@ -83,13 +83,38 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
  .appgrid{grid-template-columns:1fr}.stopcard{padding:13px}.daynav button{flex:1}
 }
 @media(max-width:390px){.station{padding:8px}.station b{font-size:12px}.dates{font-size:10px}}
+
+/* Personal notes, photos and weather */
+.weather-panel{margin:16px 0 20px;border:2px solid var(--ink);background:#eaf1f4;padding:14px 15px;box-shadow:4px 4px 0 rgba(17,17,17,.08)}
+.weather-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.weather-top strong{font-size:13px;font-weight:950;letter-spacing:.05em}.weather-top small{font-size:10px;color:#52616a}
+.weather-legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 11px}.weather-legend span{font-size:10px;font-weight:800;padding:5px 8px;border:1px solid #bdcbd1;background:#f8fbfc}
+.weather-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:10px}
+.weather-card{background:#fff;border:1px solid #9caeb7;padding:12px;min-width:0;box-shadow:0 2px 0 rgba(17,17,17,.04)}
+.weather-place{font-size:12px;font-weight:950;letter-spacing:.02em;color:#263f4c}
+.weather-main{display:flex;align-items:center;gap:10px;margin:8px 0 10px}.weather-icon{font-size:32px;line-height:1}.weather-temp{font-size:26px;font-weight:950;letter-spacing:-.05em}.weather-desc{font-size:11px;font-weight:800;color:#465c67}
+.weather-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px}
+.weather-metric{border:1px solid #d8e1e5;background:#f4f7f8;padding:7px 8px;min-width:0}.weather-metric small{display:block;font-size:9px;color:#647781;font-weight:800}.weather-metric b{display:block;font-size:14px;margin-top:2px;color:#1d3039;overflow-wrap:anywhere}
+.weather-alert{margin-top:9px;padding:8px 9px;border-left:4px solid #6b8794;background:#f1f5f6;font-size:10px;line-height:1.5}.weather-alert.warning{border-color:#d18a16;background:#fff6e5}.weather-alert.danger{border-color:#c83b32;background:#fff0ee}.weather-alert a{font-weight:900}
+.weather-state{font-size:11px;color:#52616a;line-height:1.55}.weather-source{margin-top:10px;font-size:9px;color:#65747c;line-height:1.55}.weather-source a{font-weight:800}.weather-status{font-weight:900}
+.weather-proxy-config{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid #cbd7dc}.weather-proxy-config label{font-size:10px;font-weight:900}.weather-proxy-config input{flex:1;min-width:180px;border:1px solid #9caeb7;padding:7px 8px;font-size:10px;background:#fff}.weather-proxy-config button{border:1px solid #263f4c;background:#263f4c;color:#fff;padding:7px 10px;font-size:10px;font-weight:900;cursor:pointer}.weather-proxy-config small{width:100%;font-size:9px;color:#65747c}
+@media(max-width:760px){.weather-panel{padding:12px}.weather-grid{grid-template-columns:1fr 1fr}.weather-card{padding:10px}.weather-temp{font-size:23px}}
+@media(max-width:420px){.weather-grid{grid-template-columns:1fr}.weather-metrics{gap:5px}}
+.notes-panel{background:#fffdf7;border:2px solid var(--ink);border-top:7px solid var(--yellow);padding:15px;margin:0 0 18px;box-shadow:4px 4px 0 rgba(17,17,17,.10)}
+.notes-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.notes-head strong{font-size:14px;font-weight:950;letter-spacing:.04em}.notes-head small{font-size:10px;color:var(--muted)}
+.notes-panel textarea{width:100%;min-height:105px;resize:vertical;border:1px solid var(--line);background:#fff;padding:11px;font:13px/1.6 Arial,"Noto Sans TC",system-ui,sans-serif;color:var(--ink);outline-offset:2px}
+.notes-tools{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:9px}.notes-tools button,.notes-upload{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:9px 11px;font-size:11px;font-weight:900;cursor:pointer}.notes-tools .export-notes{background:var(--orange);color:#111}.notes-upload{display:inline-block}.notes-tools input{display:none}
+.notes-status{font-size:10px;color:var(--green);font-weight:800}.notes-photos{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.notes-photo{position:relative;width:100px;height:100px;border:1px solid var(--ink);background:#eee}.notes-photo img{width:100%;height:100%;object-fit:cover}.notes-photo button{position:absolute;top:3px;right:3px;border:0;background:#111;color:#fff;width:23px;height:23px;font-weight:900;cursor:pointer}
+@media(max-width:760px){.notes-panel{padding:12px}.notes-photo{width:82px;height:82px}}
+
 </style>
 </head>
 <body>
 <header class="top"><div class="brand">NORDIC <span>/</span> TRIP</div><small>FIELD GUIDE · 2026</small></header>
-<section class="hero"><div><h1>北歐蜜月<br>交通手冊</h1><p>逐日行程・車站指引・票券・費用</p></div><div class="dates">2026.11.23 — 12.08</div></section>
+<section class="hero"><div><h1>北歐蜜月<br>交通手冊</h1><p>逐日行程・車站指引・票券・費用</p></div><div class="dates">2026.11.23（一） — 12.08（二）</div></section>
 <nav class="tabs" aria-label="主選單">
-<button class="tab active" data-page="itinerary">每日行程</button><button class="tab" data-page="apps">交通 APP</button><button class="tab" data-page="expenses">費用總覽</button>
+<button class="tab active" data-page="itinerary">每日行程</button><button class="tab" data-page="apps">交通 APP</button><button class="tab" data-page="expenses">費用總覽</button><button class="tab" data-page="pending">待決定事項</button>
 </nav>
 <main>
 <section id="itinerary" class="page active">
@@ -98,15 +123,22 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 <div class="content"><div id="dayContent"></div></div></div>
 </section>
 <section id="apps" class="page">
+<div id="notes-apps"></div>
 <div class="dayhead"><div><div class="eyebrow">TRANSPORT TOOLS</div><h2>交通 APP</h2><p>依城市整理，僅列出行程中需要使用的 APP。</p></div></div>
 <div class="appgrid" id="appGrid"></div>
 
 </section>
 <section id="expenses" class="page">
+<div id="notes-expenses"></div>
 <div class="dayhead"><div><div class="eyebrow">BUDGET / BOOKING</div><h2>費用總覽</h2><p>金額照原始行程保留；未填項目不自行估價。</p></div></div>
 <div id="expenseContent"></div>
 </section>
-<div class="footer">本手冊依原始 639 行行程重整。公交與步行使用相同交通色；替代方案收合顯示。交通節點僅標示建議使用的 APP 名稱。Google Maps 連結帶入起訖點；原始未提供的住宿地址／站牌仍標示待補；冬季班表以當日業者資訊為準。</div>
+<section id="pending" class="page">
+<div id="notes-pending"></div>
+<div class="dayhead"><div><div class="eyebrow">TO REVIEW / BEFORE DEPARTURE</div><h2>待決定事項</h2><p>把尚未定案、需要天氣／營業時間／交通確認的內容集中記錄。</p></div></div>
+<div id="pendingContent" class="appgrid"></div>
+</section>
+<div class="footer">本手冊依原始 639 行行程重整。公交與步行使用相同交通色；替代方案收合顯示。交通節點僅標示建議使用的 APP 名稱。Google Maps 連結帶入起訖點；日期均標示星期；尚未決定事項集中於「待決定事項」分頁；冬季班表以當日業者資訊為準。天氣由 Open-Meteo 提供，MET Norway 作為備援；警報依所在地官方來源顯示。</div>
 </main>
 <script>
 const days = [
@@ -121,9 +153,9 @@ const days = [
 {type:"place",title:"MUNCH 美術館",time:"約 15:00–18:00 前",desc:"地址：Edvard Munchs Plass 1, 0194 Oslo。原始票價 220 NOK；18:00 關門。"},
 {type:"transport",title:"MUNCH → 聖誕市集／Karl Johans Gate",from:"Bjørvika",to:"Jernbanetorget",mode:"公車或步行",desc:"原始規劃 Bjørvika → Jernbanetorget，也可步行前往 Karl Johans Gate。聖誕市集營業 12:00–20:00，注意 20:00 結束。",map:true},
 {type:"place",title:"奧斯陸聖誕市集",desc:"逛市集、Karl Johans Gate 一帶。Open 12:00–20:00。若時間緊，請優先確保晚餐預約。",links:[["Jul i Vinterland 官方網站","https://www.julivinterland.no/en/"]] },
-{type:"transport",title:"前往 Engebret Cafe",time:"晚餐預約 20:15–23:15；原始提醒 20:45 前到",from:"Nationaltheatret",to:"Kvadraturen",mode:"公車＋步行",desc:"下車後步行至 Bankplassen 1。原始行程列出的站點為 Nationaltheatret → Kvadraturen。",map:true},
+{type:"transport",title:"前往 Engebret Cafe",time:"晚餐預約 20:15–23:15；原始提醒 20:45 前到",from:"Nationaltheatret",to:"Kvadraturen, 0153 Oslo, Norway",mode:"公車＋步行",desc:"下車後步行至 Bankplassen 1。原始行程列出的站點為 Nationaltheatret → Kvadraturen。",map:true},
 {type:"place",title:"Engebret Cafe",time:"20:15–23:15（已預約）",desc:"地址：Bankplassen 1, 0151 Oslo。想吃馴鹿排；原始資料標示 23:00 關門，請以訂位確認信為準。"},
-{type:"transport",title:"晚餐後返回飯店",from:"Kvadraturen",to:"Nybrua",mode:"公車",desc:"這段是回飯店的必要交通，不要直接略過。Nybrua 下車後步行回 Storgata 55。深夜班次請用 Ruter 當下查詢。",map:true},
+{type:"transport",title:"晚餐後返回飯店",from:"Kvadraturen, 0153 Oslo, Norway",to:"Nybrua",mode:"公車",desc:"這段是回飯店的必要交通，不要直接略過。Nybrua 下車後步行回 Storgata 55。深夜班次請用 Ruter 當下查詢。",map:true},
 {type:"place",title:"返回飯店",desc:"Storgata 55。"}
 ]},
 {date:"11/25",dow:"三",city:"奧斯陸 → 羅弗敦",title:"早上奧斯陸・飛往 Leknes",alerts:["15:25 起飛；原始要求 12:25 前抵達機場，並抓 11:30 從 Oslo S 搭 Vy。務必把「回飯店拿行李」排進早上動線。不要把 11:30 當成可延後時間。"],items:[
@@ -146,7 +178,7 @@ const days = [
 {type:"place",title:"一日團結束後自由活動",desc:"逛街、採買、吃飯，準備隔日移動至 Svolvær 的食物。"},
 {type:"place",title:"返回 Leknes 飯店",desc:"確認隔日 Check-out、行李及公車班次。"}
 ]},
-{date:"11/27",dow:"五",city:"Leknes → Svolvær",title:"移動・Skårungen 按摩／Sauna",alerts:["Plan A 是公車移動；原始行程也註明方向可能相反，請以住宿確認單及當日 Reis 路線結果核對。Plan B 為 18:24–21:24 船班，需在 Reis App 再確認是否營運及票況。"],items:[
+{date:"11/27",dow:"五",city:"Leknes → Svolvær",title:"移動・Skårungen 按摩／Sauna",alerts:["【待天氣確認】Leknes → Svolvær，或直接前往 Skårungen Sauna，兩種走法都先不要定案。出發前一週確認風雪、道路、Reis 公車是否營運及 Sauna 預約；天候／交通不穩時優先取消 Sauna。Plan B 船班 18:24–21:24 也需在 Reis App 再確認是否營運及票況。"],items:[
 {type:"place",title:"Leknes 飯店 Check-out",desc:"退房、確認行李與公車站位置。"},
 {type:"transport",title:"Leknes → Svolvær",time:"原始候選班次：10:39–12:15／13:24–15:00／15:54–17:30／21:39–23:15",from:"Leknes（站點需在 Reis 確認）",to:"Svolvær（站點需在 Reis 確認）",mode:"公車",desc:"原始行程只列城市間與時間，沒有確切站牌名稱／路線號。請在 Reis 搜尋 Leknes → Svolvær，核對日期 11/27、上下車站及轉乘。",map:true,app:"Reis"},
 {type:"place",title:"Svolvær 飯店／行李",desc:"地址：Sjøgata 2–4, 8300 Svolvær。原始資料註明住宿順序可能相反，請先依訂房確認單判斷行李放置地點。"},
@@ -158,7 +190,7 @@ const days = [
 ]},
 {date:"11/28",dow:"六",city:"Svolvær → Tromsø",title:"一日團・取行李・夜船",alerts:["21:00 左右抵達 Svolvær kystrutekai；原始船班 22:15 出發。原始抵達 Tromsø 時間寫 14:15（隔日），請以 Hurtigruten 訂位確認時間及船名。"],items:[
 {type:"place",title:"Svolvær 飯店 Check-out",desc:"退房後步行至 Thon Hotel Lofoten 寄存行李。"},
-{type:"place",title:"寄存行李",desc:"寄存點：Thon Hotel Lofoten。請先確認非住客／合作住宿旅客是否可寄存，以及營業時間。",map:true},
+{type:"place",title:"寄存行李",time:"08:00",desc:"08:00 抵達並寄存行李。寄存點：Thon Hotel Lofoten。請先確認非住客／合作住宿旅客是否可寄存，以及營業時間。",map:true},
 {type:"place",title:"一日團集合",time:"08:30 抵達等候；09:00 集合；行程約 6 小時",desc:"集合點：Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway。",map:true},
 {type:"place",title:"Sakura Lofoten Svolvær",desc:"步行前往。原始備註：三文魚飯。請確認營業時間。"},
 {type:"place",title:"Svolvær 市區自由活動",desc:"逛街、採買，並注意回寄存點拿行李的時間。"},
@@ -188,9 +220,9 @@ const days = [
 {type:"place",title:"Koseverden & Koselig Cafe",desc:"早午餐。地址：Storgata 45, 9008 Tromsø。",map:true},
 {type:"transport",title:"市區 → Tromsø Utsiktspunkt",from:"市區（依餐廳位置）",to:"Sjømannsskolen",mode:"公車",desc:"原始指定下車站 Sjømannsskolen。原文沒有上車站與路線編號，請在 Svipper 以當下位置查詢。",map:true,app:"Svipper"},
 {type:"place",title:"Tromsø Utsiktspunkt",time:"約 14:30 抵達",desc:"看藍調。最新摘要提及 Fjellheisen 纜車，但註明以 Tromsø Utsiktspunkt 取代纜車景點；本行程按替代方案前往觀景點，不安排搭纜車。請確認觀景點實際位置與從 Sjømannsskolen 的步行路線。",map:true},
-{type:"transport",title:"觀景點 → 市區",from:"Sjømannsskolen",to:"Prostneset Havneterminal",mode:"公車",desc:"原始指定站點。回市區逛街；圖書館若 11/29 沒去，原始資料標示 19:00 關門。",map:true,app:"Svipper"},
+{type:"transport",title:"觀景點 → 市區",from:"Sjømannsskolen, 9009 Tromsø, Norway",to:"Prostneset Havneterminal",mode:"公車",desc:"原始指定站點。回市區逛街；圖書館若 11/29 沒去，原始資料標示 19:00 關門。",map:true,app:"Svipper"},
 {type:"place",title:"晚餐／集合前簡餐",desc:"原始備註：隨便吃一點。請預留前往破冰團集合點時間。"},
-{type:"place",title:"破冰團集合",time:"18:30 抵達；19:00 集合；約 3.5 小時",desc:"集合地址：Søndre Tollbodgate 11, 9008 Tromsø, Norway。",map:true},
+{type:"place",title:"破冰團集合",time:"18:30 抵達；19:00 集合；約 3.5 小時",desc:"集合地址：Søndre Tollbodgate 11, Tromsø, Norway。",map:true},
 {type:"place",title:"返回飯店",desc:"步行回住宿；確認隔日退房、機場交通及 07:30 前抵達機場。"}
 ]},
 {date:"12/02",dow:"三",city:"Tromsø → Rovaniemi",title:"飛往羅瓦涅米・極光團",alerts:["07:30 必須抵達 Tromsø 機場，10:30 起飛。請事先確認住宿到機場的第一班公車是否來得及；原始資料未列上車站／路線。"],items:[
@@ -198,9 +230,9 @@ const days = [
 {type:"transport",title:"飯店 → Tromsø Airport",time:"07:30 前抵達機場",from:"Balsfjordgata 5, 9007 Tromsø, Norway",to:"Tromsø Airport",mode:"機場巴士／公交待確認",desc:"原始資料只有交通箭頭，沒有起站與班次。請在 Svipper 查第一班可抵達機場的車；若時間不可靠，預約計程車。",map:true,app:"Svipper"},
 {type:"place",title:"Tromsø 機場報到",time:"10:30 起飛",desc:"最新摘要航班時間寫直飛 10:25–12:35；詳細行程記錄 10:30 起飛、12:30 抵達。請以實際機票時間為準。航段：Tromsø → Rovaniemi。"},
 {type:"place",title:"Rovaniemi 機場抵達",time:"12:30",desc:"抵達後領行李。"},
-{type:"transport",title:"Rovaniemi Airport → 飯店（機場巴士）",from:"Rovaniemi Airport",to:"飯店（地址未提供）",mode:"機場巴士",desc:"依原始 APP 清單，機場與聖誕老人村交通另列 Airportbus.fi。住宿地址、實際停靠站、班次與票價未提供，請先在官方網站確認；市區公車則使用 Waltti Mobiili。",map:true,links:[["Airportbus 官方網站","https://www.airportbus.fi/"]] },
-{type:"place",title:"飯店 Check-in",time:"15:00 後",desc:"若可提前入住，住宿方會通知。"},
-{type:"place",title:"Eurospar 採買／簡單用餐",desc:"準備隔日用品。"},
+{type:"transport",title:"Rovaniemi Airport → 飯店（機場巴士）",from:"Rovaniemi Airport",to:"66.49868719999999, 25.7242919",mode:"機場巴士",desc:"依原始 APP 清單，機場與聖誕老人村交通另列 Airportbus.fi。住宿地址、實際停靠站、班次與票價未提供，請先在官方網站確認；市區公車則使用 Waltti Mobiili。",map:true,links:[["Airportbus 官方網站","https://www.airportbus.fi/"]] },
+{type:"place",title:"飯店 Check-in",time:"15:00 後",desc:"住宿 Google Maps 座標：66.49868719999999, 25.7242919。若可提前入住，住宿方會通知。",address:"66.49868719999999, 25.7242919",map:true},
+{type:"place",title:"Eurospar 採買／簡單用餐",desc:"準備隔日用品、瓶裝水、早餐與極光團零食。可優先查看 Rinteenkulma／K-Supermarket Rinteenkulma 或 Sampokeskus 周邊超市；以入住後實際位置、營業時間及極光團集合時間決定。"},
 {type:"place",title:"極光團集合",time:"19:30 抵達等候；20:00 集合；約 5 小時",desc:"集合地址：Ruokasenkatu 3, 96100 Rovaniemi, Finland。確切集合時間原始資料寫 14:00–17:30 間通知，請留意訊息。",map:true},
 {type:"place",title:"返回飯店",desc:"步行回住宿（依實際飯店位置）。"}
 ]},
@@ -208,24 +240,24 @@ const days = [
 {type:"place",title:"飯店出發",desc:"步行前往集合點。"},
 {type:"place",title:"哈士奇團集合",time:"10:30 抵達；11:00 集合；約 3 小時",desc:"集合點：Santa's Hotel Santa Claus, Korkalonkatu 29, 96200 Rovaniemi, Finland。",map:true},
 {type:"place",title:"聖誕老人村",desc:"確認能否在 Santa Claus Village 下車／團後自行前往。原始資料標示 19:00–20:00 關門；必吃 Santa’s Salmon Place 烤鮭魚，並安排園區活動。",map:true},
-{type:"transport",title:"聖誕老人村 → 羅瓦涅米市區",from:"Santa Claus Village",to:"Rovaniemi city centre（實際站牌待查）",mode:"公車",desc:"原始資料只寫「看看能不能在聖誕老人村下車」及之後搭公車回市區。市區站牌與班次需用 Waltti／Linkkari 確認；8 號公車往返市中心與北極圈，但請核對當日停靠站。",map:true,app:"Waltti"},
+{type:"transport",title:"聖誕老人村 → 羅瓦涅米市區",from:"Santa Claus Village",to:"Rovaniemi city centre（實際站牌待查）",mode:"公車",desc:"哈士奇團結束後若團方確認可在 Santa Claus Village 下車，再自行遊園；從聖誕老人村返回市區則是另一段獨立公車行程。市區站牌與班次用 Waltti／Linkkari 確認，並核對當日停靠站。",map:true,app:"Waltti"},
 {type:"place",title:"市區逛街／晚餐",desc:"吃飯地點尚未決定。"},
 {type:"place",title:"返回飯店",desc:"確認隔日退房、行李寄存地點及夜車票。"}
 ]},
 {date:"12/04",dow:"五",city:"Rovaniemi → Helsinki",title:"市區・夜間火車",alerts:["21:00 火車出發；20:15 左右到 Rovaniemi 火車站。先放行李、用餐、取行李，再前往車站。"],items:[
-{type:"place",title:"飯店 Check-out",desc:"退房並確認行李件數。"},
+{type:"place",title:"飯店 Check-out",desc:"住宿 Google Maps 座標：66.49868719999999, 25.7242919。退房並確認行李件數。",address:"66.49868719999999, 25.7242919",map:true},
 {type:"place",title:"寄放行李",desc:"參考 Visit Rovaniemi 官方行李寄存資訊，原始建議為 K-Market；先確認 K-Market 是否提供寄存、實際地址、營業時間、是否需預約及關門時間。",links:[["行李寄存資訊","https://www.visitrovaniemi.fi/luggage-storage-rovaniemi/"]]},
 {type:"place",title:"Osaka Teppanyaki Rovaniemi",desc:"地址：Kauppakeskus Rinteenkulma 1.krs, Koskikatu 25, 96200 Rovaniemi, Finland。原始資料附店家照片，請確認營業時間。",map:true},
 {type:"place",title:"北極博物館／Arktikum（候選）",desc:"原始摘要列出北極博物館；是否參觀依當日時間與開放時間決定。"},
 {type:"place",title:"跳蚤市場 Vintik Oy Vintikki",desc:"原始詳細行程列為候選景點；請確認營業時間。"},
 {type:"place",title:"市區景點／採買／桑拿（候選）",desc:"原始摘要另列亂逛、桑拿作為候選；尚未指定桑拿店家與預約時間。請注意不要離寄存點及火車站太遠。"},
 {type:"place",title:"取回行李",time:"前往火車站前",desc:"回寄存點取行李，確認全部行李與車票。"},
-{type:"walk",title:"行李寄存點 → Rovaniemi 火車站",time:"20:15 左右抵達等候",from:"Rovaniemi luggage storage (confirm exact address)",to:"Rovaniemi Railway Station",mode:"步行",map:true,mapMode:"walking",desc:"原始行程未列寄存點地址，請按實際寄存地點規劃步行路線。"},
+{type:"note",title:"行李寄存點 → Rovaniemi 火車站月台",time:"20:15 左右抵達等候",desc:"行李櫃位於車站內；取回行李後直接前往月台，不需另外搭車或步行到另一個寄存點。"},
 {type:"transport",title:"Rovaniemi → Helsinki",time:"21:00 出發",from:"Rovaniemi Railway Station",to:"Helsinki Central Railway Station",mode:"VR 夜間火車",desc:"已列購票平台 VR.fi。請確認車廂、臥舖／座位、月台及車票上的抵達時間。",app:"VR"}
 ]},
 {date:"12/05",dow:"六",city:"Helsinki",title:"抵達赫爾辛基・芬蘭堡・市區",items:[
 {type:"place",title:"Helsinki Central Railway Station 抵達",time:"09:15",desc:"抵達後先看看飯店能否寄存行李；不行的話就車站寄存。住宿地址：Kaisaniemenkatu 7, 00100 Helsinki。"},
-{type:"walk",title:"中央車站 → Cafe Fazer",from:"Helsinki Central Railway Station",to:"Kluuvikatu 3, 00100 Helsinki",mode:"步行",map:true,mapMode:"walking",desc:"步行前往 Cafe Fazer。Google Map：Kluuvikatu 3, 00100 Helsinki。"},
+{type:"walk",title:"飯店 → Cafe Fazer",from:"Kaisaniemenkatu 7, 00100 Helsinki, Finland",to:"Kluuvikatu 3, 00100 Helsinki",mode:"步行",map:true,mapMode:"walking",desc:"若飯店可寄存行李，從 Kaisaniemenkatu 7 直接步行至 Cafe Fazer；若飯店不接受寄存，先使用中央車站寄存櫃，再從車站前往咖啡店。"},
 {type:"place",title:"Cafe Fazer",desc:"咖啡。地址：Kluuvikatu 3, 00100 Helsinki。"},
 {type:"walk",title:"Cafe Fazer → 赫爾辛基碼頭",from:"Kluuvikatu 3, 00100 Helsinki",to:"Kauppatori, 00170 Helsinki",mode:"步行",map:true,mapMode:"walking",desc:"前往 Kauppatori 碼頭搭船。"},
 {type:"place",title:"赫爾辛基碼頭（上船）",desc:"Google Map：Kauppatori, 00170 Helsinki。搭船前往 Suomenlinna 芬蘭堡。",address:"Kauppatori, 00170 Helsinki",map:true},
@@ -238,21 +270,21 @@ const days = [
 {type:"place",title:"赫爾辛基碼頭（下船）",desc:"Google Map：Kauppatori, 00170 Helsinki。下船後步行前往用餐。",address:"Kauppatori, 00170 Helsinki",map:true},
 {type:"walk",title:"赫爾辛基碼頭 → 韓式炸雞",from:"Kauppatori, 00170 Helsinki",to:"Kauppakeskus Kluuvi, Aleksanterinkatu 9, 1.krs, Helsinki",mode:"步行",map:true,mapMode:"walking",desc:"步行前往韓式炸雞。"},
 {type:"place",title:"韓式炸雞",desc:"地址：Kauppakeskus Kluuvi, Aleksanterinkatu 9, 1.krs。"},
-{type:"walk",title:"韓式炸雞 → Cafe Regatta／岩石教堂／景點",from:"Kauppakeskus Kluuvi, Aleksanterinkatu 9, Helsinki",to:"Cafe Regatta, Merikannontie 8, Helsinki",mode:"步行",map:true,mapMode:"walking",desc:"Cafe Regatta 肉桂捲；岩石教堂（不一定要去）、其他景點或購物依當日時間安排。原始行程未指定這幾個點的先後順序。"},
-{type:"place",title:"Cafe Regatta／岩石教堂／市區景點",desc:"Cafe Regatta 肉桂捲；岩石教堂不一定要去；其他景點或看要買什麼。"},
+{type:"walk",title:"韓式炸雞 → Allas Sea Pool／港邊景點",from:"Kauppakeskus Kluuvi, Aleksanterinkatu 9, 00100 Helsinki, Finland",to:"Allas Sea Pool, Katajanokanlaituri 2a, 00160 Helsinki, Finland",mode:"步行",map:true,mapMode:"walking",desc:"較順路的選擇：Allas Sea Pool 桑拿／海水泳池，再散步至 Kauppatori、Senate Square 與 Esplanadi。Cafe Regatta 位於西側海岸，距離較遠，改列彈性候選，不建議硬排在這段步行之後。"},
+{type:"place",title:"Cafe Regatta／岩石教堂（彈性候選）",desc:"Cafe Regatta 肉桂捲與岩石教堂擇一即可；兩者都比港邊市中心景點更偏西側，依體力、天氣與營業時間決定，不必全部排進同一天。"},
 {type:"place",title:"赫爾辛基聖誕市集",desc:"依當日開放時間安排參觀。"},
 {type:"walk",title:"聖誕市集 → 飯店",from:"Helsinki Christmas Market, Senate Square",to:"Kaisaniemenkatu 7, 00100 Helsinki",mode:"步行",map:true,mapMode:"walking",desc:"步行返回飯店。住宿地址：Kaisaniemenkatu 7, 00100。"},
 {type:"place",title:"飯店",desc:"住宿地址：Kaisaniemenkatu 7, 00100 Helsinki。"}
 ]},
 {date:"12/06",dow:"日",city:"Helsinki → Tallinn → Helsinki",title:"愛沙尼亞塔林一日來回",alerts:["務必提前 1 小時抵達赫爾辛基碼頭。優先考慮 Tallink；Viking Line、Eckerö Line 為其他購票選項。船班時間及碼頭以實際訂票為準。"],items:[
 {type:"place",title:"飯店出發",desc:"住宿地址：Kaisaniemenkatu 7, 00100 Helsinki。"},
-{type:"transport",title:"Kaisaniemenkatu 7 → Länsiterminaali 2",from:"Kaisaniemenkatu 7, Helsinki",to:"Länsiterminaali 2, Tyynenmerenkatu 14, Helsinki",mode:"市區公交",duration:"約 30 分鐘",desc:"原始行程指定：Kaisaniemenkatu 7 站 → Länsiterminaali 2 站，約 30 分鐘。請以 HSL 當日路線及站名核對。",map:true,app:"HSL"},
+{type:"transport",title:"Kaisaniemenkatu 7 → Länsiterminaali 2",from:"Kaisaniemenkatu 7, 00100 Helsinki, Finland",to:"Länsiterminaali 2, Tyynenmerenkatu 14, Helsinki",mode:"市區公交",duration:"約 30 分鐘",desc:"原始行程指定：Kaisaniemenkatu 7 站 → Länsiterminaali 2 站，約 30 分鐘。請以 HSL 當日路線及站名核對。",map:true,app:"HSL"},
 {type:"place",title:"赫爾辛基上船點",time:"務必提前 1 小時到達碼頭",desc:"Google Map：Tyynenmerenkatu 14, 00220 Helsinki。優先購買 Tallink 船票；另有 Viking Line、Eckerö Line。",address:"Tyynenmerenkatu 14, 00220 Helsinki",map:true,links:[["Tallink 官網","https://www.tallink.com/"],["Viking Line 官網","https://www.vikingline.fi/"],["Eckerö Line 官網","https://www.eckeroline.fi/"]]},
 {type:"transport",title:"Helsinki → Tallinn",from:"Länsiterminaali 2, Helsinki",to:"Lootsi 13, 10151 Tallinn",mode:"渡輪",desc:"搭船前往愛沙尼亞塔林；船公司、班次、登船截止時間及票券請依實際訂位確認。",map:true,links:[["Tallink 官網","https://www.tallink.com/"],["Viking Line 官網","https://www.vikingline.fi/"],["Eckerö Line 官網","https://www.eckeroline.fi/"]]},
 {type:"place",title:"愛沙尼亞－塔林下船點",desc:"Google Map：Lootsi 13, 10151 Tallinn。",address:"Lootsi 13, 10151 Tallinn",map:true},
-{type:"walk",title:"塔林碼頭 → 塔林景點",from:"Lootsi 13, 10151 Tallinn",to:"Tallinn Old Town, Tallinn",mode:"步行",map:true,mapMode:"walking",desc:"步行前往塔林景點～～～。原始行程未列具體景點清單，依當日時間安排。"},
-{type:"place",title:"塔林景點～～～",desc:"塔林市區自由參觀。請預留回碼頭時間，並務必提前 1 小時到達上船點。"},
-{type:"walk",title:"塔林景點 → 愛沙尼亞－塔林上船點",from:"Tallinn Old Town, Tallinn",to:"Lootsi 13, 10151 Tallinn",mode:"步行",map:true,mapMode:"walking",desc:"步行返回塔林碼頭。務必提前 1 小時到達。"},
+{type:"walk",title:"塔林碼頭 → Town Hall Square",from:"Lootsi 13, 10151 Tallinn",to:"Raekoja plats, 10146 Tallinn, Estonia",mode:"步行",map:true,mapMode:"walking",desc:"步行前往塔林景點～～～。原始行程未列具體景點清單，依當日時間安排。"},
+{type:"place",title:"Town Hall Square／聖誕市集",desc:"以 Town Hall Square 為舊城核心，接著走 St Catherine’s Passage、Masters’ Courtyard；若時間與天候許可，再上 Toompea Hill 觀景台。請預留回碼頭時間，務必提前 1 小時到達上船點。",address:"Raekoja plats, 10146 Tallinn, Estonia",map:true},
+{type:"walk",title:"Toompea／Town Hall Square → 塔林上船點",from:"Kohtuotsa Viewing Platform, Kohtu 12, 10130 Tallinn, Estonia",to:"Lootsi 13, 10151 Tallinn",mode:"步行",map:true,mapMode:"walking",desc:"若有走 Toompea 觀景台，從觀景台步行返回塔林碼頭；若省略 Toompea，請將 Google Maps 起點改為 Town Hall Square。務必提前 1 小時到達。"},
 {type:"place",title:"愛沙尼亞－塔林上船點",time:"務必提前 1 小時到達碼頭",desc:"Google Map：Lootsi 13, 10151 Tallinn。準備搭船返回赫爾辛基。",address:"Lootsi 13, 10151 Tallinn",map:true},
 {type:"transport",title:"Tallinn → Helsinki",from:"Lootsi 13, 10151 Tallinn",to:"Tyynenmerenkatu 14, 00220 Helsinki",mode:"渡輪",desc:"返程船上看要不要吃晚餐；船班及碼頭以實際訂位為準。",map:true,links:[["Tallink 官網","https://www.tallink.com/"],["Viking Line 官網","https://www.vikingline.fi/"],["Eckerö Line 官網","https://www.eckeroline.fi/"]]},
 {type:"place",title:"赫爾辛基下船點",desc:"Google Map：Tyynenmerenkatu 14, 00220 Helsinki。",address:"Tyynenmerenkatu 14, 00220 Helsinki",map:true},
@@ -292,8 +324,8 @@ addAfter("11/24","奧斯陸聖誕市集",[
 addAfter("11/24","MUNCH → 聖誕市集／Karl Johans Gate",[
  ({...WALK("Bjørvika → Jernbanetorget／Karl Johans Gate（步行替代方案）","Bjørvika / MUNCH Museum","Jernbanetorget / Karl Johans gate","原始行程提供公交或步行兩種方式；此卡是步行替代路線，若搭公交則使用前一張公交卡。"),alternative:true})
 ]);
-addAfter("11/24","前往 Engebret Cafe",[
- WALK("Kvadraturen 公交站 → Engebret Cafe","Kvadraturen","Bankplassen 1, 0151 Oslo, Norway","依原始行程：Nationaltheatret → Kvadraturen 下車後，再步行到餐廳。20:15 預約，20:45 前抵達。")
+addAfter("11/24","Engebret Cafe",[
+ WALK("Engebret Cafe → Kvadraturen 公交站","Bankplassen 1, 0151 Oslo, Norway","Kvadraturen, 0153 Oslo, Norway","晚餐結束後步行回 Kvadraturen 站；Google Maps 終點統一使用 Kvadraturen, 0153 Oslo, Norway。")
 ]);
 addAfter("11/25","飯店 Check-in",[
  WALK("飯店 → 商場採買（視體力）","Storvollveien 142, 8370 Leknes","Leknes shopping centre / Leknes sentrum","入住後步行採買隔日食物；若商場未開或天候不佳，以 Google Maps 當日步行導航為準。"),
@@ -321,6 +353,9 @@ addAfter("11/27","Leknes 飯店 Check-out",[
 addAfter("11/27","Leknes → Svolvær",[
  WALK("Svolvær 公交下車站 → 飯店","Svolvær bus terminal / actual Reis stop to confirm","Sjøgata 2-4, 8300 Svolvær, Norway","抵達 Svolvær 後步行至住宿；請以 Reis 顯示的實際下車站替換起點。")
 ]);
+addAfter("11/27","Leknes → Svolvær",[
+ {type:"transport",title:"直達方案：Leknes → Skårungen Sauna（待天氣／班次確認）",from:"Leknes",to:"Skårungen, Ørsvågveien 40, 8310 Kabelvåg, Norway",mode:"Reis 公交＋步行（待確認）",desc:"此為不先繞到 Svolvær 飯店的替代方案。須先確認 Reis 當日是否有可行班次、下車站與步行路況；若行李無處寄放或天氣不穩，取消此方案。",map:false,alternative:true,app:"Reis"}
+]);
 addBefore("11/27","Svolvær → Skårungen Sauna",[
  WALK("Svolvær 飯店 → 公交站","Sjøgata 2-4, 8300 Svolvær, Norway","Svolvær bus terminal / actual Reis stop to confirm","從飯店步行至搭車站；請在 Reis 核對實際站牌。")
 ]);
@@ -336,7 +371,7 @@ addAfter("11/27","返回 Svolvær 飯店",[
 ]);
 
 addBefore("11/28","寄存行李",[
- WALK("飯店 → Thon Hotel Lofoten 寄存行李","Sjøgata 2-4, 8300 Svolvær, Norway","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","退房後步行到寄存點；先確認是否接受非住客寄存及櫃檯時間。")
+ ({...WALK("飯店 → Thon Hotel Lofoten 寄存行李","Sjøgata 2-4, 8300 Svolvær, Norway","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","08:00 抵達寄存行李；先確認是否接受非住客寄存及櫃檯時間。"),time:"08:00"})
 ]);
 addBefore("11/28","一日團集合",[
  WALK("寄存行李 → 一日團集合點","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","Thon Hotel Lofoten, Torget, 8300 Svolvær, Norway","08:30 抵達等候，09:00 正式集合。集合點與寄存點為同一飯店位置，依團方指示到指定入口／櫃檯。")
@@ -386,21 +421,21 @@ addAfter("11/30","Ersfjordbotn 峽灣徒步",[
 ]);
 addAfter("11/30","Tromsø 大橋",[
  WALK("Tromsø 大橋 → 市區逛街／紀念品","Tromsø Bridge","Tromsø sentrum","回市區逛逛；紀念品店待你決定，Google Maps 可直接查看附近商店。"),
- WALK("市區 → 晚餐","Tromsø sentrum","Tromsø sentrum restaurant area","原始備註：海鮮餐／鯨魚肉待找。可先用地圖看附近餐廳，晚餐地點尚未定。"),
+ ({...WALK("市區 → 晚餐（候選店家）","Tromsø sentrum","Arctandria, Strandtorget 1, 9008 Tromsø, Norway","晚餐候選：Arctandria（海鮮／北挪威料理）、Bardus Bistro（馴鹿與當地食材）、Fiskekompaniet（魚貝類）。鯨魚肉是否供應依當日菜單；先確認營業時間與訂位。"),links:[["Arctandria","https://www.visittromso.no/arctandria"],["Fiskekompaniet","https://www.visittromso.no/fiskekompaniet"]]}),
  WALK("晚餐 → Tromsø 飯店","Tromsø sentrum restaurant area","Balsfjordgata 5, 9007 Tromsø, Norway","用餐後步行回住宿。")
 ]);
 
 addBefore("12/01","公車日票（視行程決定）",[
  {type:"place",title:"飯店出發",desc:"住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。先從飯店出發，再依當日公交搭乘次數決定是否買日票。",address:"Balsfjordgata 5, 9007 Tromsø, Norway",map:true}
 ]);
-addBefore("12/01","Koseverden & KoseligCafe",[
+addBefore("12/01","Koseverden & Koselig Cafe",[
  WALK("飯店 → Koseverden & Koselig Cafe","Balsfjordgata 5, 9007 Tromsø, Norway","Storgata 45, 9008 Tromsø, Norway","從住宿步行前往早午餐。")
 ]);
 addAfter("12/01","晚餐／集合前簡餐",[
- WALK("晚餐 → 破冰團集合點","Tromsø sentrum","Søndre Tollbodgate 11, 9008 Tromsø, Norway","18:30 左右抵達等候，19:00 正式集合，活動約 3.5 小時。")
+ WALK("晚餐 → 破冰團集合點","Tromsø sentrum","Søndre Tollbodgate 11, Tromsø, Norway","18:30 左右抵達等候，19:00 正式集合，活動約 3.5 小時。")
 ]);
 addAfter("12/01","破冰團集合",[
- WALK("破冰團結束 → 飯店","Søndre Tollbodgate 11, 9008 Tromsø, Norway","Balsfjordgata 5, 9007 Tromsø, Norway","活動結束後步行返回住宿；若天候不佳可改搭計程車。")
+ WALK("破冰團結束 → 飯店","Søndre Tollbodgate 11, Tromsø, Norway","Balsfjordgata 5, 9007 Tromsø, Norway","活動結束後步行返回住宿；若天候不佳可改搭計程車。")
 ]);
 
 const d1202=days.find(x=>x.date==="12/02"); if(d1202){const h=d1202.items.find(x=>x.title==="飯店 Check-out");if(h)h.desc="住宿地址：Balsfjordgata 5, 9007 Tromsø, Norway。先 Check-out、取行李。";}
@@ -408,52 +443,52 @@ addBefore("12/02","極光團集合",[
  WALK("超市／晚餐 → 極光團集合點","Eurospar Rovaniemi / Rovaniemi city centre","Ruokasenkatu 3, 96100 Rovaniemi, Finland","原始行程是先採買、簡單吃飯，再步行至集合點；19:30 抵達等候，20:00 正式集合，約 5 小時。")
 ]);
 addAfter("12/02","極光團集合",[
- WALK("極光團結束 → 飯店","Ruokasenkatu 3, 96100 Rovaniemi, Finland","Rovaniemi hotel (address not provided)","活動結束後步行回飯店；若團方提供接送，依訂單安排。")
+ WALK("極光團結束 → 飯店","Ruokasenkatu 3, 96100 Rovaniemi, Finland","66.49868719999999, 25.7242919","活動結束後步行回飯店；若團方提供接送，依訂單安排。")
 ]);
 
 addBefore("12/03","哈士奇團集合",[
- WALK("飯店 → 哈士奇團集合點","Rovaniemi hotel (address not provided)","Santa's Hotel Santa Claus, Korkalonkatu 29, 96200 Rovaniemi, Finland","10:30 抵達等候，11:00 正式集合，活動約 3 小時。住宿地址未提供，請依實際訂房位置導航。")
+ WALK("飯店 → 哈士奇團集合點","66.49868719999999, 25.7242919","Santa's Hotel Santa Claus, Korkalonkatu 29, 96200 Rovaniemi, Finland","10:30 抵達等候，11:00 正式集合，活動約 3 小時。住宿 Google Maps 座標：66.49868719999999, 25.7242919。")
 ]);
 addAfter("12/03","市區逛街／晚餐",[
- WALK("市區 → 飯店","Rovaniemi city centre","Rovaniemi hotel (address not provided)","逛街／用餐後步行回飯店。")
+ WALK("市區 → 飯店","Rovaniemi city centre","66.49868719999999, 25.7242919","逛街／用餐後步行回飯店。")
 ]);
 
 addBefore("12/04","寄放行李",[
- WALK("飯店 → 行李寄存點","Rovaniemi hotel (address not provided)","Rovaniemi luggage storage (confirm exact address)","退房後前往寄存點；Visit Rovaniemi 網頁先確認確切地址、開放時間與關門時間。")
+ WALK("飯店 → 行李寄存點","66.49868719999999, 25.7242919","Rovaniemi Railway Station, Ratakatu 3, 96100 Rovaniemi, Finland","退房後前往寄存點；Visit Rovaniemi 網頁先確認確切地址、開放時間與關門時間。")
 ]);
 addBefore("12/04","Osaka Teppanyaki Rovaniemi",[
- WALK("行李寄存點 → Osaka Teppanyaki","Rovaniemi luggage storage (confirm exact address)","Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland","午餐地址已列；寄存點地址尚待確認。")
+ WALK("行李寄存點 → Osaka Teppanyaki","Rovaniemi Railway Station, Ratakatu 3, 96100 Rovaniemi, Finland","Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland","午餐地址已列；寄存點地址尚待確認。")
 ]);
 addAfter("12/04","Osaka Teppanyaki Rovaniemi",[
- WALK("餐廳 → 待安排景點","Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland","Rovaniemi city centre attractions","景點待找；先保留市中心範圍，不安排遠距離移動。")
+ WALK("Osaka Teppanyaki → Arktikum","Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland","Arktikum, Pohjoisranta 4, 96200 Rovaniemi, Finland","午餐後步行前往 Arktikum；先確認當日開放時間及參觀所需時間。")
 ]);
 addAfter("12/04","市區景點／採買",[
- WALK("景點 → 市區逛街","Rovaniemi city centre attractions","Rovaniemi city centre","依原始行程回市區逛逛。"),
- WALK("市區 → 行李寄存點取行李","Rovaniemi city centre","Rovaniemi luggage storage (confirm exact address)","取回行李後直接前往火車站；請依實際寄存地址導航。")
+ WALK("Arktikum → Rovaniemi 市中心","Arktikum, Pohjoisranta 4, 96200 Rovaniemi, Finland","Rovaniemi city centre, Rovaniemi, Finland","參觀後步行回市中心逛街、採買。"),
+ WALK("市區 → Rovaniemi 火車站取行李","Rovaniemi city centre, Rovaniemi, Finland","Rovaniemi Railway Station, Ratakatu 3, 96100 Rovaniemi, Finland","回火車站行李櫃取回行李，確認件數後前往月台。")
 ]);
 
 addAfter("12/05","Helsinki Central Railway Station 抵達",[
- WALK("中央車站 → 飯店寄放行李／車站寄存","Helsinki Central Railway Station","Helsinki hotel (address not provided)","先詢問飯店能否寄存；若不行，改用車站行李寄存。飯店地址未提供。")
+ WALK("中央車站 → 飯店寄放行李／車站寄存","Helsinki Central Railway Station","Kaisaniemenkatu 7, 00100 Helsinki, Finland","先詢問飯店能否寄存；若不行，改用車站行李寄存。住宿地址：Kaisaniemenkatu 7, 00100 Helsinki, Finland。")
 ]);
 addAfter("12/05","韓式炸雞",[
  WALK("韓式炸雞 → 咖啡／桑拿／景點","Kauppakeskus Kluuvi, Aleksanterinkatu 9, Helsinki","Cafe Fazer / Cafe Regatta / Helsinki attractions","依原始行程候選順序自由安排，請按實際選定地點逐一導航。")
 ]);
 addAfter("12/05","咖啡／桑拿／市區景點",[
- WALK("市區 → 飯店","Helsinki city centre","Helsinki hotel (address not provided)","行程結束後步行回飯店；如住宿不在市中心，請依實際地址重新導航。")
+ WALK("市區 → 飯店","Helsinki city centre","Kaisaniemenkatu 7, 00100 Helsinki, Finland","行程結束後步行回飯店；如住宿不在市中心，請依實際地址重新導航。")
 ]);
 
 addBefore("12/06","紅白教堂",[
- WALK("飯店 → 赫爾辛基紅白教堂","Helsinki hotel (address not provided)","Helsinki Cathedral, Unioninkatu 29, Helsinki","從飯店出發；住宿地址未提供，導航起點可改為實際地址。")
+ WALK("飯店 → 赫爾辛基紅白教堂","Kaisaniemenkatu 7, 00100 Helsinki, Finland","Helsinki Cathedral, Unioninkatu 29, Helsinki","從飯店出發；住宿地址：Kaisaniemenkatu 7, 00100 Helsinki, Finland。")
 ]);
 addAfter("12/06","紅白教堂",[
  WALK("紅白教堂 → 岩石教堂","Helsinki Cathedral, Unioninkatu 29, Helsinki","Temppeliaukio Church, Lutherinkatu 3, Helsinki","步行前往岩石教堂；請確認開放時間及禮拜活動。")
 ]);
 addAfter("12/06","岩石教堂",[
- WALK("岩石教堂 → 飯店","Temppeliaukio Church, Lutherinkatu 3, Helsinki","Helsinki hotel (address not provided)","參觀後步行回飯店。")
+ WALK("岩石教堂 → 飯店","Temppeliaukio Church, Lutherinkatu 3, Helsinki","Kaisaniemenkatu 7, 00100 Helsinki, Finland","參觀後步行回飯店。")
 ]);
 
 addBefore("12/07","最後採買",[
- WALK("飯店 → 市區最後採買","Helsinki hotel (address not provided)","Helsinki city centre","退房後先寄放或帶行李；預留前往機場時間。")
+ WALK("飯店 → 市區最後採買","Kaisaniemenkatu 7, 00100 Helsinki, Finland","Helsinki city centre","退房後先寄放或帶行李；預留前往機場時間。")
 ]);
 addBefore("12/07","Helsinki Central Railway Station → Helsinki Airport",[
  WALK("最後採買 → Helsinki Central Railway Station","Helsinki city centre","Helsinki Central Railway Station","回到中央車站後再搭 HSL I／P 火車前往機場。")
@@ -467,6 +502,107 @@ for(const d of days) for(const it of d.items){
   else if(/Tromsø|特羅姆瑟/.test(city)) it.app="Svipper";
   else if(/Rovaniemi|羅瓦涅米/.test(city)) it.app="Waltti";
   else if(/Helsinki|赫爾辛基/.test(city)) it.app="HSL";
+ }
+}
+
+
+// === 2026-11-02 itinerary corrections requested by user ===
+const day=(date)=>days.find(x=>x.date===date);
+// 11/24: every Kvadraturen station Google Maps route uses the exact station address.
+{
+ const d=day("11/24");
+ if(d){
+  for(const it of d.items){
+   if(it.from && /Kvadraturen/.test(it.from)) it.from="Kvadraturen, 0153 Oslo, Norway";
+   if(it.to && /Kvadraturen/.test(it.to)) it.to="Kvadraturen, 0153 Oslo, Norway";
+  }
+  const walk=d.items.find(x=>x.title==="Engebret Cafe → Kvadraturen 公交站");
+  if(walk){walk.from="Bankplassen 1, 0151 Oslo, Norway";walk.to="Kvadraturen, 0153 Oslo, Norway";walk.mapMode="walking";}
+ }
+}
+addAfter("12/05","韓式炸雞 → Allas Sea Pool／港邊景點",[
+ WALK("Allas Sea Pool → Kauppatori／Senate Square","Allas Sea Pool, Katajanokanlaituri 2a, 00160 Helsinki, Finland","Kauppatori, 00170 Helsinki, Finland","桑拿後沿港邊散步至市集廣場，再視時間走到 Senate Square／Helsinki Cathedral。")
+]);
+{
+ const d=day("12/05"); if(d){const x=d.items.find(x=>x.title==="Cafe Regatta／岩石教堂（彈性候選）");if(x)x.alternative=true;}
+}
+
+// Tallinn old-town walking highlights after Town Hall Square.
+addAfter("12/06","Town Hall Square／聖誕市集",[
+ WALK("Town Hall Square → St Catherine’s Passage","Raekoja plats, 10146 Tallinn, Estonia","Katariina käik, 10130 Tallinn, Estonia","步行穿過中世紀小巷，停留拍照。"),
+ WALK("St Catherine’s Passage → Masters’ Courtyard","Katariina käik, 10130 Tallinn, Estonia","Meistrite Hoov, Vene 6, 10123 Tallinn, Estonia","步行前往 Masters’ Courtyard，視店家開放情況逛手作小店。"),
+ WALK("Masters’ Courtyard → Toompea 觀景台（可選）","Meistrite Hoov, Vene 6, 10123 Tallinn, Estonia","Kohtuotsa Viewing Platform, Kohtu 12, 10130 Tallinn, Estonia","若時間、天氣及體力允許，再上 Toompea Hill 看舊城景色；冬季石板路可能結冰。")
+]);
+
+// 11/25: add both walking legs between Tullinløkka and Fuglen Coffee.
+addBefore("11/25","Fuglen Coffee",[
+ WALK("Tullinløkka 站 → Fuglen Coffee","Tullinløkka, Oslo, Norway","Universitetsgata 2, 0164 Oslo, Norway","從 Tullinløkka 站步行至 Fuglen Coffee。")
+]);
+addAfter("11/25","Fuglen Coffee",[
+ WALK("Fuglen Coffee → Tullinløkka 站","Universitetsgata 2, 0164 Oslo, Norway","Tullinløkka, Oslo, Norway","喝完咖啡後步行返回 Tullinløkka 站，接續早晨景點行程。")
+]);
+// 11/28 luggage drop time is fixed at 08:00.
+{
+ const d=day("11/28"); if(d){const x=d.items.find(x=>x.title==="寄存行李");if(x){x.time="08:00";x.desc="08:00 抵達 Thon Hotel Lofoten 寄存行李。先確認非住客／合作住宿旅客是否可寄存，以及櫃檯開放時間。";}}
+}
+// 11/29 supermarket return is not yet decided: do not show a false walking route.
+{
+ const d=day("11/29"); if(d){
+  const i=d.items.findIndex(x=>x.title==="Eurospar → 飯店");
+  if(i>=0)d.items.splice(i,1,{type:"transport",title:"Eurospar → 飯店（交通待定／可取消）",from:"Eurospar Tromsø（實際門市待確認）",to:"Balsfjordgata 5, 9007 Tromsø, Norway",mode:"公交／步行待定",desc:"這段可能改搭公車，但尚未確認實際 Eurospar 門市與上車站；也可能取消這次採買。不要先依此卡預設步行路線，當天再決定。",map:false,optional:true,app:"Svipper"});
+ }}
+// 12/01 breakfast route and bus boarding stop.
+addAfter("12/01","Koseverden & Koselig Cafe",[
+ WALK("Koseverden & Koselig Cafe → Fiskergata 公交站","Storgata 45, 9008 Tromsø, Norway","Fiskergata, 9008 Tromsø, Norway","早午餐後步行至 Fiskergata 站搭車。")
+]);
+{
+ const d=day("12/01"); if(d){
+  const bus=d.items.find(x=>x.title==="市區 → Tromsø Utsiktspunkt");
+  if(bus){bus.title="Fiskergata → Sjømannsskolen 公交";bus.from="Fiskergata, 9008 Tromsø, Norway";bus.to="Sjømannsskolen, 9009 Tromsø, Norway";bus.desc="上車站：Fiskergata（9008 Tromsø）；下車站：Sjømannsskolen（9009 Tromsø）。路線編號與方向請在 Svipper 當日確認。";}
+  const ice=d.items.find(x=>x.title==="破冰團集合");
+  if(ice){ice.desc="集合地址：Søndre Tollbodgate 11, Tromsø, Norway。18:30 抵達等候，19:00 集合。";ice.address="Søndre Tollbodgate 11, Tromsø, Norway";}
+  for(const it of d.items){if(it.from==="Sjømannsskolen")it.from="Sjømannsskolen, 9009 Tromsø, Norway";if(it.to==="Sjømannsskolen")it.to="Sjømannsskolen, 9009 Tromsø, Norway";}
+  const viewpoint=d.items.find(x=>x.title==="Tromsø Utsiktspunkt");
+  if(viewpoint)viewpoint.desc="約 14:30 抵達。搭車至 Sjømannsskolen（Sjømannsskolen, 9009 Tromsø, Norway）後，步行前往觀景點。此行程取代 Fjellheisen 纜車，不安排搭纜車。";
+ }
+}
+addBefore("12/01","Tromsø Utsiktspunkt",[
+ WALK("Sjømannsskolen 公交站 → Tromsø Utsiktspunkt","Sjømannsskolen, 9009 Tromsø, Norway","Tromsø Utsiktspunkt, Tromsø, Norway","下車後步行前往觀景點；請依當日路況及實際入口確認步行路線。")
+]);
+// 12/02: hotel to Polaria stop on foot, then board the airport bus at Polaria.
+{
+ const d=day("12/02"); if(d){
+  const bus=d.items.find(x=>x.title==="飯店 → Tromsø Airport");
+  if(bus){bus.title="Polaria → Tromsø Airport 公交";bus.from="Polaria, Hjalmar Johansens gate 12, 9007 Tromsø, Norway";bus.to="Tromsø Airport";bus.desc="從 Polaria 站上車前往機場。請在 Svipper 核對第一班可於 07:30 前抵達機場的班次；若不可靠，改搭計程車。";bus.app="Svipper";}
+ }
+}
+addBefore("12/02","Polaria → Tromsø Airport 公交",[
+ WALK("飯店 → Polaria 公交站","Balsfjordgata 5, 9007 Tromsø, Norway","Polaria, Hjalmar Johansens gate 12, 9007 Tromsø, Norway","Check-out 並帶妥行李後，步行至 Polaria 站搭乘前往機場的公交。")
+]);
+// Ensure all Rovaniemi lodging origins/destinations use the supplied exact coordinates.
+for(const d of days) for(const it of d.items){
+ for(const k of ["from","to","address"]){if(typeof it[k]==="string" && /Rovaniemi hotel|飯店（地址未提供）/.test(it[k]))it[k]="66.49868719999999, 25.7242919";}
+ if(typeof it.desc==="string")it.desc=it.desc.replaceAll("Rovaniemi hotel (address not provided)","66.49868719999999, 25.7242919");
+}
+// Rovaniemi airport arrival route and 12/02-12/03 shopping suggestions.
+{
+ const d=day("12/02"); if(d){const x=d.items.find(x=>x.title.includes("Rovaniemi Airport → 飯店"));if(x){x.to="66.49868719999999, 25.7242919";x.desc="住宿 Google Maps 座標：66.49868719999999, 25.7242919。機場巴士停靠點、班次與票價請先確認；市區公車使用 Waltti Mobiili。";}}
+ const d3=day("12/03"); if(d3){const x=d3.items.find(x=>x.title==="市區逛街／晚餐");if(x)x.desc="回市區後可到 Sampokeskus、Rinteenkulma／K-Supermarket Rinteenkulma 採買零食、飲料、早餐與隔日火車食物；專門店營業時間需出發前再確認。";}
+}
+// Rovaniemi luggage: verified railway-station lockers are the dependable fallback; Arktikum storage is only for visitors while visiting.
+{
+ const d=day("12/04"); if(d){
+  const x=d.items.find(x=>x.title==="寄放行李");
+  if(x){x.desc="優先方案：Rovaniemi Railway Station（Ratakatu 3, 96100 Rovaniemi）設有可付費預約的行李櫃，依 VR 公告可選 3／6／12／24／72 小時。Arktikum 也有行李室，但僅適合參觀期間暫放，不應當作整天寄存方案。原先 K-Market 寄存說法先不採信，除非店家回覆確認。";x.address="Rovaniemi Railway Station, Ratakatu 3, 96100 Rovaniemi, Finland";x.map=true;}
+  const art=d.items.find(x=>x.title.includes("北極博物館"));
+  if(art){art.title="Arktikum 北極博物館（優先候選）";art.desc="建議作為 12/04 最後主要景點：展覽館 12 月通常每日 10:00–18:00，售票於閉館前 30 分鐘停止；距市中心步行約 10 分鐘。若在此參觀，可使用館內行李室暫放參觀期間的行李。";art.address="Arktikum, Pohjoisranta 4, 96200 Rovaniemi, Finland";art.map=true;art.links=[["Arktikum 開放時間","https://arktikum.fi/en/visit/opening-hours/"],["Arktikum 行李資訊","https://arktikum.fi/en/info-2/arrival-accessibility/"]];}
+ }
+}
+// Helsinki hotel -> Cafe Fazer is the main route if the hotel accepts luggage; fallback remains station lockers.
+{
+ const d=day("12/05"); if(d){
+  const x=d.items.find(x=>x.title==="中央車站 → Cafe Fazer" || x.title==="飯店 → Cafe Fazer");
+  if(x){x.title="飯店 → Cafe Fazer";x.from="Kaisaniemenkatu 7, 00100 Helsinki, Finland";x.to="Kluuvikatu 3, 00100 Helsinki, Finland";x.desc="若飯店可寄存行李，從 Kaisaniemenkatu 7 直接步行至 Cafe Fazer；若飯店不接受寄存，先在中央車站寄存行李，再由車站步行至咖啡店。";}
  }
 }
 
@@ -506,7 +642,8 @@ const expenses=[
 ["🎟️","Tromsø 破冰團","15,078","GetYourGuide"],
 ["🎟️","Rovaniemi 哈士奇團","KRW 608,688","GetYourGuide"],
 ["🎟️","Rovaniemi 極光團","KRW 264,260","GetYourGuide"],
-["♨️","羅弗敦 SPA / Skårungen","前一星期看氣象再買","Skårungen"]
+["♨️","羅弗敦 SPA / Skårungen","前一星期看氣象再買","Skårungen"],
+["🚢","塔林郵輪","2644","tallink"]
 ];
 
 function mapUrl(a,b,mode="transit"){
@@ -514,15 +651,166 @@ function mapUrl(a,b,mode="transit"){
  return "https://www.google.com/maps/dir/"+q;
 }
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+// Notes are stored locally in this browser. Export embeds them into a portable HTML copy.
+const NOTES_STORAGE_KEY="nordic-trip-2026-page-notes-v1";
+let pageNotes={};
+try{
+ const embedded=document.getElementById("embedded-notes-data");
+ if(embedded && embedded.textContent.trim()) pageNotes=JSON.parse(embedded.textContent);
+ const local=JSON.parse(localStorage.getItem(NOTES_STORAGE_KEY)||"{}");
+ pageNotes={...pageNotes,...local};
+}catch(e){pageNotes={};}
+function getPageNote(key){return pageNotes[key]||{text:"",photos:[]};}
+function notesPanelHTML(key,label){
+ const item=getPageNote(key);
+ return `<section class="notes-panel" data-notes-key="${esc(key)}"><div class="notes-head"><strong>✎ ${esc(label||"本頁個人筆記")}</strong><small>內容會自動保存在目前瀏覽器</small></div><textarea class="notes-text" placeholder="在這一頁記下提醒、備註、預約資訊……">${esc(item.text||"")}</textarea><div class="notes-tools"><label class="notes-upload">＋ 上傳圖片<input class="notes-file" type="file" accept="image/*" multiple></label><button type="button" class="save-notes">儲存筆記</button><button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">${(item.photos||[]).length} 張圖片</span></div><div class="notes-photos">${(item.photos||[]).map((src,n)=>`<div class="notes-photo"><img src="${src}" alt="筆記圖片 ${n+1}"><button type="button" data-photo-index="${n}" aria-label="刪除圖片">×</button></div>`).join("")}</div></section>`;
+}
+function persistNotes(){try{localStorage.setItem(NOTES_STORAGE_KEY,JSON.stringify(pageNotes));return true;}catch(e){alert("瀏覽器儲存空間不足。請減少圖片數量，或先匯出 HTML 備份。");return false;}}
+function exportNotesHTML(){
+ const data=JSON.stringify(pageNotes).replace(/</g,"\\u003c");
+ const doc=document.documentElement.cloneNode(true);
+ let holder=doc.querySelector("#embedded-notes-data");
+ if(!holder){holder=doc.ownerDocument.createElement("script");holder.id="embedded-notes-data";holder.type="application/json";doc.querySelector("head").appendChild(holder);}
+ holder.textContent=data;
+ const blob=new Blob(["<!doctype html>\n"+doc.outerHTML],{type:"text/html;charset=utf-8"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="nordic-trip-2026-with-notes.html";a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function bindNotes(root=document){
+ root.querySelectorAll(".notes-panel").forEach(panel=>{
+  if(panel.dataset.bound==="1")return;panel.dataset.bound="1";
+  const key=panel.dataset.notesKey,area=panel.querySelector(".notes-text"),status=panel.querySelector(".notes-status");
+  const save=()=>{pageNotes[key]={...getPageNote(key),text:area.value};if(persistNotes())status.textContent="已儲存 · "+(pageNotes[key].photos||[]).length+" 張圖片";};
+  area.addEventListener("input",save);
+  panel.querySelector(".save-notes").addEventListener("click",save);
+  panel.querySelector(".export-notes").addEventListener("click",()=>{save();exportNotesHTML();});
+  panel.querySelector(".notes-file").addEventListener("change",async e=>{
+   const files=[...e.target.files];if(!files.length)return;
+   const current=getPageNote(key);current.photos=current.photos||[];
+   for(const file of files){
+    if(!file.type.startsWith("image/"))continue;
+    if(file.size>8*1024*1024){alert(file.name+" 超過 8MB，已略過。");continue;}
+    const data=await new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.readAsDataURL(file);});
+    current.photos.push(data);
+   }
+   pageNotes[key]={...current,text:area.value};
+   if(persistNotes()){const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);}
+   e.target.value="";
+  });
+  panel.querySelectorAll("[data-photo-index]").forEach(btn=>btn.addEventListener("click",()=>{
+   const item=getPageNote(key);item.photos.splice(Number(btn.dataset.photoIndex),1);pageNotes[key]=item;persistNotes();
+   const fresh=notesPanelHTML(key,panel.querySelector(".notes-head strong").textContent.replace(/^✎ /,""));panel.outerHTML=fresh;bindNotes(document);
+  }));
+ });
+}
+
+// Weather locations are tied to the actual itinerary stops for each date.
+const weatherPlaces={
+ "11/23":[["台北／桃園出發地",25.0330,121.5654]],
+ "11/24":[["Oslo 奧斯陸",59.9139,10.7522]],
+ "11/25":[["Oslo 奧斯陸",59.9139,10.7522],["Bodø 轉機",67.2804,14.4049],["Leknes 羅弗敦",68.1470,13.6110]],
+ "11/26":[["Leknes 羅弗敦",68.1470,13.6110]],
+ "11/27":[["Leknes",68.1470,13.6110],["Svolvær",68.2342,14.5683],["Kabelvåg／Skårungen",68.2100,14.4750]],
+ "11/28":[["Svolvær",68.2342,14.5683],["Tromsø（夜船目的地）",69.6492,18.9553]],
+ "11/29":[["Tromsø 特羅姆瑟",69.6492,18.9553]],
+ "11/30":[["Tromsø",69.6492,18.9553],["Ersfjordbotn 峽灣",69.7000,18.6000]],
+ "12/01":[["Tromsø",69.6492,18.9553],["Sjømannsskolen／觀景點",69.6560,18.9680]],
+ "12/02":[["Tromsø",69.6492,18.9553],["Rovaniemi 羅瓦涅米",66.5039,25.7294]],
+ "12/03":[["Rovaniemi 市區",66.5039,25.7294],["Santa Claus Village 聖誕老人村",66.5430,25.8470]],
+ "12/04":[["Rovaniemi 羅瓦涅米",66.5039,25.7294],["Helsinki（夜車目的地）",60.1699,24.9384]],
+ "12/05":[["Helsinki 赫爾辛基",60.1699,24.9384],["Suomenlinna 芬蘭堡",60.1450,24.9880]],
+ "12/06":[["Helsinki 赫爾辛基",60.1699,24.9384],["Tallinn 塔林",59.4370,24.7536]],
+ "12/07":[["Helsinki 赫爾辛基",60.1699,24.9384],["Dubai 杜拜（轉機）",25.2048,55.2708]],
+ "12/08":[["Dubai 杜拜",25.2048,55.2708],["Taipei 台北（抵達）",25.0330,121.5654]]
+};
+// Deploy weather-proxy-worker.js to Cloudflare Workers, then paste its URL here.
+// The proxy is needed because MET Norway requires a unique User-Agent header.
+let METNO_PROXY_BASE = (()=>{try{return localStorage.getItem("nordicTripMetNoProxy")||"";}catch(e){return "";}})();
+const weatherCache=new Map();
+const alertCache=new Map();
+function weatherInfo(code){
+ const m={0:["☀️","晴朗"],1:["🌤️","大致晴朗"],2:["⛅","局部多雲"],3:["☁️","陰天"],45:["🌫️","霧"],48:["🌫️","霧凇"],51:["🌦️","毛毛雨"],53:["🌦️","毛毛雨"],55:["🌧️","較強毛毛雨"],56:["🌧️","凍毛毛雨"],57:["🌧️","凍毛毛雨"],61:["🌧️","小雨"],63:["🌧️","中雨"],65:["🌧️","大雨"],66:["🌧️","凍雨"],67:["🌧️","強凍雨"],71:["🌨️","小雪"],73:["🌨️","中雪"],75:["❄️","大雪"],77:["🌨️","雪粒"],80:["🌦️","陣雨"],81:["🌧️","較強陣雨"],82:["⛈️","強陣雨"],85:["🌨️","陣雪"],86:["❄️","強陣雪"],95:["⛈️","雷雨"],96:["⛈️","雷雨／冰雹"],99:["⛈️","強雷雨／冰雹"]};
+ return m[Number(code)]||["🌡️","天氣資訊"];
+}
+function weatherDate(d){const [m,day]=d.date.split("/");return `2026-${m.padStart(2,"0")}-${day.padStart(2,"0")}`;}
+async function fetchJson(url,timeout=12000){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);try{const r=await fetch(url,{signal:controller.signal,cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);return await r.json();}finally{clearTimeout(timer);}}
+function weatherRequest(lat,lon){
+ const key=lat+","+lon;if(weatherCache.has(key))return weatherCache.get(key);
+ const params=new URLSearchParams({latitude:lat,longitude:lon,current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",hourly:"temperature_2m,precipitation_probability,rain_probability,snowfall_probability,snowfall,weather_code",daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,snowfall_sum,wind_speed_10m_max,sunrise,sunset",timezone:"auto",forecast_days:"16"});
+ const promise=fetchJson("https://api.open-meteo.com/v1/forecast?"+params.toString()).catch(async primaryError=>{
+  if(!METNO_PROXY_BASE)throw new Error("主要來源失敗；尚未設定 MET Norway 備援代理");
+  const url=METNO_PROXY_BASE.replace(/\/$/,"")+`/locationforecast?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
+  const data=await fetchJson(url);return {__provider:"MET Norway",__fallback:true,properties:data.properties};
+ });
+ weatherCache.set(key,promise);promise.catch(()=>weatherCache.delete(key));return promise;
+}
+function dateMetricsFromHourly(data,dayDate){
+ const h=data.hourly;if(!h?.time)return {};
+ const ix=[];h.time.forEach((t,i)=>{if(t.slice(0,10)===dayDate)ix.push(i)});
+ const max=(key)=>{const vals=ix.map(i=>h[key]?.[i]).filter(v=>v!==null&&v!==undefined&&Number.isFinite(Number(v)));return vals.length?Math.max(...vals):null;};
+ return {rainProbability:max("rain_probability")??max("precipitation_probability"),snowProbability:max("snowfall_probability"),snowfall:max("snowfall")};
+}
+function metNoDay(data,dayDate){
+ const rows=data.properties?.timeseries||[];const selected=rows.filter(x=>x.time?.slice(0,10)===dayDate);if(!selected.length)return null;
+ const temps=selected.map(x=>x.data?.instant?.details?.air_temperature).filter(Number.isFinite);
+ const closest=selected.reduce((best,x)=>Math.abs(Date.parse(x.time)-Date.now())<Math.abs(Date.parse(best.time)-Date.now())?x:best,selected[0]);
+ let rain=null,code=null;for(const x of selected){const d=x.data?.next_6_hours?.details||x.data?.next_1_hours?.details||{};if(Number.isFinite(d.probability_of_precipitation))rain=Math.max(rain??0,d.probability_of_precipitation);}
+ const symbol=closest.data?.next_1_hours?.summary?.symbol_code||closest.data?.next_6_hours?.summary?.symbol_code||"";
+ const sym=symbol.toLowerCase();if(sym.includes("snow"))code=73;else if(sym.includes("rain"))code=61;else if(sym.includes("thunder"))code=95;else if(sym.includes("fog"))code=45;else if(sym.includes("cloudy"))code=3;else if(sym.includes("partlycloudy"))code=2;else code=1;
+ return {max:temps.length?Math.max(...temps):null,min:temps.length?Math.min(...temps):null,temp:closest.data?.instant?.details?.air_temperature??null,code,rainProbability:rain,snowProbability:null,source:"MET Norway"};
+}
+function metric(label,value){return `<div class="weather-metric"><small>${label}</small><b>${value}</b></div>`;}
+function weatherAlertHTML(alertState){
+ if(alertState?.unsupported)return `<div class="weather-alert">⚠️ <b>官方警報：</b>此地點不在 MET Norway 警報資料涵蓋範圍。請使用所在地官方警報網站確認：<a href="${alertState.url}" target="_blank" rel="noopener">查看官方警報 ↗</a></div>`;
+ if(alertState?.error)return `<div class="weather-alert">⚠️ <b>天氣警報：</b>警報來源暫時無法連線，請點官方網站再次確認：<a href="https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings" target="_blank" rel="noopener">MET Norway 警報 ↗</a></div>`;
+ const items=alertState?.items||[];if(!items.length)return `<div class="weather-alert">✓ <b>天氣警報：</b>目前未查到此座標的有效警報（MET Norway）。</div>`;
+ return items.map(a=>{const p=a.properties||{};const level=p.riskMatrixColor||p.awareness_level||"yellow";const cls=/red/i.test(level)?"danger":/orange/i.test(level)?"warning":"";const title=p.event||p.title||"氣象警報";const desc=(p.description||p.instruction||p.consequences||"").replace(/<[^>]*>/g," ").slice(0,220);return `<div class="weather-alert ${cls}">⚠️ <b>${esc(String(level).toUpperCase())}｜${esc(title)}</b>${desc?`<br>${esc(desc)}`:""}${p.onset?`<br>開始：${esc(p.onset)}`:""}${p.expires?`　有效至：${esc(p.expires)}`:""}</div>`;}).join("");
+}
+const alertOfficial={
+ "Taipei":"https://www.cwa.gov.tw/V8/E/P/Warn.html","Taiwan":"https://www.cwa.gov.tw/V8/E/P/Warn.html",
+ "Oslo":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Bodø":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Leknes":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Svolvær":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Kabelvåg":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Tromsø":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Ersfjordbotn":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings","Sjømannsskolen":"https://www.met.no/en/weather-and-climate/meteorological-hazards-and-warnings",
+ "Rovaniemi":"https://en.ilmatieteenlaitos.fi/warnings","Santa Claus Village":"https://en.ilmatieteenlaitos.fi/warnings","Helsinki":"https://en.ilmatieteenlaitos.fi/warnings","Suomenlinna":"https://en.ilmatieteenlaitos.fi/warnings","Tallinn":"https://www.ilmateenistus.ee/ilm/prognoosid/hoiatused/?lang=en","Dubai":"https://www.ncm.gov.ae/?lang=en"
+};
+function officialAlertFor(place){const key=Object.keys(alertOfficial).find(k=>place.includes(k));return alertOfficial[key]||"https://www.meteoalarm.org/";}
+function alertRequest(lat,lon){const key=lat+","+lon;if(alertCache.has(key))return alertCache.get(key);const promise=(async()=>{if(!METNO_PROXY_BASE)throw new Error("proxy not configured");const url=METNO_PROXY_BASE.replace(/\/$/,"")+`/metalerts?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;return await fetchJson(url);})();alertCache.set(key,promise);promise.catch(()=>alertCache.delete(key));return promise;}
+async function alertForLocation(place,lat,lon){
+ // MetAlerts coverage is Nordic/Arctic; do not claim zero alerts elsewhere.
+ const isNorway=lat>57&&lat<72&&lon>4&&lon<32;
+ if(!isNorway)return {unsupported:true,url:officialAlertFor(place)};
+ try{const data=await alertRequest(lat,lon);return {items:data.features||[]};}catch(e){return {error:true};}
+}
+function weatherCardHTML(place,dayDate,data,alertState){
+ if(data.__fallback){const d=metNoDay(data,dayDate);if(!d)return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">備援來源目前沒有這一天的預報資料（MET Norway 約提供未來 9 天）。</p>${weatherAlertHTML(alertState)}</article>`;
+  const [icon,desc]=weatherInfo(d.code);return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><div class="weather-main"><div class="weather-icon">${icon}</div><div><div class="weather-temp">${d.temp!==null?Math.round(d.temp)+"°C":(d.max!==null?Math.round(d.max)+"°C":"—")}</div><div class="weather-desc">備援預報 · ${desc}</div></div></div><div class="weather-metrics">${metric("氣溫範圍",d.min!==null&&d.max!==null?`${Math.round(d.min)}° / ${Math.round(d.max)}°C`:"—")}${metric("降雨機率",d.rainProbability!==null?Math.round(d.rainProbability)+"%":"來源未提供")}${metric("降雪機率","來源未提供")}${metric("天氣來源","MET Norway 備援")}</div>${weatherAlertHTML(alertState)}</article>`;
+ }
+ const idx=data.daily?.time?.indexOf(dayDate)??-1;
+ if(idx<0)return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">主要來源與備援來源目前都沒有這一天的預報。Open-Meteo 最長 16 天、MET Norway 約 9 天，請接近日期再更新。</p>${weatherAlertHTML(alertState)}</article>`;
+ const current=data.current;const isNow=current?.time?.slice(0,10)===dayDate;const [icon,desc]=weatherInfo(isNow?current.weather_code:data.daily.weather_code[idx]);
+ const hourly=dateMetricsFromHourly(data,dayDate);const rain=hourly.rainProbability??data.daily.precipitation_probability_max?.[idx]??null;const snow=hourly.snowProbability;
+ const temp=isNow?`${Math.round(current.temperature_2m)}°C`:`${Math.round(data.daily.temperature_2m_min[idx])}° / ${Math.round(data.daily.temperature_2m_max[idx])}°C`;
+ const details=isNow?`${Math.round(current.apparent_temperature)}°C 體感 · 濕度 ${Math.round(current.relative_humidity_2m)}% · 風速 ${Math.round(current.wind_speed_10m)} km/h`:`降水量 ${Number(data.daily.precipitation_sum?.[idx]??0).toFixed(1)} mm · 降雪量 ${Number(data.daily.snowfall_sum?.[idx]??0).toFixed(1)} cm · 最大風速 ${Math.round(data.daily.wind_speed_10m_max?.[idx]??0)} km/h`;
+ const sunrise=data.daily.sunrise?.[idx]?.slice(11,16),sunset=data.daily.sunset?.[idx]?.slice(11,16);
+ return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><div class="weather-main"><div class="weather-icon">${icon}</div><div><div class="weather-temp">${temp}</div><div class="weather-desc">${isNow?"目前天氣":"當日預報"} · Open-Meteo 主要來源 · ${desc}</div></div></div><div class="weather-metrics">${metric("降雨機率",rain!==null?Math.round(rain)+"%":"—")}${metric("降雪機率",snow!==null?Math.round(snow)+"%":"—")}${metric("降水／降雪",details)}${metric("日照時間",sunrise&&sunset?`日出 ${sunrise} · 日落 ${sunset}`:"—")}</div>${weatherAlertHTML(alertState)}</article>`;
+}
+async function loadWeatherForDay(i){
+ const d=days[i],root=document.getElementById("weatherGrid");if(!root)return;const locations=weatherPlaces[d.date]||[];const target=weatherDate(d);
+ if(!locations.length){root.innerHTML='<p class="weather-state">此日期尚未設定天氣地點。</p>';return;}
+ root.innerHTML=locations.map(x=>`<article class="weather-card"><div class="weather-place">${esc(x[0])}</div><p class="weather-state">正在取得主要來源與警報資料……</p></article>`).join("");
+ const results=await Promise.all(locations.map(async loc=>{const [weather,alerts]=await Promise.all([weatherRequest(loc[1],loc[2]).then(data=>({data})).catch(error=>({error})),alertForLocation(loc[0],loc[1],loc[2])]);return {loc,...weather,alerts};}));
+ const liveRoot=document.getElementById("weatherGrid");if(!liveRoot||liveRoot.dataset.day!==d.date)return;
+ liveRoot.innerHTML=results.map(({loc,data,error,alerts})=>error?`<article class="weather-card"><div class="weather-place">${esc(loc[0])}</div><p class="weather-state">主要天氣來源失敗：${esc(error.message||"連線錯誤")}。${METNO_PROXY_BASE?"正在使用備援來源但仍無法取得資料。":"請先設定下方備援代理網址，啟用 MET Norway 自動備援。"}</p>${weatherAlertHTML(alerts)}</article>`:weatherCardHTML(loc[0],target,data,alerts)).join("");
+}
+
 function renderDay(i){
- const d=days[i]; let h=`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
+ const d=days[i]; let h=notesPanelHTML("itinerary-"+d.date, "DAY "+String(i+1).padStart(2,"0")+" · "+d.date+" 個人筆記")+`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026（星期${esc(d.dow)}）</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
  (d.alerts||[]).forEach(x=>h+=`<div class="alert"><strong>時間／交通提醒</strong><br>${esc(x)}</div>`);
+ h+=`<section class="weather-panel"><div class="weather-top"><strong>☁ 當地天氣 / 即時與逐日預報</strong><small>依當日行程地點 · 每個地點獨立顯示</small></div><div class="weather-legend"><span>🌡 氣溫</span><span>🌧 降雨機率</span><span>❄ 降雪機率</span><span>⚠ 官方天氣警報</span></div><div class="weather-grid" id="weatherGrid" data-day="${esc(d.date)}"><p class="weather-state">正在載入氣象資料……</p></div><div class="weather-source">主要來源：<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>（最多 16 天）；備援：<a href="https://api.met.no/" target="_blank" rel="noopener">MET Norway</a>（約 9 天）。MET Norway 警報僅適用其涵蓋區域；其他地區提供官方警報入口。${METNO_PROXY_BASE?`<br><b>備援代理：</b>${esc(METNO_PROXY_BASE)}`:`<br><b>啟用備援：</b>請部署隨附的 weather-proxy-worker.js，並將 Worker 網址填入程式中的 METNO_PROXY_BASE。`} 機率為當日逐時預報中的最高值；若來源未提供，會明確標示而不自行推算。<div class="weather-proxy-config"><label for="weatherProxyInput">MET Norway 備援 Worker 網址</label><input id="weatherProxyInput" type="url" placeholder="部署 Worker 後貼上 https://xxx.workers.dev" value="${esc(METNO_PROXY_BASE)}"><button id="saveWeatherProxy" type="button">儲存並測試備援</button><small id="weatherProxyStatus">${METNO_PROXY_BASE?"已設定備援代理。":"尚未設定；主要 API 失敗時無法自動切換。"}</small></div></div></section>`;
  h+=`<div class="section-label">ROUTE & STOPS / 站點與行程</div><div class="timeline">`;
  d.items.forEach((it,n)=>{
   const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk"||(it.mode||"").includes("步行");
   const makeCard=()=>{
    let c=`<article class="stopcard ${transport||walking?"transport":""} ${it.alternative?"alternative":""}">`;
    if(it.time)c+=`<span class="time">${esc(it.time)}</span>`;
+   if(it.optional)c+=`<div class="meetflag">OPTIONAL / MAY CANCEL</div>`;
    if(it.type==="place" && /集合$/.test(it.title))c+=`<div class="meetflag">MEETING POINT</div>`;
    else if(it.type==="place" && /機場報到|碼頭（獨立節點）/.test(it.title))c+=`<div class="meetflag">DEPARTURE POINT</div>`;
    c+=`<h3>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
@@ -541,18 +829,43 @@ function renderDay(i){
  });
  h+=`</div><div class="daynav"><button id="prevDay" ${i===0?"disabled":""}>← 前一天</button><button id="nextDay" ${i===days.length-1?"disabled":""}>後一天 →</button></div>`;
  document.getElementById("dayContent").innerHTML=h;
+ bindNotes(document.getElementById("dayContent"));
+ loadWeatherForDay(i);
+ const proxyInput=document.getElementById("weatherProxyInput"),proxyButton=document.getElementById("saveWeatherProxy"),proxyStatus=document.getElementById("weatherProxyStatus");
+ if(proxyButton)proxyButton.onclick=()=>{const value=(proxyInput.value||"").trim().replace(/\/$/,"");if(value&&!/^https:\/\//i.test(value)){proxyStatus.textContent="網址必須以 https:// 開頭。";return;}METNO_PROXY_BASE=value;try{localStorage.setItem("nordicTripMetNoProxy",value);}catch(e){}weatherCache.clear();alertCache.clear();proxyStatus.textContent=value?"已儲存，正在重新載入天氣與警報……":"已清除備援網址。";loadWeatherForDay(i);};
  document.getElementById("prevDay").onclick=()=>showDay(i-1);
  document.getElementById("nextDay").onclick=()=>showDay(i+1);
  document.getElementById("daySelect").value=i;
 }
 function showDay(i){if(i<0||i>=days.length)return;document.querySelectorAll(".daylink").forEach((e,n)=>e.classList.toggle("active",n===i));renderDay(i);document.getElementById("dayContent").scrollIntoView({behavior:"smooth",block:"start"});}
-document.getElementById("dayList").innerHTML=days.map((d,i)=>`<button class="daylink ${i===0?"active":""}" data-i="${i}"><b>${d.date}<small>DAY ${String(i+1).padStart(2,"0")}</small></b><span>${esc(d.city)}<small>${esc(d.title)}</small></span></button>`).join("");
+document.getElementById("dayList").innerHTML=days.map((d,i)=>`<button class="daylink ${i===0?"active":""}" data-i="${i}"><b>${d.date}<small>星期${d.dow} · DAY ${String(i+1).padStart(2,"0")}</small></b><span>${esc(d.city)}<small>${esc(d.title)}</small></span></button>`).join("");
 document.getElementById("dayList").querySelectorAll("button").forEach(b=>b.onclick=()=>showDay(+b.dataset.i));
-document.getElementById("daySelect").innerHTML=days.map((d,i)=>`<option value="${i}">${d.date} · ${d.city} · ${d.title}</option>`).join("");
+document.getElementById("daySelect").innerHTML=days.map((d,i)=>`<option value="${i}">${d.date}（星期${d.dow}） · ${d.city} · ${d.title}</option>`).join("");
 document.getElementById("daySelect").onchange=e=>showDay(+e.target.value);
 renderDay(0);
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===b.dataset.page));window.scrollTo({top:0,behavior:"smooth"});});
+
+const pendingGroups=[
+{title:"奧斯陸早晨（11/25）",desc:"以 Fuglen Coffee 為起點，建議走市中心精華線：Tullinløkka → 國會大廈／Karl Johans gate → 皇宮外觀與花園 → 市政廳外觀。時間有限時不必進館；先確認最晚回飯店取行李時間。",links:[["VisitOSLO 半日路線","https://www.visitoslo.com/articles/day-plans/highlights-in-half-a-day"]]},
+{title:"Leknes 一日團後自由活動（11/26）",desc:"以 Leknes sentrum 為主：先補隔日早餐／飲水／零食，再逛市中心商店、咖啡店及購物中心。冬季店家營業時間差異大，避免排需要預約或遠距離移動的景點。",links:[["Visit Lofoten 冬季資訊","https://visitlofoten.com/en/topic/winter-in-lofoten/"]]},
+{title:"Svolvær 逛街（11/27、11/28）",desc:"優先安排 Svolvær sentrum、港口周邊、畫廊／紀念品店與咖啡店；若時間充裕可考慮 Kabelvåg，但 11/27 受 Skårungen 天氣與交通影響，不建議先排死。冬季店家可能縮短營業時間。",links:[["Visit Lofoten 冬季資訊","https://visitlofoten.com/en/topic/winter-in-lofoten/"]]},
+{title:"11/30 Tromsø 晚餐與採買",desc:"晚餐候選：Arctandria（海鮮、傳統北挪威料理，部分季節菜色含鯨魚）、Bardus Bistro（馴鹿、魚類與北挪威食材）、Fiskekompaniet（魚貝類）。採買可買麵包、起司、優格、水果、即食沙拉、煙燻鮭魚／魚餅及隔日早餐；若要吃鯨魚肉，先確認菜單與來源。",links:[["Arctandria 官方旅遊介紹","https://www.visittromso.no/arctandria"],["Fiskekompaniet 官方旅遊介紹","https://www.visittromso.no/fiskekompaniet"],["Tromsø 市中心餐廳名單","https://www.tromsosentrum.no/restauranter/"]]},
+{title:"Rovaniemi 採買（12/02、12/03）",desc:"12/02 極光團前以市中心超市買水、零食、早餐與保暖小物為主；12/03 聖誕老人村回市區後，可到 Sampokeskus／Rinteenkulma 一帶補貨。K-Supermarket Rinteenkulma 是較方便的市中心採買點；營業時間仍以店家當日公告為準。",links:[["Rovaniemi 購物指南","https://www.visitrovaniemi.fi/see-do/shopping/"],["Sampokeskus 商場","https://sampokeskus.fi/en/"],["Rinteenkulma／Revontuli 購物資訊","https://shoppingrovaniemi.com/"]]},
+{title:"Rovaniemi 行李寄存（12/04）",desc:"已找到較可靠方案：Rovaniemi 火車站 Ratakatu 3 有行李櫃，可按 3／6／12／24／72 小時預約。Arktikum 有免費衣帽架與有限置物櫃／行李室，但只適合參觀期間使用。K-Market 寄存尚未取得店家確認，不當作已確認服務。",links:[["VR Rovaniemi 車站與行李櫃","https://www.vr.fi/en/railway-stations-and-routes/rovaniemi"],["Arktikum 行李資訊","https://arktikum.fi/en/info-2/arrival-accessibility/"]]},
+{title:"Rovaniemi 12/04 最後景點",desc:"優先推薦 Arktikum：室內景點適合冬季，步行距離市中心約 10 分鐘；12 月展覽通常 10:00–18:00。可安排 1.5–2 小時，再去市區採買、取行李並前往火車站。若時間充裕再加市中心購物，不建議當天跑遠郊。",links:[["Arktikum 開放時間","https://arktikum.fi/en/visit/opening-hours/"],["Arktikum 參觀資訊","https://arktikum.fi/en/visit/"]]},
+{title:"12/05 韓式炸雞後：咖啡／桑拿／景點",desc:"較順路的組合：Cafe Fazer（市中心）→ Senate Square／Helsinki Cathedral → Kauppatori／Esplanadi；若想體驗桑拿，Allas Pool 靠近港邊，安排在 Kauppatori 一帶最順。Cafe Regatta 在西側海岸、離市中心較遠，與桑拿及市中心景點混排會增加步行距離，可視體力擇一。",links:[["My Helsinki 購物與城市指南","https://www.myhelsinki.fi/visit-helsinki/things-to-do/shopping/"]]},
+{title:"塔林一日遊景點（12/06）",desc:"建議步行環線：Viru Gate → Town Hall Square／聖誕市集 → St Catherine’s Passage → Masters’ Courtyard → Toompea Hill（Kohtuotsa／Patkuli 觀景台）→ Alexander Nevsky Cathedral 外觀。若風雪或時間不足，優先保留舊城廣場、巷弄與 Toompea 觀景點；城牆塔樓／博物館擇一即可。",links:[["Visit Tallinn 必看景點","https://www.visittallinn.ee/eng/visitor/ideas-tips/tips-and-guides/top-must-see-sights"],["Visit Tallinn 舊城指南","https://www.visittallinn.ee/eng/visitor/see-do/neighbourhoods/old-town"]]},
+{title:"12/07 Helsinki 最後採買",desc:"優先買容易帶回台灣且不易壓壞的芬蘭特色：Fazer 巧克力／糖果、Salmiakki 鹹甘草糖、Moomin 小物、Marimekko／Iittala 設計品、芬蘭桑拿用品。食品注意液體、肉製品及台灣入境檢疫規定；退稅商品需保留單據並預留機場辦理時間。",links:[["My Helsinki 在地設計與購物指南","https://www.myhelsinki.fi/visit-helsinki/things-to-do/shopping/"]]},
+{title:"天氣確認：Leknes → Svolvær／Skårungen Sauna（11/27）",desc:"<strong>待天氣確認</strong>。出發前一週再看風雪、道路、公交營運及 Skårungen 預約；若 Leknes → Svolvær 延誤或天候不佳，優先取消 Sauna，避免趕車。也要比較直接前往 Skårungen 與先到 Svolvær 放行李兩種方案。",links:[]},
+{title:"11/29 Eurospar → 飯店",desc:"<strong>未決定／可取消</strong>。目前不設定上車站或 Google Maps 路線；先確認實際 Eurospar 門市，再看是否有合適公車，否則直接步行或取消採買。",links:[]}
+];
+document.getElementById("notes-apps").innerHTML=notesPanelHTML("apps","交通 APP · 個人筆記");
+document.getElementById("notes-expenses").innerHTML=notesPanelHTML("expenses","費用總覽 · 個人筆記");
+document.getElementById("notes-pending").innerHTML=notesPanelHTML("pending","待決定事項 · 個人筆記");
+document.getElementById("pendingContent").innerHTML=pendingGroups.map(g=>`<article class="appcard"><h3>${g.title}</h3><p>${g.desc}</p>${g.links.map(l=>`<a target="_blank" rel="noopener" href="${esc(l[1])}">${esc(l[0])} ↗</a>`).join("")}</article>`).join("");
+
 document.getElementById("appGrid").innerHTML=apps.filter(a=>!["Hurtigruten","Airportbus.fi"].includes(a.name)).map(a=>`<article class="appcard"><div class="city">${esc(a.city)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p></article>`).join("");
+bindNotes(document);
 document.getElementById("dayCount").textContent=days.length+" DAYS";
 const total=68518+11286+18016+16572+12017+6750+3631+4720+2093+14855+14918+3534+2798;
 const krwTotal=496934+410572+608688+264260;
