@@ -1497,6 +1497,21 @@ async function compressNotePhoto(file){
  }finally{URL.revokeObjectURL(objectUrl);}
 }
 async function persistNotes(){try{await writeNotesDB(pageNotes);return true;}catch(e){try{localStorage.setItem(NOTES_STORAGE_KEY,JSON.stringify(pageNotes));return true;}catch(storageError){alert("這台裝置的儲存空間不足，請先移除一些照片後再儲存。");return false;}}}
+async function syncNotesFromGitHub(render=true){
+ try{
+  const response=await fetch("/api/notes",{cache:"no-store",credentials:"same-origin"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const remote=(await response.json()).notes||{};let changed=false;
+  for(const [key,note] of Object.entries(remote)){
+   const local=pageNotes[key];if(local?.editing)continue;
+   const remoteTime=Number(note?.updatedAt)||0,localTime=Number(local?.updatedAt)||0;
+   const remoteHasContent=!!(note?.text||note?.photos?.length);
+   if(!local||remoteTime>localTime||(!localTime&&remoteHasContent&&!(local.text||local.photos?.length))){pageNotes[key]={...note,editing:false};changed=true;}
+  }
+  if(changed){await persistNotes();if(render){document.querySelectorAll(".notes-panel").forEach(panel=>{const key=panel.dataset.notesKey;if(pageNotes[key]?.editing)return;const label=panel.querySelector(".notes-head strong")?.textContent.replace(/^✎ /,"")||"本頁個人筆記";panel.outerHTML=notesPanelHTML(key,label);});bindNotes(document);}}
+  return true;
+ }catch(error){console.warn("Shared notes could not be refreshed",error);return false;}
+}
 function buildNotesHTML(){
  const data=JSON.stringify(pageNotes).replace(/</g,"\\u003c");
  const doc=document.documentElement.cloneNode(true);
@@ -1716,6 +1731,7 @@ function renderDay(i){
 function showDay(i){if(i<0||i>=days.length)return;document.querySelectorAll(".daylink").forEach((e,n)=>e.classList.toggle("active",n===i));renderDay(i);document.getElementById("dayContent").scrollIntoView({behavior:"smooth",block:"start"});}
 async function initializePage(){
  await hydrateLocalNotes();
+ await syncNotesFromGitHub(false);
  document.getElementById("dayList").innerHTML=days.map((d,i)=>`<button class="daylink ${i===0?"active":""}" data-i="${i}"><b>${d.date}<small>星期${d.dow} · DAY ${String(i+1).padStart(2,"0")}</small></b><span>${esc(d.city)}<small>${esc(d.title)}</small></span></button>`).join("");
 document.getElementById("dayList").querySelectorAll("button").forEach(b=>b.onclick=()=>showDay(+b.dataset.i));
 document.getElementById("daySelect").innerHTML=days.map((d,i)=>`<option value="${i}">${d.date}（星期${d.dow}） · ${d.city} · ${d.title}</option>`).join("");
@@ -1749,6 +1765,7 @@ if(new URLSearchParams(location.search).get("notes_sync")==="authorized"){
  syncNotesToGitHub();
 }
 document.getElementById("dayCount").textContent=days.length+" DAYS";
+setInterval(()=>{if(!document.hidden)syncNotesFromGitHub();},30000);
 const total=68518+11286+18016+16572+12017+6750+3631+4720+2093+14855+14918+3534+2798;
 const krwTotal=496934+410572+608688+264260;
 const twdExpenses=expenses.filter(x=>!String(x[2]).includes("KRW"));

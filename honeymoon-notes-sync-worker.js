@@ -211,6 +211,16 @@ export default {
         authenticated: await hasSession(request, env),
         configured: !!(env.GH_TOKEN && env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET)
       }, 200, cors);
+      if (path === "/api/notes" && request.method === "GET") {
+        try {
+          const latestHtml = await loadLatestHtmlFromGitHub(env);
+          if (!latestHtml) return json({ error: "Could not load shared notes." }, 502, cors);
+          const html = await latestHtml.text();
+          return json({ notes: embeddedNotes(html) }, 200, cors);
+        } catch (error) {
+          return json({ error: error.message || "Could not load shared notes." }, 502, cors);
+        }
+      }
       if (path === "/api/save" && request.method === "POST") {
         if (!(await hasSession(request, env))) return json({ error: "GitHub sign-in required." }, 401, cors);
         let data;
