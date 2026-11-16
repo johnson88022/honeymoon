@@ -93,8 +93,12 @@ async function saveToGitHub(html, env) {
   const current = await fetch(`${api}?ref=${BRANCH}`, { headers });
   if (!current.ok) throw new Error(`GitHub could not read index.html (${current.status}).`);
   const currentFile = await current.json();
-  const currentHtml = currentFile.encoding === "base64" && typeof currentFile.content === "string"
+  let currentHtml = currentFile.encoding === "base64" && typeof currentFile.content === "string"
     ? decodeBase64Text(currentFile.content) : "";
+  if (!currentHtml && currentFile.sha) {
+    const latest = await loadLatestHtmlFromGitHub(env);
+    if (latest) currentHtml = await latest.text();
+  }
   const safeHtml = currentHtml ? mergeNotesIntoHtml(html, currentHtml) : html;
   const bytes = new TextEncoder().encode(safeHtml);
   if (bytes.length > MAX_HTML_BYTES) throw new Error("HTML exceeds the 20 MB save limit.");
