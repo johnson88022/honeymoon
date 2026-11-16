@@ -672,7 +672,7 @@ try{
  const embedded=document.getElementById("embedded-notes-data");
  if(embedded && embedded.textContent.trim()) pageNotes=JSON.parse(embedded.textContent);
  const local=JSON.parse(localStorage.getItem(NOTES_STORAGE_KEY)||"{}");
- pageNotes={...pageNotes,...local};
+ pageNotes={...local,...pageNotes};
 }catch(e){pageNotes={};}
 function getPageNote(key){return pageNotes[key]||{text:"",photos:[]};}
 function notesPanelHTML(key,label){
@@ -706,7 +706,7 @@ async function syncNotesToGitHub(){
   }
   const result=await response.json();
   if(!response.ok)throw new Error(result.error||"同步失敗");
-  status.textContent="已同步到 GitHub；其他裝置部署後即可看到。";
+  status.textContent="已同步到 GitHub；其他裝置重新整理即可看到。";
   return true;
  }catch(error){
   status.textContent="同步失敗："+error.message+"。可先下載備份。";
