@@ -113,7 +113,7 @@ async function saveToGitHub(html, env) {
   return await updated.json();
 }
 
-async function loadLatestHtmlFromGitHub(env) {
+async function loadLatestHtmlFromGitHub(env, request = null) {
   const api = `https://api.github.com/repos/${OWNER}/${REPO}/contents/index.html?ref=${BRANCH}`;
   const response = await fetch(api, { headers: {
     "authorization": `Bearer ${env.GH_TOKEN}`,
@@ -123,6 +123,10 @@ async function loadLatestHtmlFromGitHub(env) {
   }});
   if (!response.ok) return null;
   const file = await response.json();
+  const etag = file.sha ? `"${file.sha}"` : "";
+  if (etag && request?.headers.get("If-None-Match") === etag) {
+    return new Response(null, { status: 304, headers: { etag, "cache-control": "no-store" } });
+  }
   if (file.encoding === "none" && file.sha) {
     const raw = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/blobs/${file.sha}`, { headers: {
       "authorization": `Bearer ${env.GH_TOKEN}`,
@@ -133,7 +137,7 @@ async function loadLatestHtmlFromGitHub(env) {
     if (!raw.ok) return null;
     return new Response(raw.body, { headers: {
       "content-type": "text/html; charset=utf-8",
-      "cache-control": "no-store"
+      "cache-control": "no-store", etag
     }});
   }
   if (file.encoding !== "base64" || typeof file.content !== "string") return null;
@@ -141,7 +145,7 @@ async function loadLatestHtmlFromGitHub(env) {
   const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
   return new Response(bytes, { headers: {
     "content-type": "text/html; charset=utf-8",
-    "cache-control": "no-store"
+    "cache-control": "no-store", etag
   }});
 }
 
@@ -217,10 +221,11 @@ export default {
       }, 200, cors);
       if (path === "/api/notes" && request.method === "GET") {
         try {
-          const latestHtml = await loadLatestHtmlFromGitHub(env);
+          const latestHtml = await loadLatestHtmlFromGitHub(env, request);
           if (!latestHtml) return json({ error: "Could not load shared notes." }, 502, cors);
+          if (latestHtml.status === 304) return new Response(null, { status: 304, headers: { ...cors, etag: latestHtml.headers.get("etag"), "cache-control": "no-store" } });
           const html = await latestHtml.text();
-          return json({ notes: embeddedNotes(html) }, 200, cors);
+          return json({ notes: embeddedNotes(html) }, 200, { ...cors, etag: latestHtml.headers.get("etag") || "" });
         } catch (error) {
           return json({ error: error.message || "Could not load shared notes." }, 502, cors);
         }
