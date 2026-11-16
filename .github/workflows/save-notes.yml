@@ -1,0 +1,34 @@
+name: Save travel notes
+
+on:
+  repository_dispatch:
+    types: [save-notes]
+
+permissions:
+  contents: write
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate and prepare HTML
+        env:
+          NOTES_HTML: ${{ github.event.client_payload.html }}
+        run: |
+          if [ -z "$NOTES_HTML" ]; then
+            echo "Missing client_payload.html" >&2
+            exit 1
+          fi
+          printf '%s' "$NOTES_HTML" > /tmp/index.html
+      - name: Commit updated index.html to main
+        env:
+          GH_TOKEN: ${{ secrets.NOTES_PUSH_TOKEN }}
+        run: |
+          sha="$(gh api "repos/${GITHUB_REPOSITORY}/contents/index.html?ref=main" --jq .sha)"
+          gh api \
+            --method PUT \
+            "repos/${GITHUB_REPOSITORY}/contents/index.html" \
+            -f message="Save travel notes" \
+            -f branch="main" \
+            -f content="$(base64 -w 0 /tmp/index.html)" \
+            -f sha="$sha"
