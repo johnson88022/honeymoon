@@ -743,12 +743,17 @@ async function compressNotePhoto(file){
  const objectUrl=URL.createObjectURL(file);
  try{
   const image=await new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=reject;img.src=objectUrl;});
-  const scale=Math.min(1,1280/Math.max(image.naturalWidth,image.naturalHeight));
-  const canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
-  const context=canvas.getContext("2d");context.drawImage(image,0,0,canvas.width,canvas.height);
-  const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",.68));
-  const fileToSave=blob&&blob.size<file.size?blob:file;
-  if(fileToSave.size>650*1024)throw new Error("Photo remains too large after compression");
+  const render=async(maxEdge,quality)=>{
+   const scale=Math.min(1,maxEdge/Math.max(image.naturalWidth,image.naturalHeight));
+   const canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+   canvas.getContext("2d").drawImage(image,0,0,canvas.width,canvas.height);
+   return await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",quality));
+  };
+  let blob=await render(1280,.68);
+  if(blob&&blob.size>140*1024)blob=await render(1024,.62);
+  if(blob&&blob.size>140*1024)blob=await render(800,.52);
+  const fileToSave=blob&&blob.size<file.size&&blob.size<=140*1024?blob:file;
+  if(fileToSave.size>140*1024)throw new Error("Photo remains too large after compression");
   return await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(fileToSave);});
  }finally{URL.revokeObjectURL(objectUrl);}
 }
@@ -802,8 +807,10 @@ function bindNotes(root=document){
   panel.querySelector(".notes-file")?.addEventListener("change",async e=>{
    const files=[...e.target.files].filter(file=>file.type.startsWith("image/"));if(!files.length)return;
    const current=getPageNote(key);current.photos=current.photos||[];const previousPhotos=[...current.photos];
-   const room=Math.max(0,MAX_NOTE_PHOTOS-current.photos.length);const selected=files.slice(0,room);
-   if(files.length>room)alert(`此頁最多可儲存 ${MAX_NOTE_PHOTOS} 張照片，超出的檔案已略過。`);
+   const used=Object.values(pageNotes).reduce((total,note)=>total+(note.photos||[]).length,0);
+   const room=Math.max(0,Math.min(MAX_NOTE_PHOTOS-current.photos.length,MAX_NOTE_PHOTOS-used));const selected=files.slice(0,room);
+   if(room===0){alert(`整本手冊最多可儲存 ${MAX_NOTE_PHOTOS} 張照片。`);e.target.value="";return;}
+   if(files.length>room)alert(`整本手冊最多可儲存 ${MAX_NOTE_PHOTOS} 張照片，超出的檔案已略過。`);
    for(const file of selected){
     if(file.size>20*1024*1024){alert(file.name+" 超過 20MB，已略過。");continue;}
     try{current.photos.push(await compressNotePhoto(file));}catch(error){console.error("Photo could not be processed",error);alert(file.name+" 無法處理，已略過。");}
