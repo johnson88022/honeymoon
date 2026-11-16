@@ -2274,7 +2274,7 @@ async function alertForLocation(place,lat,lon){
 }
 function weatherCardHTML(place,dayDate,data,alertState){
  const idx=data.daily?.time?.indexOf(dayDate)??-1;
- if(idx<0)return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">目前沒有這一天的預報，接近日期再更新。</p>${weatherAlertHTML(alertState)}</article>`;
+ if(idx<0){const last=data.daily?.time?.at(-1);const available=last?`${Number(last.slice(5,7))}/${Number(last.slice(8,10))}`:"近期";const requested=`${Number(dayDate.slice(5,7))}/${Number(dayDate.slice(8,10))}`;return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><p class="weather-state">目前可查到 ${esc(available)} 為止；${esc(requested)} 尚未進入預報範圍，接近日期會自動更新。</p>${weatherAlertHTML(alertState)}</article>`;}
  const current=data.current;const isNow=current?.time?.slice(0,10)===dayDate;const [icon,desc]=weatherInfo(isNow?current.weather_code:data.daily.weather_code[idx]);
  const hourly=dateMetricsFromHourly(data,dayDate);const rain=hourly.rainProbability??data.daily.precipitation_probability_max?.[idx]??null;
  const temp=isNow?`${Math.round(current.temperature_2m)}°`:`${Math.round(data.daily.temperature_2m_min[idx])}° – ${Math.round(data.daily.temperature_2m_max[idx])}°`;
