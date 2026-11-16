@@ -57,11 +57,6 @@ function mergeNotesIntoHtml(incomingHtml, currentHtml) {
   return incomingHtml.replace(/<\/head>/i, `${tag}</head>`);
 }
 
-function decodeBase64Text(value) {
-  const binary = atob(value.replace(/\s/g, ""));
-  return new TextDecoder().decode(Uint8Array.from(binary, character => character.charCodeAt(0)));
-}
-
 async function hasSession(request, env) {
   const token = cookieValue(request, "notes_session");
   if (!token || !env.GH_TOKEN) return false;
@@ -93,10 +88,9 @@ async function saveToGitHub(html, env) {
   const current = await fetch(`${api}?ref=${BRANCH}`, { headers });
   if (!current.ok) throw new Error(`GitHub could not read index.html (${current.status}).`);
   const currentFile = await current.json();
-  let currentHtml = currentFile.encoding === "base64" && typeof currentFile.content === "string"
-    ? decodeBase64Text(currentFile.content) : "";
-  if (!currentHtml && currentFile.sha) {
-    const latest = await loadLatestHtmlFromGitHub(env);
+  let currentHtml = "";
+  if (currentFile.sha) {
+    const latest = await fetchRawHtmlFromGitHub(currentFile.sha, env);
     if (latest) currentHtml = await latest.text();
   }
   const safeHtml = currentHtml ? mergeNotesIntoHtml(html, currentHtml) : html;
@@ -128,23 +122,19 @@ async function loadLatestHtmlFromGitHub(env, request = null) {
   if (etag && incomingTag === etag) {
     return new Response(null, { status: 304, headers: { etag, "cache-control": "no-store" } });
   }
-  if (file.encoding === "none" && file.sha) {
-    const raw = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/blobs/${file.sha}`, { headers: {
-      "authorization": `Bearer ${env.GH_TOKEN}`,
-      "accept": "application/vnd.github.raw",
-      "x-github-api-version": "2022-11-28",
-      "user-agent": "honeymoon-notes-sync"
-    }});
-    if (!raw.ok) return null;
-    return new Response(raw.body, { headers: {
-      "content-type": "text/html; charset=utf-8",
-      "cache-control": "no-store", etag
-    }});
-  }
-  if (file.encoding !== "base64" || typeof file.content !== "string") return null;
-  const binary = atob(file.content.replace(/\s/g, ""));
-  const bytes = Uint8Array.from(binary, character => character.charCodeAt(0));
-  return new Response(bytes, { headers: {
+  if (!file.sha) return null;
+  return fetchRawHtmlFromGitHub(file.sha, env, etag);
+}
+
+async function fetchRawHtmlFromGitHub(sha, env, etag = "") {
+  const raw = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/blobs/${sha}`, { headers: {
+    "authorization": `Bearer ${env.GH_TOKEN}`,
+    "accept": "application/vnd.github.raw",
+    "x-github-api-version": "2022-11-28",
+    "user-agent": "honeymoon-notes-sync"
+  }});
+  if (!raw.ok) return null;
+  return new Response(raw.body, { headers: {
     "content-type": "text/html; charset=utf-8",
     "cache-control": "no-store", etag
   }});
