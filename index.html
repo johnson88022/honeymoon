@@ -1,6 +1,605 @@
 <!doctype html>
-<html lang="zh-Hant">
-<head>
+<html lang="zh-Hant" data-bybit-channel-name="JlZAETunwqMYgguOdfeo_" data-bybit-is-default-wallet="true"><style>.app-crx-show-flight-price-compare {
+  width: 320px;
+  overflow: hidden;
+  position: fixed;
+  border-radius: 8px;
+  right: 20px;
+  top: 20px;
+  background: #fff;
+  z-index: 999;
+  box-shadow: 0px 8px 16px 0px rgba(69, 88, 115, 0.12);
+  color: #8592a6;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  font-family: system-ui;
+  text-align: left;
+}
+.app-crx-show-flight-price-compare .flex,
+.app-crx-show-flight-price-compare .flex-column,
+.app-crx-show-flight-price-compare .v-center,
+.app-crx-show-flight-price-compare .h-center,
+.app-crx-show-flight-price-compare .flex-column-center,
+.app-crx-show-flight-price-compare .flex-center {
+  display: -webkit-flex;
+  display: flex;
+}
+.app-crx-show-flight-price-compare .flex1 {
+  flex: 1 1 auto;
+}
+.app-crx-show-flight-price-compare .h-flex-center,
+.app-crx-show-flight-price-compare .h-center,
+.app-crx-show-flight-price-compare .flex-column-center,
+.app-crx-show-flight-price-compare .flex-center {
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.app-crx-show-flight-price-compare .v-flex-center,
+.app-crx-show-flight-price-compare .v-center,
+.app-crx-show-flight-price-compare .flex-center {
+  -webkit-align-items: center;
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .flex-between {
+  justify-content: space-between;
+}
+.app-crx-show-flight-price-compare .flex-column {
+  flex-direction: column;
+}
+.app-crx-show-flight-price-compare .flex-column-center {
+  flex-direction: column;
+}
+.app-crx-show-flight-price-compare .ml-4 {
+  margin-left: 4px;
+}
+.app-crx-show-flight-price-compare .mr-4 {
+  margin-right: 4px;
+}
+.app-crx-show-flight-price-compare .mr-16 {
+  margin-right: 16px;
+}
+.app-crx-show-flight-price-compare .ft-12 {
+  font-size: 12px;
+  line-height: 18px;
+}
+.app-crx-show-flight-price-compare .align-center {
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .justify-around {
+  justify-content: space-around;
+}
+.app-crx-show-flight-price-compare .flex-wrap {
+  flex-wrap: wrap;
+}
+.app-crx-show-flight-price-compare .color-black {
+  color: #0f294d;
+}
+.app-crx-show-flight-price-compare .color-cyan {
+  color: #06aebd;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .header-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 16px 16px 0;
+}
+.app-crx-show-flight-price-compare .header-wrapper.bold {
+  justify-content: flex-start;
+}
+.app-crx-show-flight-price-compare .header-wrapper.bold .header-text {
+  font-size: 16px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-icon {
+  width: 44px;
+  height: 44px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-icon .img {
+  transform: scale(0.5, 0.5);
+  max-width: 100%;
+  border-radius: 50%;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-text {
+  color: #3264ff;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  height: 22px;
+  letter-spacing: 0px;
+  line-height: 22px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-close {
+  cursor: pointer;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-close span {
+  text-align: center;
+  color: #ced2d9;
+  font-size: 22px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-close path {
+  fill: #8592a6;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper {
+  border-radius: 0px 0px 4px 4px;
+}
+.app-crx-show-flight-price-compare .tags {
+  display: flex;
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .tags .flight-tag {
+  background-color: rgba(50, 100, 255, 0.08);
+  color: #3264ff;
+  padding: 4px;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 18px;
+  border-radius: 4px 4px 0px 0px;
+}
+.app-crx-show-flight-price-compare .tags .compare-tag {
+  padding: 2px 4px;
+  background: rgba(50, 100, 255, 0.08);
+  color: #3264ff;
+  border-radius: 1px;
+}
+.app-crx-show-flight-price-compare .flightdetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .flightdetail .from-wrapper .date,
+.app-crx-show-flight-price-compare .flightdetail .to-wrapper .date {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .flightdetail .from-wrapper .time,
+.app-crx-show-flight-price-compare .flightdetail .to-wrapper .time {
+  color: #0f294d;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .flightdetail .to-wrapper {
+  text-align: right;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper {
+  background-color: #f5f7fa;
+  padding: 8px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed {
+  width: 80px;
+  height: 2px;
+  background-color: #dadfe6;
+  position: relative;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::before,
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: -1px;
+  background-color: #dadfe6;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::before {
+  left: 0;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::after {
+  right: 0;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper img {
+  height: 32px;
+  width: 32px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .passangerInfo {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .passangerInfo path {
+  fill: #06aebd !important;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper {
+  max-height: 50vh;
+  overflow: auto;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper .compare-tag {
+  font-size: 14px;
+  color: #455873;
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper .compare-tag span {
+  color: #F94C86;
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper .compare-tag.higher span {
+  color: #06aebd;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .compare-wrapper {
+  margin: 0 16px 8px;
+}
+.app-crx-show-flight-price-compare .compare-wrapper .book-btn {
+  background: #3264ff;
+  border-radius: 2px;
+  height: 38px;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-align: center;
+}
+.app-crx-show-flight-price-compare .compare-wrapper .book-btn:hover {
+  background-color: #2D5AE5;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.m-chromePluginV2__content-leftimg {
+  width: 66px;
+  height: 16px;
+  background-size: cover;
+}
+.m-chromePluginV2__content-leftimg-wrapper {
+  width: 66px;
+  height: 16px;
+}
+.m-chromePluginV2__price-item {
+  justify-content: flex-end;
+  flex: 1;
+  text-align: center;
+}
+.m-chromePluginV2__price-text {
+  word-break: break-all;
+  width: 100%;
+}
+.m-chromePluginV2__price-otherbar,
+.m-chromePluginV2__price-tripbar,
+.m-chromePluginV2__price-tripbar-loading {
+  width: 32px;
+  border-radius: 4px 4px 0 0;
+}
+.m-chromePluginV2__price-otherbar {
+  height: 60px;
+  background: rgba(50, 100, 255, 0.32);
+}
+.m-chromePluginV2__price-tripbar {
+  height: 40px;
+  background: #3264ff;
+}
+.m-chromePluginV2__price-tripbar-loading {
+  height: 60px;
+  background: #3264ff;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .loading-text {
+  padding: 0 16px 16px;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .header-icon {
+  width: 16px;
+  height: 16px;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .header-icon path {
+  fill: #3264FF !important;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .loading-loadgif {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .noflight-wrapper .noflight-text {
+  margin-top: 4px;
+  overflow: hidden;
+  color: #455873;
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  line-height: 18px;
+  width: 288px;
+  margin: 0 16px 16px 16px;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper {
+  color: #fff;
+  background: #3264ff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper {
+  color: #fff;
+  background: #3264ff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper .header-icon .img {
+  display: none;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper .header-text {
+  color: #fff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper .header-close span {
+  color: #fff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .content-1 {
+  margin: 16px 16px 8px 16px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .content-2 {
+  margin: 0 16px 8px 16px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .content-2 span {
+  text-decoration: underline;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .trip-com-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px 16px 24px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .trip-com-wrapper .trip-com-logo {
+  height: 18px;
+  width: 73px;
+}
+</style><div id="save-fly-plugin-inject-element"></div><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111111"><meta name="description" content="北歐蜜月旅行行程、交通站點、票券與費用">
 <title>NORDIC / TRIP 2026</title>
@@ -119,35 +718,40 @@ main{max-width:1180px;margin:auto;padding:22px 20px 90px}
 @media(max-width:760px){.notes-panel{padding:12px}.notes-photo{width:82px;height:82px}}
 
 </style>
-</head>
+<script data-token="971156-945905-468507" id="eternl-dom-script" data-eternl-state="ready" src="chrome-extension://kmhcihpebfmpgmihbkipmjlmmioameka/app/dom.js?token=971156-945905-468507"></script><script id="embedded-notes-data" type="application/json">{"itinerary-11/24":{"text":"dsfcs","photos":[],"editing":false},"itinerary-11/23":{"text":"哈哈哈ㄏ\n","photos":[],"editing":false}}</script></head>
 <body>
 <header class="top"><div class="brand">NORDIC <span>/</span> TRIP</div><small>FIELD GUIDE · 2026</small></header>
-<div class="notes-backup"><small id="notes-sync-status">儲存後同步到 GitHub；也可下載備份。</small><button id="export-notes-html" type="button">下載含筆記的 HTML</button></div>
+<div class="notes-backup"><small id="notes-sync-status">正在同步到 GitHub…</small><button id="export-notes-html" type="button">下載含筆記的 HTML</button></div>
 <section class="hero"><div><h1>北歐蜜月<br>交通手冊</h1><p>逐日行程・車站指引・票券・費用</p></div><div class="dates">2026.11.23（一） — 12.08（二）</div></section>
 <nav class="tabs" aria-label="主選單">
 <button class="tab active" data-page="itinerary">每日行程</button><button class="tab" data-page="apps">交通 APP</button><button class="tab" data-page="expenses">費用總覽</button><button class="tab" data-page="pending">待決定事項</button>
 </nav>
 <main>
 <section id="itinerary" class="page active">
-<select class="mobile-dayselect" id="daySelect" aria-label="選擇日期"></select>
-<div class="layout"><aside class="sidebar"><div class="sidehead">TRIP DAYS <span id="dayCount">16 DAYS</span></div><div id="dayList"></div></aside>
-<div class="content"><div id="dayContent"></div></div></div>
+<select class="mobile-dayselect" id="daySelect" aria-label="選擇日期"><option value="0">11/23（星期一） · 台北 · 出發前準備</option><option value="1">11/24（星期二） · 奧斯陸 · 抵達奧斯陸・市區</option><option value="2">11/25（星期三） · 奧斯陸 → 羅弗敦 · 早上奧斯陸・飛往 Leknes</option><option value="3">11/26（星期四） · 羅弗敦・Leknes · 羅弗敦一日團</option><option value="4">11/27（星期五） · Leknes → Svolvær · 移動・Skårungen 按摩／Sauna</option><option value="5">11/28（星期六） · Svolvær → Tromsø · 一日團・取行李・夜船</option><option value="6">11/29（星期日） · Tromsø · 抵達特羅姆瑟・市區</option><option value="7">11/30（星期一） · Tromsø · Ersfjordbotn 峽灣・北極教堂</option><option value="8">12/01（星期二） · Tromsø · 觀景點・破冰團</option><option value="9">12/02（星期三） · Tromsø → Rovaniemi · 飛往羅瓦涅米・極光團</option><option value="10">12/03（星期四） · Rovaniemi · 哈士奇團・聖誕老人村</option><option value="11">12/04（星期五） · Rovaniemi → Helsinki · 市區・夜間火車</option><option value="12">12/05（星期六） · Helsinki · 抵達赫爾辛基・芬蘭堡・市區</option><option value="13">12/06（星期日） · Helsinki → Tallinn → Helsinki · 愛沙尼亞塔林一日來回</option><option value="14">12/07（星期一） · Helsinki → Dubai · 赫爾辛基市區・飛往杜拜</option><option value="15">12/08（星期二） · Dubai → 台北 · 杜拜轉機・返回台北</option></select>
+<div class="layout"><aside class="sidebar"><div class="sidehead">TRIP DAYS <span id="dayCount">16 DAYS</span></div><div id="dayList"><button class="daylink active" data-i="0"><b>11/23<small>星期一 · DAY 01</small></b><span>台北<small>出發前準備</small></span></button><button class="daylink " data-i="1"><b>11/24<small>星期二 · DAY 02</small></b><span>奧斯陸<small>抵達奧斯陸・市區</small></span></button><button class="daylink " data-i="2"><b>11/25<small>星期三 · DAY 03</small></b><span>奧斯陸 → 羅弗敦<small>早上奧斯陸・飛往 Leknes</small></span></button><button class="daylink " data-i="3"><b>11/26<small>星期四 · DAY 04</small></b><span>羅弗敦・Leknes<small>羅弗敦一日團</small></span></button><button class="daylink " data-i="4"><b>11/27<small>星期五 · DAY 05</small></b><span>Leknes → Svolvær<small>移動・Skårungen 按摩／Sauna</small></span></button><button class="daylink " data-i="5"><b>11/28<small>星期六 · DAY 06</small></b><span>Svolvær → Tromsø<small>一日團・取行李・夜船</small></span></button><button class="daylink " data-i="6"><b>11/29<small>星期日 · DAY 07</small></b><span>Tromsø<small>抵達特羅姆瑟・市區</small></span></button><button class="daylink " data-i="7"><b>11/30<small>星期一 · DAY 08</small></b><span>Tromsø<small>Ersfjordbotn 峽灣・北極教堂</small></span></button><button class="daylink " data-i="8"><b>12/01<small>星期二 · DAY 09</small></b><span>Tromsø<small>觀景點・破冰團</small></span></button><button class="daylink " data-i="9"><b>12/02<small>星期三 · DAY 10</small></b><span>Tromsø → Rovaniemi<small>飛往羅瓦涅米・極光團</small></span></button><button class="daylink " data-i="10"><b>12/03<small>星期四 · DAY 11</small></b><span>Rovaniemi<small>哈士奇團・聖誕老人村</small></span></button><button class="daylink " data-i="11"><b>12/04<small>星期五 · DAY 12</small></b><span>Rovaniemi → Helsinki<small>市區・夜間火車</small></span></button><button class="daylink " data-i="12"><b>12/05<small>星期六 · DAY 13</small></b><span>Helsinki<small>抵達赫爾辛基・芬蘭堡・市區</small></span></button><button class="daylink " data-i="13"><b>12/06<small>星期日 · DAY 14</small></b><span>Helsinki → Tallinn → Helsinki<small>愛沙尼亞塔林一日來回</small></span></button><button class="daylink " data-i="14"><b>12/07<small>星期一 · DAY 15</small></b><span>Helsinki → Dubai<small>赫爾辛基市區・飛往杜拜</small></span></button><button class="daylink " data-i="15"><b>12/08<small>星期二 · DAY 16</small></b><span>Dubai → 台北<small>杜拜轉機・返回台北</small></span></button></div></aside>
+<div class="content"><div id="dayContent"><section class="notes-panel is-locked" data-notes-key="itinerary-11/23" data-bound="1"><div class="notes-head"><strong>✎ DAY 01 · 11/23 個人筆記</strong><small>已儲存 · 按「編輯」修改</small></div><textarea class="notes-text" readonly="" placeholder="在這一頁記下提醒、備註、預約資訊……">哈哈哈ㄏ
+</textarea><div class="notes-tools"><button type="button" class="edit-notes">編輯</button><button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">0 張圖片</span></div><div class="notes-photos"></div></section><div class="dayhead"><div><div class="eyebrow">台北 · 11/23 / 2026（星期一）</div><h2>出發前準備</h2><p>DAY 01 / 1 個行程節點</p></div><div class="daynum">01</div></div><section class="weather-panel"><div class="weather-top"><strong>☁ 當地天氣</strong><small>依當日行程地點</small></div><div class="weather-legend"><span>🌡 氣溫</span><span>🌧 降雨機率</span><span>⚠ 官方警報</span></div><div class="weather-grid" id="weatherGrid" data-day="11/23"><article class="weather-card"><div class="weather-place">台北／桃園出發地</div><div class="weather-main"><div class="weather-icon">🌤️</div><div><div class="weather-temp">18° / 27°C</div><div class="weather-desc">當日預報 · 大致晴朗</div></div></div><div class="weather-metrics"><div class="weather-metric"><small>降雨機率</small><b>18%</b></div><div class="weather-metric"><small>降水／降雪</small><b>降水量 0.0 mm · 降雪量 0.0 cm · 最大風速 14 km/h</b></div><div class="weather-metric"><small>日照時間</small><b>日出 06:15 · 日落 17:04</b></div></div><div class="weather-alert">⚠️ <b>官方天氣警報：</b><a href="https://www.meteoalarm.org/" target="_blank" rel="noopener">查看所在地警報 ↗</a></div></article></div><div class="weather-source">資料來源：<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>。警報請以所在地官方資訊為準。</div></section><div class="section-label">ROUTE &amp; STOPS / 站點與行程</div><div class="timeline"><article class="stopcard  "><h3>最晚 20:00 抵達桃園機場</h3><p>依原始行程。出發前確認護照、機票、申根保險、eSIM、住宿與所有團體集合通知。</p><div class="actions"></div></article></div><div class="daynav"><button id="prevDay" disabled="">← 前一天</button><button id="nextDay">後一天 →</button></div></div></div></div>
 </section>
 <section id="apps" class="page">
-<div id="notes-apps"></div>
+<div id="notes-apps"><section class="notes-panel is-locked" data-notes-key="apps" data-bound="1"><div class="notes-head"><strong>✎ 交通 APP · 個人筆記</strong><small>已儲存 · 按「編輯」修改</small></div><textarea class="notes-text" readonly="" placeholder="在這一頁記下提醒、備註、預約資訊……"></textarea><div class="notes-tools"><button type="button" class="edit-notes">編輯</button><button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">0 張圖片</span></div><div class="notes-photos"></div></section></div>
 <div class="dayhead"><div><div class="eyebrow">TRANSPORT TOOLS</div><h2>交通 APP</h2><p>依城市整理，僅列出行程中需要使用的 APP。</p></div></div>
-<div class="appgrid" id="appGrid"></div>
+<div class="appgrid" id="appGrid"><article class="appcard"><div class="city">OSLO</div><h3>Ruter</h3><p>奧斯陸市區公車、電車、地鐵、船與區域票；可買 24 小時票。</p></article><article class="appcard"><div class="city">NORWAY / TRAIN</div><h3>Vy</h3><p>Oslo S ⇄ Oslo Airport 區域火車購票與即時班次；可查月台與延誤。</p></article><article class="appcard"><div class="city">LOFOTEN</div><h3>Reis</h3><p>Nordland 公車、快船與渡輪查詢及購票。搜尋 Leknes、Svolvær、Sandvika Kryss。</p></article><article class="appcard"><div class="city">TROMSØ</div><h3>Svipper</h3><p>Troms 地區公車／快船查詢、即時班次與票券；可查 Prostneset、Ersfjordbotn、Sjømannsskolen。</p></article><article class="appcard"><div class="city">ROVANIEMI</div><h3>Waltti Mobile</h3><p>Rovaniemi（Linkkari）市區公車單程票／日票與路線查詢。</p></article><article class="appcard"><div class="city">HELSINKI</div><h3>HSL</h3><p>赫爾辛基地區公車、電車、地鐵與 I／P 機場火車；機場通常需 ABC 票。</p></article><article class="appcard"><div class="city">NIGHT TRAIN</div><h3>VR Matkalla</h3><p>芬蘭長途／夜間火車票與班次。</p></article><article class="appcard"><div class="city">AURORA</div><h3>Aurora Now</h3><p>極光預報、位置預測與自訂極光提醒。</p></article></div>
 
 </section>
 <section id="expenses" class="page">
-<div id="notes-expenses"></div>
+<div id="notes-expenses"><section class="notes-panel is-locked" data-notes-key="expenses" data-bound="1"><div class="notes-head"><strong>✎ 費用總覽 · 個人筆記</strong><small>已儲存 · 按「編輯」修改</small></div><textarea class="notes-text" readonly="" placeholder="在這一頁記下提醒、備註、預約資訊……"></textarea><div class="notes-tools"><button type="button" class="edit-notes">編輯</button><button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">0 張圖片</span></div><div class="notes-photos"></div></section></div>
 <div class="dayhead"><div><div class="eyebrow">BUDGET / BOOKING</div><h2>費用總覽</h2><p>金額照原始行程保留；未填項目不自行估價。</p></div></div>
-<div id="expenseContent"></div>
+<div id="expenseContent"><div class="expense">
+<div class="currency-block twd"><div class="total">NT$ 179,708</div><b>新台幣已填項目小計</b><p>僅統計原始行程中以新台幣記錄的金額；未填與待確認項目不納入。</p></div>
+<div class="currency-block krw"><div class="total">₩ 1,780,454</div><b>韓幣團費結算（KRW）</b><p>以下四筆團費以韓圜原幣逐筆列出，不混入新台幣小計。</p><table><thead><tr><th>團費項目</th><th style="text-align:right">韓幣金額</th><th>平台</th></tr></thead><tbody><tr><td>羅弗敦一日遊（Leknes）</td><td class="amount">₩ 496,934</td><td>GetYourGuide</td></tr><tr><td>羅弗敦一日遊（Svolvær）</td><td class="amount">₩ 410,572</td><td>GetYourGuide</td></tr><tr><td>Rovaniemi 哈士奇團</td><td class="amount">₩ 608,688</td><td>GetYourGuide</td></tr><tr><td>Rovaniemi 極光團</td><td class="amount">₩ 264,260</td><td>GetYourGuide</td></tr><tr><td><b>韓幣團費合計</b></td><td class="amount"><b>₩ 1,780,454</b></td><td>4 筆</td></tr></tbody></table></div>
+<h3>新台幣費用明細</h3><table><thead><tr><th>類別</th><th>項目</th><th style="text-align:right">金額</th><th>平台</th></tr></thead><tbody><tr><td>✈️</td><td>台北 → 奧斯陸；赫爾辛基 → 台北</td><td class="amount">NT$ 68,518</td><td>Trip.com</td></tr><tr><td>✈️</td><td>奧斯陸 → Leknes</td><td class="amount">NT$ 11,286</td><td>Trip.com</td></tr><tr><td>🚢</td><td>Svolvær → Tromsø</td><td class="amount">NT$ 18,016</td><td>Hurtigruten 官網</td></tr><tr><td>✈️</td><td>Tromsø → Rovaniemi</td><td class="amount">NT$ 16,572</td><td>Trip.com</td></tr><tr><td>🚆</td><td>Rovaniemi → Helsinki</td><td class="amount">NT$ 12,017</td><td>VR.fi</td></tr><tr><td>🚌</td><td>奧斯陸市區交通</td><td class="amount">未填</td><td>Ruter</td></tr><tr><td>🚌</td><td>羅弗敦公路交通</td><td class="amount">未填</td><td>Reis</td></tr><tr><td>🚌</td><td>特羅姆瑟市區交通</td><td class="amount">未填</td><td>Svipper</td></tr><tr><td>🚌</td><td>羅瓦涅米市區交通</td><td class="amount">未填</td><td>Waltti</td></tr><tr><td>🚌</td><td>赫爾辛基市區交通</td><td class="amount">未填</td><td>HSL</td></tr><tr><td>🛡️</td><td>申根保險</td><td class="amount">NT$ 6,750</td><td>國泰保險</td></tr><tr><td>🏡</td><td>奧斯陸住宿 1 晚</td><td class="amount">NT$ 3,631</td><td>Trip.com</td></tr><tr><td>🏡</td><td>Leknes 住宿 2 晚</td><td class="amount">NT$ 4,720</td><td>Booking</td></tr><tr><td>🏡</td><td>Svolvær 住宿 1 晚</td><td class="amount">NT$ 2,093</td><td>Booking</td></tr><tr><td>🏡</td><td>Tromsø 住宿 3 晚</td><td class="amount">NT$ 14,855</td><td>Airbnb</td></tr><tr><td>🏡</td><td>Rovaniemi 住宿 2 晚</td><td class="amount">NT$ 14,918</td><td>Airbnb</td></tr><tr><td>🏡</td><td>Helsinki 住宿 2 晚</td><td class="amount">NT$ 3,534 + 2,798</td><td>Trip.com</td></tr><tr><td>🎟️</td><td>Tromsø 破冰團</td><td class="amount">NT$ 15,078</td><td>GetYourGuide</td></tr><tr><td>♨️</td><td>羅弗敦 SPA / Skårungen</td><td class="amount">NT$ 前一星期看氣象再買</td><td>Skårungen</td></tr><tr><td>🚢</td><td>塔林郵輪</td><td class="amount">NT$ 2644</td><td>tallink</td></tr></tbody></table>
+<p>以上尚未包含未填的市區交通、SPA、網路與其他未定費用。韓幣如需折算台幣，請依實際刷卡日匯率及銀行手續費計算。<br><br>原始資料另有記錄：119518；75268+43701。原文未標示幣別及計算用途，故保留原始數字但不併入任何幣別小計。</p></div></div>
 </section>
 <section id="pending" class="page">
-<div id="notes-pending"></div>
+<div id="notes-pending"><section class="notes-panel is-locked" data-notes-key="pending" data-bound="1"><div class="notes-head"><strong>✎ 待決定事項 · 個人筆記</strong><small>已儲存 · 按「編輯」修改</small></div><textarea class="notes-text" readonly="" placeholder="在這一頁記下提醒、備註、預約資訊……"></textarea><div class="notes-tools"><button type="button" class="edit-notes">編輯</button><button type="button" class="export-notes">匯出含筆記的 HTML</button><span class="notes-status">0 張圖片</span></div><div class="notes-photos"></div></section></div>
 <div class="dayhead"><div><div class="eyebrow">TO REVIEW / BEFORE DEPARTURE</div><h2>待決定事項</h2><p>把尚未定案、需要天氣／營業時間／交通確認的內容集中記錄。</p></div></div>
-<div id="pendingContent" class="appgrid"></div>
+<div id="pendingContent" class="appgrid"><article class="appcard"><h3>奧斯陸早晨（11/25）</h3><p>以 Fuglen Coffee 為起點，建議走市中心精華線：Tullinløkka → 國會大廈／Karl Johans gate → 皇宮外觀與花園 → 市政廳外觀。時間有限時不必進館；先確認最晚回飯店取行李時間。</p><a target="_blank" rel="noopener" href="https://www.visitoslo.com/articles/day-plans/highlights-in-half-a-day">VisitOSLO 半日路線 ↗</a></article><article class="appcard"><h3>Leknes 一日團後自由活動（11/26）</h3><p>以 Leknes sentrum 為主：先補隔日早餐／飲水／零食，再逛市中心商店、咖啡店及購物中心。冬季店家營業時間差異大，避免排需要預約或遠距離移動的景點。</p><a target="_blank" rel="noopener" href="https://visitlofoten.com/en/topic/winter-in-lofoten/">Visit Lofoten 冬季資訊 ↗</a></article><article class="appcard"><h3>Svolvær 逛街（11/27、11/28）</h3><p>優先安排 Svolvær sentrum、港口周邊、畫廊／紀念品店與咖啡店；若時間充裕可考慮 Kabelvåg，但 11/27 受 Skårungen 天氣與交通影響，不建議先排死。冬季店家可能縮短營業時間。</p><a target="_blank" rel="noopener" href="https://visitlofoten.com/en/topic/winter-in-lofoten/">Visit Lofoten 冬季資訊 ↗</a></article><article class="appcard"><h3>11/30 Tromsø 晚餐與採買</h3><p>晚餐候選：Arctandria（海鮮、傳統北挪威料理，部分季節菜色含鯨魚）、Bardus Bistro（馴鹿、魚類與北挪威食材）、Fiskekompaniet（魚貝類）。採買可買麵包、起司、優格、水果、即食沙拉、煙燻鮭魚／魚餅及隔日早餐；若要吃鯨魚肉，先確認菜單與來源。</p><a target="_blank" rel="noopener" href="https://www.visittromso.no/arctandria">Arctandria 官方旅遊介紹 ↗</a><a target="_blank" rel="noopener" href="https://www.visittromso.no/fiskekompaniet">Fiskekompaniet 官方旅遊介紹 ↗</a><a target="_blank" rel="noopener" href="https://www.tromsosentrum.no/restauranter/">Tromsø 市中心餐廳名單 ↗</a></article><article class="appcard"><h3>Rovaniemi 採買（12/02、12/03）</h3><p>12/02 極光團前以市中心超市買水、零食、早餐與保暖小物為主；12/03 聖誕老人村回市區後，可到 Sampokeskus／Rinteenkulma 一帶補貨。K-Supermarket Rinteenkulma 是較方便的市中心採買點；營業時間仍以店家當日公告為準。</p><a target="_blank" rel="noopener" href="https://www.visitrovaniemi.fi/see-do/shopping/">Rovaniemi 購物指南 ↗</a><a target="_blank" rel="noopener" href="https://sampokeskus.fi/en/">Sampokeskus 商場 ↗</a><a target="_blank" rel="noopener" href="https://shoppingrovaniemi.com/">Rinteenkulma／Revontuli 購物資訊 ↗</a></article><article class="appcard"><h3>Rovaniemi 行李寄存（12/04）</h3><p>已找到較可靠方案：Rovaniemi 火車站 Ratakatu 3 有行李櫃，可按 3／6／12／24／72 小時預約。Arktikum 有免費衣帽架與有限置物櫃／行李室，但只適合參觀期間使用。K-Market 寄存尚未取得店家確認，不當作已確認服務。</p><a target="_blank" rel="noopener" href="https://www.vr.fi/en/railway-stations-and-routes/rovaniemi">VR Rovaniemi 車站與行李櫃 ↗</a><a target="_blank" rel="noopener" href="https://arktikum.fi/en/info-2/arrival-accessibility/">Arktikum 行李資訊 ↗</a></article><article class="appcard"><h3>Rovaniemi 12/04 最後景點</h3><p>優先推薦 Arktikum：室內景點適合冬季，步行距離市中心約 10 分鐘；12 月展覽通常 10:00–18:00。可安排 1.5–2 小時，再去市區採買、取行李並前往火車站。若時間充裕再加市中心購物，不建議當天跑遠郊。</p><a target="_blank" rel="noopener" href="https://arktikum.fi/en/visit/opening-hours/">Arktikum 開放時間 ↗</a><a target="_blank" rel="noopener" href="https://arktikum.fi/en/visit/">Arktikum 參觀資訊 ↗</a></article><article class="appcard"><h3>12/05 韓式炸雞後：咖啡／桑拿／景點</h3><p>較順路的組合：Cafe Fazer（市中心）→ Senate Square／Helsinki Cathedral → Kauppatori／Esplanadi；若想體驗桑拿，Allas Pool 靠近港邊，安排在 Kauppatori 一帶最順。Cafe Regatta 在西側海岸、離市中心較遠，與桑拿及市中心景點混排會增加步行距離，可視體力擇一。</p><a target="_blank" rel="noopener" href="https://www.myhelsinki.fi/visit-helsinki/things-to-do/shopping/">My Helsinki 購物與城市指南 ↗</a></article><article class="appcard"><h3>塔林一日遊景點（12/06）</h3><p>建議步行環線：Viru Gate → Town Hall Square／聖誕市集 → St Catherine’s Passage → Masters’ Courtyard → Toompea Hill（Kohtuotsa／Patkuli 觀景台）→ Alexander Nevsky Cathedral 外觀。若風雪或時間不足，優先保留舊城廣場、巷弄與 Toompea 觀景點；城牆塔樓／博物館擇一即可。</p><a target="_blank" rel="noopener" href="https://www.visittallinn.ee/eng/visitor/ideas-tips/tips-and-guides/top-must-see-sights">Visit Tallinn 必看景點 ↗</a><a target="_blank" rel="noopener" href="https://www.visittallinn.ee/eng/visitor/see-do/neighbourhoods/old-town">Visit Tallinn 舊城指南 ↗</a></article><article class="appcard"><h3>12/07 Helsinki 最後採買</h3><p>優先買容易帶回台灣且不易壓壞的芬蘭特色：Fazer 巧克力／糖果、Salmiakki 鹹甘草糖、Moomin 小物、Marimekko／Iittala 設計品、芬蘭桑拿用品。食品注意液體、肉製品及台灣入境檢疫規定；退稅商品需保留單據並預留機場辦理時間。</p><a target="_blank" rel="noopener" href="https://www.myhelsinki.fi/visit-helsinki/things-to-do/shopping/">My Helsinki 在地設計與購物指南 ↗</a></article><article class="appcard"><h3>天氣確認：Leknes → Svolvær／Skårungen Sauna（11/27）</h3><p><strong>待天氣確認</strong>。出發前一週再看風雪、道路、公交營運及 Skårungen 預約；若 Leknes → Svolvær 延誤或天候不佳，優先取消 Sauna，避免趕車。也要比較直接前往 Skårungen 與先到 Svolvær 放行李兩種方案。</p></article><article class="appcard"><h3>11/29 Eurospar → 飯店</h3><p><strong>未決定／可取消</strong>。目前不設定上車站或 Google Maps 路線；先確認實際 Eurospar 門市，再看是否有合適公車，否則直接步行或取消採買。</p></article></div>
 </section>
 <div class="footer">逐日行程、交通站點、票券與費用整理。冬季班表以當日業者資訊為準；天氣預報由 Open-Meteo 提供。</div>
 </main>
@@ -901,4 +1505,5 @@ document.getElementById("expenseContent").innerHTML=`<div class="expense">
 <h3>新台幣費用明細</h3><table><thead><tr><th>類別</th><th>項目</th><th style="text-align:right">金額</th><th>平台</th></tr></thead><tbody>${twdRows}</tbody></table>
 <p>以上尚未包含未填的市區交通、SPA、網路與其他未定費用。韓幣如需折算台幣，請依實際刷卡日匯率及銀行手續費計算。<br><br>原始資料另有記錄：119518；75268+43701。原文未標示幣別及計算用途，故保留原始數字但不併入任何幣別小計。</p></div>`;
 </script>
-</body></html>
+
+<div class="cgw-ext" data-ext-id="pdnenlnelpdomajfejgapbdpmjkfpjkp"></div><cgw-writer-modal data-wxt-shadow-root="" class="cgw_main_container" id="jw-main-container-id"></cgw-writer-modal><button id="cgw_action_btn" tabindex="-1" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></button></body></html>
