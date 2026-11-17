@@ -2222,25 +2222,69 @@ function weatherInfo(code){
  return m[Number(code)]||["🌡️","天氣資訊"];
 }
 function weatherDate(d){const [m,day]=d.date.split("/");return `2026-${m.padStart(2,"0")}-${day.padStart(2,"0")}`;}
-async function fetchJson(url,timeout=30000){
+async function fetchJson(url,timeout=18000){
  let lastError;
  for(let attempt=0;attempt<3;attempt++){
   const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);
   try{
-   const r=await fetch(url,{signal:controller.signal,cache:"no-store"});
-   if(!r.ok)throw new Error("HTTP "+r.status);
-   return await r.json();
-  }catch(error){lastError=error.name==="AbortError"?new Error("天氣服務回應逾時，請稍後重試"):error;
-   if(attempt<2)await new Promise(resolve=>setTimeout(resolve,700*(attempt+1)));
+   const r=await fetch(url,{signal:controller.signal,cache:"no-store",headers:{accept:"application/json"}});
+   if(!r.ok){
+    const retryable=r.status===408||r.status===425||r.status===429||r.status>=500;
+    let detail="";
+    try{const body=await r.json();detail=body.reason||body.error||"";}catch{}
+    const error=new Error(`天氣服務暫時異常（HTTP ${r.status}）${detail?`：${detail}`:""}`);
+    error.retryable=retryable;
+    const retryAfter=Number(r.headers.get("retry-after"));
+    error.retryAfter=Number.isFinite(retryAfter)&&retryAfter>0?Math.min(retryAfter*1000,8000):0;
+    throw error;
+   }
+   const type=r.headers.get("content-type")||"";
+   if(!type.includes("json"))throw new Error("天氣服務回傳格式異常，請稍後重試");
+   const data=await r.json();
+   if(data.error)throw new Error(data.reason||"天氣服務無法提供此地點的資料");
+   if(!data.daily?.time?.length)throw new Error("天氣服務未回傳有效的預報資料");
+   return data;
+  }catch(error){
+   lastError=error.name==="AbortError"?new Error("天氣服務回應逾時（18 秒），請稍後重試"):error;
+   const retryable=error.name==="AbortError"||error instanceof TypeError||error.retryable===true;
+   if(!retryable||attempt===2)break;
+   const wait=error.retryAfter||Math.min(1000*(2**attempt),4000)+Math.floor(Math.random()*350);
+   await new Promise(resolve=>setTimeout(resolve,wait));
   }finally{clearTimeout(timer);}
  }
- throw lastError;
+ throw lastError||new Error("天氣資料暫時無法取得");
 }
+const WEATHER_CACHE_TTL=10*60*1000;
+const WEATHER_STALE_TTL=2*60*60*1000;
+const weatherInflight=new Map();
 function weatherRequest(lat,lon){
- const key=lat+","+lon;if(weatherCache.has(key))return weatherCache.get(key);
- const params=new URLSearchParams({latitude:lat,longitude:lon,current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",hourly:"temperature_2m,precipitation_probability,rain_probability,snowfall",daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,snowfall_sum,wind_speed_10m_max,sunrise,sunset",timezone:"auto",forecast_days:"16"});
- const promise=fetchJson("https://api.open-meteo.com/v1/forecast?"+params.toString());
- weatherCache.set(key,promise);promise.catch(()=>weatherCache.delete(key));return promise;
+ const key=Number(lat).toFixed(4)+","+Number(lon).toFixed(4);
+ const now=Date.now(),cached=weatherCache.get(key);
+ if(cached&&cached.expiresAt>now)return Promise.resolve(cached.data);
+ if(weatherInflight.has(key))return weatherInflight.get(key);
+ const params=new URLSearchParams({
+  latitude:String(lat),longitude:String(lon),
+  current:"temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m",
+  hourly:"temperature_2m,precipitation_probability,rain_probability,snowfall",
+  daily:"weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,snowfall_sum,wind_speed_10m_max,sunrise,sunset",
+  timezone:"auto",forecast_days:"16"
+ });
+ const promise=fetchJson("https://api.open-meteo.com/v1/forecast?"+params.toString())
+  .then(data=>{
+   weatherCache.set(key,{data,expiresAt:Date.now()+WEATHER_CACHE_TTL,staleUntil:Date.now()+WEATHER_STALE_TTL});
+   return data;
+  })
+  .catch(error=>{
+   const stale=weatherCache.get(key);
+   if(stale&&stale.staleUntil>Date.now()){
+    console.warn("Open-Meteo temporarily unavailable; using recently cached forecast.",error);
+    return {...stale.data,_weatherStale:true};
+   }
+   throw error;
+  })
+  .finally(()=>weatherInflight.delete(key));
+ weatherInflight.set(key,promise);
+ return promise;
 }
 function dateMetricsFromHourly(data,dayDate){
  const h=data.hourly;if(!h?.time)return {};
@@ -2281,7 +2325,7 @@ function weatherCardHTML(place,dayDate,data,alertState){
  const wind=Math.round(isNow?current.wind_speed_10m:(data.daily.wind_speed_10m_max?.[idx]??0));
  const precipitation=Number(data.daily.precipitation_sum?.[idx]??0).toFixed(1);
  const snowfall=Number(data.daily.snowfall_sum?.[idx]??0).toFixed(1);
- return `<article class="weather-card"><div class="weather-place">${esc(place)}</div><div class="weather-visual" aria-label="${esc(desc)}">${icon}</div><div class="weather-desc">${isNow?"目前":"當日預報"} · ${esc(desc)}</div><div class="weather-temperature"><strong>${temp}</strong><span>°C</span></div><div class="weather-metrics">${metric("降水機率",rain!==null?Math.round(rain)+"%":"—")}${metric("降水量",precipitation+" mm")}${metric("降雪量",snowfall+" cm")}${metric("最大風速",wind+" km/h")}</div><div class="weather-card-alert">${weatherAlertHTML(alertState)}</div></article>`;
+ return `<article class="weather-card"><div class="weather-place">${esc(place)}${data._weatherStale?` <small class="weather-stale-label">· 暫用最近一次成功取得的資料</small>`:""}</div><div class="weather-visual" aria-label="${esc(desc)}">${icon}</div><div class="weather-desc">${isNow?"目前":"當日預報"} · ${esc(desc)}</div><div class="weather-temperature"><strong>${temp}</strong><span>°C</span></div><div class="weather-metrics">${metric("降水機率",rain!==null?Math.round(rain)+"%":"—")}${metric("降水量",precipitation+" mm")}${metric("降雪量",snowfall+" cm")}${metric("最大風速",wind+" km/h")}</div><div class="weather-card-alert">${weatherAlertHTML(alertState)}</div></article>`;
 }
 async function loadWeatherForDay(i){
  const d=days[i],host=document.getElementById("heroWeather");if(!host)return;const locations=weatherPlaces[d.date]||[];const target=weatherDate(d);
