@@ -2222,7 +2222,7 @@ function weatherInfo(code){
  return m[Number(code)]||["🌡️","天氣資訊"];
 }
 function weatherDate(d){const [m,day]=d.date.split("/");return `2026-${m.padStart(2,"0")}-${day.padStart(2,"0")}`;}
-async function fetchJson(url,timeout=18000){
+async function fetchJson(url,timeout=8000){
  let lastError;
  for(let attempt=0;attempt<3;attempt++){
   const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),timeout);
@@ -2245,7 +2245,7 @@ async function fetchJson(url,timeout=18000){
    if(!data.daily?.time?.length)throw new Error("天氣服務未回傳有效的預報資料");
    return data;
   }catch(error){
-   lastError=error.name==="AbortError"?new Error("天氣服務回應逾時（18 秒），請稍後重試"):error;
+   lastError=error.name==="AbortError"?new Error("天氣服務回應逾時（8 秒），正在重試"):error;
    const retryable=error.name==="AbortError"||error instanceof TypeError||error.retryable===true;
    if(!retryable||attempt===2)break;
    const wait=error.retryAfter||Math.min(1000*(2**attempt),4000)+Math.floor(Math.random()*350);
@@ -2256,10 +2256,25 @@ async function fetchJson(url,timeout=18000){
 }
 const WEATHER_CACHE_TTL=10*60*1000;
 const WEATHER_STALE_TTL=2*60*60*1000;
+const WEATHER_STORAGE_PREFIX="honeymoon-weather-v1:";
 const weatherInflight=new Map();
+function readWeatherCache(key){
+ try{
+  const saved=JSON.parse(localStorage.getItem(WEATHER_STORAGE_PREFIX+key)||"null");
+  if(!saved?.data?.daily?.time?.length||saved.staleUntil<=Date.now())return null;
+  return saved;
+ }catch{return null;}
+}
+function saveWeatherCache(key,data,now=Date.now()){
+ const saved={data,expiresAt:now+WEATHER_CACHE_TTL,staleUntil:now+WEATHER_STALE_TTL};
+ weatherCache.set(key,saved);
+ try{localStorage.setItem(WEATHER_STORAGE_PREFIX+key,JSON.stringify(saved));}catch{}
+ return saved;
+}
 function weatherRequest(lat,lon){
  const key=Number(lat).toFixed(4)+","+Number(lon).toFixed(4);
- const now=Date.now(),cached=weatherCache.get(key);
+ const now=Date.now();let cached=weatherCache.get(key)||readWeatherCache(key);
+ if(cached)weatherCache.set(key,cached);
  if(cached&&cached.expiresAt>now)return Promise.resolve(cached.data);
  if(weatherInflight.has(key))return weatherInflight.get(key);
  const params=new URLSearchParams({
@@ -2270,13 +2285,11 @@ function weatherRequest(lat,lon){
   timezone:"auto",forecast_days:"16"
  });
  const promise=fetchJson("https://api.open-meteo.com/v1/forecast?"+params.toString())
-  .then(data=>{
-   weatherCache.set(key,{data,expiresAt:Date.now()+WEATHER_CACHE_TTL,staleUntil:Date.now()+WEATHER_STALE_TTL});
-   return data;
-  })
+  .then(data=>{saveWeatherCache(key,data);return data;})
   .catch(error=>{
-   const stale=weatherCache.get(key);
+   const stale=weatherCache.get(key)||readWeatherCache(key);
    if(stale&&stale.staleUntil>Date.now()){
+    weatherCache.set(key,stale);
     console.warn("Open-Meteo temporarily unavailable; using recently cached forecast.",error);
     return {...stale.data,_weatherStale:true};
    }
