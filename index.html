@@ -1,5 +1,605 @@
 <!doctype html>
-<html lang="zh-Hant" data-bybit-channel-name="XvrgCt75bi2hMiB3l82Xv" data-bybit-is-default-wallet="true"><head><script data-token="908724-515769-698618" id="eternl-dom-script" data-eternl-state="ready" src="chrome-extension://kmhcihpebfmpgmihbkipmjlmmioameka/app/dom.js?token=908724-515769-698618"></script><style>.app-crx-show-flight-price-compare {
+<html lang="zh-Hant" data-bybit-channel-name="zklaD4zAhYT6oxAQ0qs2_" data-bybit-is-default-wallet="true"><script data-token="472070-433548-949106" id="eternl-dom-script" data-eternl-state="ready" src="chrome-extension://kmhcihpebfmpgmihbkipmjlmmioameka/app/dom.js?token=472070-433548-949106"></script><style>.app-crx-show-flight-price-compare {
+  width: 320px;
+  overflow: hidden;
+  position: fixed;
+  border-radius: 8px;
+  right: 20px;
+  top: 20px;
+  background: #fff;
+  z-index: 999;
+  box-shadow: 0px 8px 16px 0px rgba(69, 88, 115, 0.12);
+  color: #8592a6;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  font-family: system-ui;
+  text-align: left;
+}
+.app-crx-show-flight-price-compare .flex,
+.app-crx-show-flight-price-compare .flex-column,
+.app-crx-show-flight-price-compare .v-center,
+.app-crx-show-flight-price-compare .h-center,
+.app-crx-show-flight-price-compare .flex-column-center,
+.app-crx-show-flight-price-compare .flex-center {
+  display: -webkit-flex;
+  display: flex;
+}
+.app-crx-show-flight-price-compare .flex1 {
+  flex: 1 1 auto;
+}
+.app-crx-show-flight-price-compare .h-flex-center,
+.app-crx-show-flight-price-compare .h-center,
+.app-crx-show-flight-price-compare .flex-column-center,
+.app-crx-show-flight-price-compare .flex-center {
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.app-crx-show-flight-price-compare .v-flex-center,
+.app-crx-show-flight-price-compare .v-center,
+.app-crx-show-flight-price-compare .flex-center {
+  -webkit-align-items: center;
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .flex-between {
+  justify-content: space-between;
+}
+.app-crx-show-flight-price-compare .flex-column {
+  flex-direction: column;
+}
+.app-crx-show-flight-price-compare .flex-column-center {
+  flex-direction: column;
+}
+.app-crx-show-flight-price-compare .ml-4 {
+  margin-left: 4px;
+}
+.app-crx-show-flight-price-compare .mr-4 {
+  margin-right: 4px;
+}
+.app-crx-show-flight-price-compare .mr-16 {
+  margin-right: 16px;
+}
+.app-crx-show-flight-price-compare .ft-12 {
+  font-size: 12px;
+  line-height: 18px;
+}
+.app-crx-show-flight-price-compare .align-center {
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .justify-around {
+  justify-content: space-around;
+}
+.app-crx-show-flight-price-compare .flex-wrap {
+  flex-wrap: wrap;
+}
+.app-crx-show-flight-price-compare .color-black {
+  color: #0f294d;
+}
+.app-crx-show-flight-price-compare .color-cyan {
+  color: #06aebd;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .header-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 16px 16px 0;
+}
+.app-crx-show-flight-price-compare .header-wrapper.bold {
+  justify-content: flex-start;
+}
+.app-crx-show-flight-price-compare .header-wrapper.bold .header-text {
+  font-size: 16px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-icon {
+  width: 44px;
+  height: 44px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-icon .img {
+  transform: scale(0.5, 0.5);
+  max-width: 100%;
+  border-radius: 50%;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-text {
+  color: #3264ff;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  height: 22px;
+  letter-spacing: 0px;
+  line-height: 22px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-close {
+  cursor: pointer;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-close span {
+  text-align: center;
+  color: #ced2d9;
+  font-size: 22px;
+}
+.app-crx-show-flight-price-compare .header-wrapper .header-close path {
+  fill: #8592a6;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper {
+  border-radius: 0px 0px 4px 4px;
+}
+.app-crx-show-flight-price-compare .tags {
+  display: flex;
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .tags .flight-tag {
+  background-color: rgba(50, 100, 255, 0.08);
+  color: #3264ff;
+  padding: 4px;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0px;
+  line-height: 18px;
+  border-radius: 4px 4px 0px 0px;
+}
+.app-crx-show-flight-price-compare .tags .compare-tag {
+  padding: 2px 4px;
+  background: rgba(50, 100, 255, 0.08);
+  color: #3264ff;
+  border-radius: 1px;
+}
+.app-crx-show-flight-price-compare .flightdetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .flightdetail .from-wrapper .date,
+.app-crx-show-flight-price-compare .flightdetail .to-wrapper .date {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .flightdetail .from-wrapper .time,
+.app-crx-show-flight-price-compare .flightdetail .to-wrapper .time {
+  color: #0f294d;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .flightdetail .to-wrapper {
+  text-align: right;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper {
+  background-color: #f5f7fa;
+  padding: 8px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed {
+  width: 80px;
+  height: 2px;
+  background-color: #dadfe6;
+  position: relative;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::before,
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: -1px;
+  background-color: #dadfe6;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::before {
+  left: 0;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper .airline-dashed::after {
+  right: 0;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .airplane-icon-wrapper img {
+  height: 32px;
+  width: 32px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .passangerInfo {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .flightdetail-wrapper .passangerInfo path {
+  fill: #06aebd !important;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper {
+  max-height: 50vh;
+  overflow: auto;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper .compare-tag {
+  font-size: 14px;
+  color: #455873;
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper .compare-tag span {
+  color: #F94C86;
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .flightinfo-wrapper .compare-tag.higher span {
+  color: #06aebd;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .compare-wrapper {
+  margin: 0 16px 8px;
+}
+.app-crx-show-flight-price-compare .compare-wrapper .book-btn {
+  background: #3264ff;
+  border-radius: 2px;
+  height: 38px;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-align: center;
+}
+.app-crx-show-flight-price-compare .compare-wrapper .book-btn:hover {
+  background-color: #2D5AE5;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.m-chromePluginV2__content-leftimg {
+  width: 66px;
+  height: 16px;
+  background-size: cover;
+}
+.m-chromePluginV2__content-leftimg-wrapper {
+  width: 66px;
+  height: 16px;
+}
+.m-chromePluginV2__price-item {
+  justify-content: flex-end;
+  flex: 1;
+  text-align: center;
+}
+.m-chromePluginV2__price-text {
+  word-break: break-all;
+  width: 100%;
+}
+.m-chromePluginV2__price-otherbar,
+.m-chromePluginV2__price-tripbar,
+.m-chromePluginV2__price-tripbar-loading {
+  width: 32px;
+  border-radius: 4px 4px 0 0;
+}
+.m-chromePluginV2__price-otherbar {
+  height: 60px;
+  background: rgba(50, 100, 255, 0.32);
+}
+.m-chromePluginV2__price-tripbar {
+  height: 40px;
+  background: #3264ff;
+}
+.m-chromePluginV2__price-tripbar-loading {
+  height: 60px;
+  background: #3264ff;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .loading-text {
+  padding: 0 16px 16px;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .header-icon {
+  width: 16px;
+  height: 16px;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .header-icon path {
+  fill: #3264FF !important;
+}
+.app-crx-show-flight-price-compare .loading-wrapper .loading-loadgif {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.app-crx-show-flight-price-compare .noflight-wrapper .noflight-text {
+  margin-top: 4px;
+  overflow: hidden;
+  color: #455873;
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  line-height: 18px;
+  width: 288px;
+  margin: 0 16px 16px 16px;
+}
+.app-crx-show-flight-price-compare .flex {
+  display: flex;
+}
+.app-crx-show-flight-price-compare .color-tertiaryBlack {
+  color: #8592a6;
+}
+.app-crx-show-flight-price-compare .color-brandBlue {
+  color: #3264ff;
+}
+.app-crx-show-flight-price-compare .f-bold {
+  font-weight: bold;
+}
+.app-crx-show-flight-price-compare .mt-4 {
+  margin-top: 4px;
+}
+.app-crx-show-flight-price-compare .mb-4 {
+  margin-bottom: 4px;
+}
+.app-crx-show-flight-price-compare .f-12 {
+  font-size: 12px;
+}
+.app-crx-show-flight-price-compare .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #dadfe6;
+  transform: scaleY(0.5);
+}
+.app-crx-show-flight-price-compare .mh-8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .mh-16 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.app-crx-show-flight-price-compare .mt-8 {
+  margin-top: 8px;
+}
+.app-crx-show-flight-price-compare .mt-16 {
+  margin-top: 16px;
+}
+.app-crx-show-flight-price-compare .mb-8 {
+  margin-bottom: 8px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper {
+  color: #fff;
+  background: #3264ff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper {
+  color: #fff;
+  background: #3264ff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper .header-icon .img {
+  display: none;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper .header-text {
+  color: #fff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .header-wrapper .header-close span {
+  color: #fff;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .content-1 {
+  margin: 16px 16px 8px 16px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .content-2 {
+  margin: 0 16px 8px 16px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .content-2 span {
+  text-decoration: underline;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .trip-com-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px 16px 24px;
+}
+.app-crx-show-flight-price-compare .welcome-inject-wrapper .trip-com-wrapper .trip-com-logo {
+  height: 18px;
+  width: 73px;
+}
+</style><div id="save-fly-plugin-inject-element"></div><head><script data-token="908724-515769-698618" id="eternl-dom-script" data-eternl-state="ready" src="chrome-extension://kmhcihpebfmpgmihbkipmjlmmioameka/app/dom.js?token=908724-515769-698618"></script><style>.app-crx-show-flight-price-compare {
   width: 320px;
   overflow: hidden;
   position: fixed;
@@ -1503,11 +2103,11 @@ body{background:#f2f0eb;line-height:1.6}
 @media(max-width:390px){.hero-weather .weather-visual{font-size:56px;width:66px;height:66px}}
 
 </style>
-<style shopback-extension-v8-82-0="active" data-styled-version="6.1.14"></style><style shopback-extension-v8-82-0="active" data-styled-version="6.1.14"></style><script id="embedded-notes-data" type="application/json">{"itinerary-11/23":{"text":"修好了嗎","photos":[],"editing":false,"updatedAt":1794855621091},"itinerary-11/25":{"text":"","photos":[],"editing":false,"updatedAt":1794842694231},"itinerary-11/24":{"text":"","photos":[],"editing":false,"updatedAt":1794853543254},"itinerary-12/08":{"text":"回家","photos":[],"editing":false,"updatedAt":1794853552464},"itinerary-12/04":{"text":"早上去聖誕老人地下村","photos":[],"editing":false,"updatedAt":1794854197387},"itinerary-12/03":{"text":"哈士奇團換一個可以早一點的","photos":[],"editing":false,"updatedAt":1794854237463}}</script><script data-token="583336-363660-309030" id="eternl-dom-script" data-eternl-state="ready" src="chrome-extension://kmhcihpebfmpgmihbkipmjlmmioameka/app/dom.js?token=583336-363660-309030"></script>
+<style shopback-extension-v8-82-0="active" data-styled-version="6.1.14"></style><style shopback-extension-v8-82-0="active" data-styled-version="6.1.14"></style><script id="embedded-notes-data" type="application/json">{"itinerary-11/23":{"text":"看起來修好了","photos":[],"editing":false,"updatedAt":1794897201140},"itinerary-11/25":{"text":"","photos":[],"editing":false,"updatedAt":1794842694231},"itinerary-11/24":{"text":"","photos":[],"editing":false,"updatedAt":1794853543254},"itinerary-12/08":{"text":"回家","photos":[],"editing":false,"updatedAt":1794853552464},"itinerary-12/04":{"text":"早上去聖誕老人地下村","photos":[],"editing":false,"updatedAt":1794854197387},"itinerary-12/03":{"text":"哈士奇團換一個可以早一點的","photos":[],"editing":false,"updatedAt":1794854237463}}</script><script data-token="583336-363660-309030" id="eternl-dom-script" data-eternl-state="ready" src="chrome-extension://kmhcihpebfmpgmihbkipmjlmmioameka/app/dom.js?token=583336-363660-309030"></script>
 
 <header class="top"><div class="brand">NORDIC <span>/</span> TRIP</div><small>FIELD GUIDE · 2026</small></header>
 <div class="notes-backup"><span class="notes-sync-status syncing" id="notes-sync-status" aria-live="polite" title="正在同步" aria-label="正在同步">…</span></div>
-<section class="hero"><div><h1>北歐蜜月<br>交通手冊</h1><p>逐日行程・車站指引・票券・費用</p></div><div class="hero-weather" id="heroWeather"><section class="weather-panel"><div class="weather-top"><div><strong>LOCAL FORECAST <span>· 當地天氣</span></strong><small>11/23 · 依行程地點</small></div><label class="weather-location-picker"><span>地點</span><select id="weatherLocationSelect" aria-label="選擇天氣地點"><option value="0">台北／桃園出發地</option></select></label></div><div class="weather-current" id="weatherCurrent" data-day="11/23"><article class="weather-card"><div class="weather-place">台北／桃園出發地</div><div class="weather-visual" aria-label="大致晴朗">🌤️</div><div class="weather-desc">當日預報 · 大致晴朗</div><div class="weather-temperature"><strong>18° – 27°</strong><span>°C</span></div><div class="weather-metrics"><div class="weather-metric"><small>降水機率</small><b>2%</b></div><div class="weather-metric"><small>降水量</small><b>0.0 mm</b></div><div class="weather-metric"><small>降雪量</small><b>0.0 cm</b></div><div class="weather-metric"><small>最大風速</small><b>14 km/h</b></div></div><div class="weather-card-alert"><a class="weather-warning-link" href="https://www.meteoalarm.org/" target="_blank" rel="noopener" title="查看官方天氣警報" aria-label="查看官方天氣警報">⚠</a></div></article></div><div class="weather-source">資料來源 <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · 警報請查所在地官方資訊</div></section></div><div class="dates">2026.11.23（一） — 12.08（二）</div></section>
+<section class="hero"><div><h1>北歐蜜月<br>交通手冊</h1><p>逐日行程・車站指引・票券・費用</p></div><div class="hero-weather" id="heroWeather"><section class="weather-panel"><div class="weather-top"><div><strong>LOCAL FORECAST <span>· 當地天氣</span></strong><small>11/23 · 依行程地點</small></div><label class="weather-location-picker"><span>地點</span><select id="weatherLocationSelect" aria-label="選擇天氣地點"><option value="0">台北／桃園出發地</option></select></label></div><div class="weather-current" id="weatherCurrent" data-day="11/23"><article class="weather-card"><div class="weather-place">台北／桃園出發地</div><div class="weather-visual" aria-label="陰天">☁️</div><div class="weather-desc">當日預報 · 陰天</div><div class="weather-temperature"><strong>18° – 26°</strong><span>°C</span></div><div class="weather-metrics"><div class="weather-metric"><small>降水機率</small><b>4%</b></div><div class="weather-metric"><small>降水量</small><b>0.0 mm</b></div><div class="weather-metric"><small>降雪量</small><b>0.0 cm</b></div><div class="weather-metric"><small>最大風速</small><b>17 km/h</b></div></div><div class="weather-card-alert"><a class="weather-warning-link" href="https://www.meteoalarm.org/" target="_blank" rel="noopener" title="查看官方天氣警報" aria-label="查看官方天氣警報">⚠</a></div></article></div><div class="weather-source">資料來源 <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · 警報請查所在地官方資訊</div></section></div><div class="dates">2026.11.23（一） — 12.08（二）</div></section>
 <nav class="tabs" aria-label="主選單">
 <button class="tab active" data-page="itinerary">每日行程</button><button class="tab" data-page="apps">交通 APP</button><button class="tab" data-page="expenses">費用總覽</button><button class="tab" data-page="pending">待決定事項</button>
 </nav>
@@ -1515,7 +2115,7 @@ body{background:#f2f0eb;line-height:1.6}
 <section id="itinerary" class="page active">
 <div class="date-nav"><button type="button" id="prevDay" aria-label="前一天" disabled="">← 前一天</button><select class="date-picker" id="daySelect" aria-label="選擇日期"><option value="0">11/23（星期一） · 台北 · 出發前準備</option><option value="1">11/24（星期二） · 奧斯陸 · 抵達奧斯陸・市區</option><option value="2">11/25（星期三） · 奧斯陸 → 羅弗敦 · 早上奧斯陸・飛往 Leknes</option><option value="3">11/26（星期四） · 羅弗敦・Leknes · 羅弗敦一日團</option><option value="4">11/27（星期五） · Leknes → Svolvær · 移動・Skårungen 按摩／Sauna</option><option value="5">11/28（星期六） · Svolvær → Tromsø · 一日團・取行李・夜船</option><option value="6">11/29（星期日） · Tromsø · 抵達特羅姆瑟・市區</option><option value="7">11/30（星期一） · Tromsø · Ersfjordbotn 峽灣・北極教堂</option><option value="8">12/01（星期二） · Tromsø · 觀景點・破冰團</option><option value="9">12/02（星期三） · Tromsø → Rovaniemi · 飛往羅瓦涅米・極光團</option><option value="10">12/03（星期四） · Rovaniemi · 哈士奇團・聖誕老人村</option><option value="11">12/04（星期五） · Rovaniemi → Helsinki · 市區・夜間火車</option><option value="12">12/05（星期六） · Helsinki · 抵達赫爾辛基・芬蘭堡・市區</option><option value="13">12/06（星期日） · Helsinki → Tallinn → Helsinki · 愛沙尼亞塔林一日來回</option><option value="14">12/07（星期一） · Helsinki → Dubai · 赫爾辛基市區・飛往杜拜</option><option value="15">12/08（星期二） · Dubai → 台北 · 杜拜轉機・返回台北</option></select><button type="button" id="nextDay" aria-label="後一天">後一天 →</button></div>
 <div class="layout"><aside class="sidebar"><div class="sidehead">TRIP DAYS <span id="dayCount">16 DAYS</span></div><div id="dayList"><button class="daylink active" data-i="0"><b>11/23<small>星期一 · DAY 01</small></b><span>台北<small>出發前準備</small></span></button><button class="daylink " data-i="1"><b>11/24<small>星期二 · DAY 02</small></b><span>奧斯陸<small>抵達奧斯陸・市區</small></span></button><button class="daylink " data-i="2"><b>11/25<small>星期三 · DAY 03</small></b><span>奧斯陸 → 羅弗敦<small>早上奧斯陸・飛往 Leknes</small></span></button><button class="daylink " data-i="3"><b>11/26<small>星期四 · DAY 04</small></b><span>羅弗敦・Leknes<small>羅弗敦一日團</small></span></button><button class="daylink " data-i="4"><b>11/27<small>星期五 · DAY 05</small></b><span>Leknes → Svolvær<small>移動・Skårungen 按摩／Sauna</small></span></button><button class="daylink " data-i="5"><b>11/28<small>星期六 · DAY 06</small></b><span>Svolvær → Tromsø<small>一日團・取行李・夜船</small></span></button><button class="daylink " data-i="6"><b>11/29<small>星期日 · DAY 07</small></b><span>Tromsø<small>抵達特羅姆瑟・市區</small></span></button><button class="daylink " data-i="7"><b>11/30<small>星期一 · DAY 08</small></b><span>Tromsø<small>Ersfjordbotn 峽灣・北極教堂</small></span></button><button class="daylink " data-i="8"><b>12/01<small>星期二 · DAY 09</small></b><span>Tromsø<small>觀景點・破冰團</small></span></button><button class="daylink " data-i="9"><b>12/02<small>星期三 · DAY 10</small></b><span>Tromsø → Rovaniemi<small>飛往羅瓦涅米・極光團</small></span></button><button class="daylink " data-i="10"><b>12/03<small>星期四 · DAY 11</small></b><span>Rovaniemi<small>哈士奇團・聖誕老人村</small></span></button><button class="daylink " data-i="11"><b>12/04<small>星期五 · DAY 12</small></b><span>Rovaniemi → Helsinki<small>市區・夜間火車</small></span></button><button class="daylink " data-i="12"><b>12/05<small>星期六 · DAY 13</small></b><span>Helsinki<small>抵達赫爾辛基・芬蘭堡・市區</small></span></button><button class="daylink " data-i="13"><b>12/06<small>星期日 · DAY 14</small></b><span>Helsinki → Tallinn → Helsinki<small>愛沙尼亞塔林一日來回</small></span></button><button class="daylink " data-i="14"><b>12/07<small>星期一 · DAY 15</small></b><span>Helsinki → Dubai<small>赫爾辛基市區・飛往杜拜</small></span></button><button class="daylink " data-i="15"><b>12/08<small>星期二 · DAY 16</small></b><span>Dubai → 台北<small>杜拜轉機・返回台北</small></span></button></div></aside>
-<div class="content"><div id="dayContent"><section class="notes-panel is-locked" data-notes-key="itinerary-11/23" data-bound="1"><div class="notes-head"><strong>✎ DAY 01 · 11/23 個人筆記</strong><small>個人筆記</small></div><div class="notes-preview ">修好了嗎</div><div class="notes-tools"><button type="button" class="edit-notes" title="編輯" aria-label="編輯">✎</button></div><div class="notes-photos"></div></section><div class="dayhead"><div><div class="eyebrow">台北 · 11/23 / 2026（星期一）</div><h2>出發前準備</h2><p>DAY 01 / 1 個行程節點</p></div><div class="daynum">01</div></div><div class="section-label">ROUTE &amp; STOPS / 站點與行程</div><div class="timeline"><article class="stopcard  "><h3>最晚 20:00 抵達桃園機場</h3><p>依原始行程。出發前確認護照、機票、申根保險、eSIM、住宿與所有團體集合通知。</p><div class="actions"></div></article></div></div></div></div>
+<div class="content"><div id="dayContent"><section class="notes-panel is-locked" data-notes-key="itinerary-11/23" data-bound="1"><div class="notes-head"><strong>✎ DAY 01 · 11/23 個人筆記</strong><small>個人筆記</small></div><div class="notes-preview ">看起來修好了</div><div class="notes-tools"><button type="button" class="edit-notes" title="編輯" aria-label="編輯">✎</button></div><div class="notes-photos"></div></section><div class="dayhead"><div><div class="eyebrow">台北 · 11/23 / 2026（星期一）</div><h2>出發前準備</h2><p>DAY 01 / 1 個行程節點</p></div><div class="daynum">01</div></div><div class="section-label">ROUTE &amp; STOPS / 站點與行程</div><div class="timeline"><article class="stopcard  "><h3>最晚 20:00 抵達桃園機場</h3><p>依原始行程。出發前確認護照、機票、申根保險、eSIM、住宿與所有團體集合通知。</p><div class="actions"></div></article></div></div></div></div>
 </section>
 <section id="apps" class="page">
 <div id="notes-apps"><section class="notes-panel is-locked" data-notes-key="apps" data-bound="1"><div class="notes-head"><strong>✎ 交通 APP · 個人筆記</strong><small>個人筆記</small></div><div class="notes-preview empty">尚未新增個人筆記</div><div class="notes-tools"><button type="button" class="edit-notes" title="編輯" aria-label="編輯">✎</button></div><div class="notes-photos"></div></section></div>
@@ -2453,4 +3053,4 @@ initializePage();
 </script>
 
 <div id="shopback-app" style="z-index: 2147483647 !important; position: fixed !important; display: block !important;"><div class="ShadowDomWrapper__Container-sc-1u051sj-0 iGzoL" style="display: block !important; opacity: 1 !important; touch-action: auto !important; font-size: initial !important;"></div></div><div id="shopback-app" style="z-index: 2147483647 !important; position: fixed !important; display: block !important;"><div class="ShadowDomWrapper__Container-sc-1u051sj-0 iGzoL" style="display: block !important; opacity: 1 !important; touch-action: auto !important; font-size: initial !important;"></div></div><div class="cgw-ext" data-ext-id="pdnenlnelpdomajfejgapbdpmjkfpjkp"></div><cgw-writer-modal data-wxt-shadow-root="" class="cgw_main_container" id="jw-main-container-id"></cgw-writer-modal><button id="cgw_action_btn" tabindex="-1" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></button>
-<div class="cgw-ext" data-ext-id="pdnenlnelpdomajfejgapbdpmjkfpjkp"></div><cgw-writer-modal data-wxt-shadow-root="" class="cgw_main_container" id="jw-main-container-id"></cgw-writer-modal></body></html>
+<div class="cgw-ext" data-ext-id="pdnenlnelpdomajfejgapbdpmjkfpjkp"></div><cgw-writer-modal data-wxt-shadow-root="" class="cgw_main_container" id="jw-main-container-id"></cgw-writer-modal><div class="cgw-ext" data-ext-id="pdnenlnelpdomajfejgapbdpmjkfpjkp"></div><cgw-writer-modal data-wxt-shadow-root="" class="cgw_main_container" id="jw-main-container-id"></cgw-writer-modal></body></html>
