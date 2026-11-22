@@ -3030,7 +3030,7 @@ function renderDay(i){
    if(it.optional)c+=`<div class="meetflag">OPTIONAL / MAY CANCEL</div>`;
    if(it.type==="place" && /集合$/.test(it.title))c+=`<div class="meetflag">MEETING POINT</div>`;
    else if(it.type==="place" && /機場報到|碼頭（獨立節點）/.test(it.title))c+=`<div class="meetflag">DEPARTURE POINT</div>`;
-   c+=`<h3><span class="main-step-number" data-main-num="${displayNo}">${displayNo}. </span>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
+   c+=`<h3>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
    if(it.from||it.to)c+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;
    if(it.desc)c+=`<p>${esc(it.desc)}</p>`;
    if(it.duration||it.mode||it.price)c+=`<div class="meta">${it.mode?`<span class="pill">${esc(it.mode)}</span>`:""}${it.duration?`<span class="pill">${esc(it.duration)}</span>`:""}${it.price?`<span class="pill warn">${esc(it.price)}</span>`:""}</div>`;
@@ -3053,7 +3053,7 @@ function renderDay(i){
     groupHTML+=card;
    });
    h+=`<details class="backup-details"><summary>備案行程（第 7–9 點）｜點擊展開／收合</summary><div class="backup-content">${groupHTML}</div></details>`;
-   displayNo=6;
+   displayNo=9;
    return;
   }
   displayNo++;
@@ -3063,7 +3063,7 @@ function renderDay(i){
  h+=`</div>`;
  document.getElementById("dayContent").innerHTML=h;
  const backupDetails=document.querySelector(".backup-details");
- if(backupDetails)backupDetails.addEventListener("toggle",()=>{document.querySelectorAll(".main-step-number").forEach(el=>{const n=Number(el.dataset.mainNum);el.textContent=(backupDetails.open?n:n-3)+". ";});});
+ if(backupDetails){const updateBackupNumbers=()=>{document.querySelectorAll(".main-step-number").forEach(el=>{const n=Number(el.dataset.mainNum);el.textContent=(backupDetails.open?n:n-3)+". ";});};backupDetails.addEventListener("toggle",updateBackupNumbers);updateBackupNumbers();}
  bindNotes(document.getElementById("dayContent"));
  loadWeatherForDay(i);
  document.getElementById("prevDay").disabled=i===0;document.getElementById("prevDay").onclick=()=>showDay(i-1);
@@ -3074,7 +3074,7 @@ function renderBackupCard(it,num){
  const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk"||(it.mode||"").includes("步行");
  let c=`<div class="backup-step"><span class="step-number">${num}</span><article class="stopcard ${transport||walking?"transport":""} ${it.alternative?"alternative":""}">`;
  if(it.time)c+=`<span class="time">${esc(it.time)}</span>`;
- c+=`<h3><span class="main-step-number" data-main-num="${displayNo}">${displayNo}. </span>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
+ c+=`<h3>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
  if(it.from||it.to)c+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;
  if(it.desc)c+=`<p>${esc(it.desc)}</p>`;
  if(it.mode)c+=`<div class="meta"><span class="pill">${esc(it.mode)}</span></div>`;
