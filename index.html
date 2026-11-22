@@ -2619,6 +2619,7 @@ for(const d of days) for(const it of d.items){
  if(d3){
   const husky=d3.items.find(x=>x.title==="哈士奇團集合");
   if(husky){husky.time="08:30 抵達等候；活動約 4 小時";husky.desc="集合點：Keskusurheilukenttä I 公車站附近，請在站牌旁等候團方接載。08:30 抵達等待，活動約 4 小時。";husky.address="Keskusurheilukenttä I, Rovaniemi, Finland";husky.map=true;}
+  const hotelToHusky=d3.items.find(x=>x.title==="飯店 → 哈士奇團集合點"); if(hotelToHusky){hotelToHusky.from="Santa's Hotel Santa Claus, Korkalonkatu 29, 96200 Rovaniemi, Finland";hotelToHusky.to="Keskusurheilukenttä I, Rovaniemi, Finland";hotelToHusky.desc="從飯店前往 Keskusurheilukenttä I 市區公車站集合點，08:30 抵達等候團方接載。";hotelToHusky.map=true;}
   const alert=d3.alerts; if(alert) d3.alerts=["哈士奇團 08:30 抵達集合點等候，活動約 4 小時；集合地點為 Keskusurheilukenttä I 公車站附近，等候團方接載。"];
   const village=d3.items.find(x=>x.title==="聖誕老人村"); if(village){village.desc="哈士奇團結束後自行前往聖誕老人村遊園。原始資料標示 19:00–20:00 關門；必吃 Santa’s Salmon Place 烤鮭魚，並安排園區活動。";village.address="Tähtikuja 1, 96930 Rovaniemi, Finland";village.map=true;}
   const transport=d3.items.find(x=>x.title==="聖誕老人村 → 羅瓦涅米市區"); if(transport){transport.from="Napapiiri L, Rovaniemi, Finland";transport.to="Porokulma E, Rovaniemi, Finland";transport.desc="聖誕老人村遊園後搭市區公車返回市區；上車 Napapiiri L、下車 Porokulma E。請以 Waltti Mobiili 核對當日路線與班次。";transport.map=true;}
@@ -2636,7 +2637,8 @@ for(const d of days) for(const it of d.items){
    {type:"place",title:"SantaPark（聖誕老人地下村）",desc:"地址：Tarvantie 1, 96930 Rovaniemi, Finland。",address:"Tarvantie 1, 96930 Rovaniemi, Finland",map:true},
    {type:"transport",title:"備案 1：SantaPark → Santa Claus Village（聖誕老人村）",from:"Neulastie L, Rovaniemi, Finland",to:"Napapiiri L, Rovaniemi, Finland",mode:"市區公車",desc:"若前一天尚未逛完聖誕老人村，可在 SantaPark 結束後前往；Neulastie L 站上車，Napapiiri L 站下車。",map:true,app:"Waltti"},
    {type:"place",title:"Santa Claus Village（聖誕老人村）—備案 1",desc:"地址：Tähtikuja 1, 96930 Rovaniemi, Finland。若前一天已逛完，可略過此站直接前往餐廳。",address:"Tähtikuja 1, 96930 Rovaniemi, Finland",map:true},
-   {type:"transport",title:"聖誕老人村／SantaPark → Osaka Teppanyaki",from:"Napapiiri L, Rovaniemi, Finland",to:"Porokulma E, Rovaniemi, Finland",mode:"市區公車",desc:"若當天有前往 Santa Claus Village，從 Napapiiri L 站搭車至 Porokulma E 站；若略過聖誕老人村，則由 SantaPark 直接前往餐廳，依指定站點 Napapiiri L → Porokulma E。請以 Waltti Mobiili 核對實際路線。",map:true,app:"Waltti"},
+   {type:"transport",title:"備案：Santa Claus Village → Osaka Teppanyaki",from:"Napapiiri L, Rovaniemi, Finland",to:"Porokulma E, Rovaniemi, Finland",mode:"市區公車",desc:"若前往聖誕老人村，搭市區公車由 Napapiiri L 站上車，Porokulma E 站下車，再步行至 Osaka Teppanyaki。",map:true,app:"Waltti"},
+   {type:"transport",title:"備案：SantaPark → Osaka Teppanyaki",from:"Neulastie L, Rovaniemi, Finland",to:"Porokulma E, Rovaniemi, Finland",mode:"市區公車",desc:"若不再前往聖誕老人村，從 SantaPark 前往餐廳：Neulastie L 站上車，Porokulma E 站下車，再步行至 Osaka Teppanyaki。",map:true,app:"Waltti"},
    {type:"place",title:"Osaka Teppanyaki Rovaniemi（生魚片）",desc:"地址：Kauppakeskus Rinteenkulma 1.krs, Koskikatu 25, 96200 Rovaniemi, Finland。用餐後接續第 6 點起原有行程。",address:"Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland",map:true}
   ];
   const later=afterDinner.filter(x=>!x.title.includes("Osaka Teppanyaki"));
@@ -2648,9 +2650,9 @@ for(const d of days) for(const it of d.items){
  }
  const d5=day("12/05");
  if(d5){
-  const fried=d5.items.find(x=>x.title==="韓式炸雞"); if(fried){fried.title="午餐／市區用餐（彈性安排）";fried.desc="午餐可依當日喜好改選其他餐廳，不固定安排韓式炸雞。";}
+  const fried=d5.items.find(x=>x.title==="韓式炸雞"); if(fried){fried.title="韓式炸雞(彈性)";fried.desc="韓式炸雞列為彈性午餐，可依當日喜好改選其他餐廳。";}
   const rock=d5.items.find(x=>x.title.includes("Cafe Regatta／岩石教堂")); if(rock){rock.title="岩石教堂（主要行程）";rock.desc="主要行程：參觀岩石教堂。Google Maps：Lutherinkatu 3, 00100 Helsinki, Finland。下車站：Kamppi。";rock.address="Lutherinkatu 3, 00100 Helsinki, Finland";rock.map=true;delete rock.alternative;}
-  const idx=d5.items.findIndex(x=>x.title==="岩石教堂（主要行程）"); if(idx>=0){d5.items.splice(idx,0,{type:"transport",title:"市區 → Kamppi 站（岩石教堂）",from:"Helsinki city centre, Finland",to:"Kamppi, Helsinki, Finland",mode:"市區交通",desc:"前往 Kamppi 站下車，再步行至岩石教堂；請以 HSL 核對當日路線。",map:true,app:"HSL"});d5.items.splice(idx+2,0,{type:"transport",title:"Kamppi → Hallituskatu 公車",from:"Kamppi, Helsinki, Finland",to:"Hallituskatu, Helsinki, Finland",mode:"市區公車",desc:"從 Kamppi 站搭乘市區公車至 Hallituskatu 站，前往市區耶誕市集；請以 HSL 核對當日路線與班次。",map:true,app:"HSL"});}
+  const idx=d5.items.findIndex(x=>x.title==="岩石教堂（主要行程）"); if(idx>=0){d5.items.splice(idx,0,{type:"transport",title:"市區 → Kamppi 站（岩石教堂）",from:"Helsinki city centre, Finland",to:"Kamppi, Helsinki, Finland",mode:"市區交通",desc:"前往 Kamppi 站下車，再步行至岩石教堂；請以 HSL 核對當日路線。",map:true,app:"HSL"});d5.items.splice(idx+2,0,{type:"transport",title:"Kamppi → Hallituskatu 電車",from:"Kamppi, Helsinki, Finland",to:"Hallituskatu, Helsinki, Finland",mode:"電車",desc:"從 Kamppi 站搭乘電車至 Hallituskatu 站，前往市區耶誕市集；請以 HSL 核對當日路線與班次。",map:true,app:"HSL"});}
  }
  // Keep the user-specified Rovaniemi lodging bus stop consistent across itinerary entries.
  for(const d of days){if(!/Rovaniemi|羅瓦涅米/.test(d.city||""))continue;for(const it of d.items){if(it.type==="transport"&&it.mode==="市區公車"){if(it.from&&/住宿|飯店|hotel/i.test(it.from))it.from="Keskusurheilukenttä I, Rovaniemi, Finland";if(it.to&&/住宿|飯店|hotel/i.test(it.to))it.to="Keskusurheilukenttä I, Rovaniemi, Finland";}}}
@@ -2659,7 +2661,7 @@ for(const d of days) for(const it of d.items){
 const apps=[
 {city:"OSLO",name:"Ruter",desc:"奧斯陸市區公車、電車、地鐵、船與區域票；可買 24 小時票。",store:"https://apps.apple.com/no/app/ruter-mobility-in-oslo-viken/id993620197",web:"https://ruter.no/en/plan-journey/"},
 {city:"NORWAY / TRAIN",name:"Vy",desc:"Oslo S ⇄ Oslo Airport 區域火車購票與即時班次；可查月台與延誤。",store:"https://apps.apple.com/tw/app/vy/id439655098",web:"https://www.vy.no/en/train/oslo-gardermoen"},
-{city:"LOFOTEN",name:"Reis",desc:"Nordland 公車、快船與渡輪查詢及購票。搜尋 Leknes、Svolvær、Sandvika Kryss。",store:"https://apps.apple.com/tw/app/reis/id1574137854",web:"https://www.reisnordland.no/reis-appen"},
+{city:"LOFOTEN",name:"Entur",desc:"挪威全國公共交通行程規劃，適用羅弗敦公車、火車、船班查詢。",store:"https://apps.apple.com/tw/app/entur-travel-and-tickets/id1225135707",web:"https://entur.no/"},
 {city:"TROMSØ",name:"Svipper",desc:"Troms 地區公車／快船查詢、即時班次與票券；可查 Prostneset、Ersfjordbotn、Sjømannsskolen。",store:"https://apps.apple.com/tw/app/svipper/id6502283055",web:"https://svipper.no/menu/travel/the-svipper-app/?sprak=3"},
 {city:"ROVANIEMI",name:"Waltti Mobile",desc:"Rovaniemi（Linkkari）市區公車單程票／日票與路線查詢。",store:"https://apps.apple.com/tw/app/waltti-mobile/id1467878273",web:"https://waltti.fi/en/cities/rovaniemi/"},
 {city:"HELSINKI",name:"HSL",desc:"赫爾辛基地區公車、電車、地鐵與 I／P 機場火車；機場通常需 ABC 票。",store:"https://apps.apple.com/tw/app/hsl/id1340229182",web:"https://www.hsl.fi/en/tickets-and-fares/hsl-app"},
@@ -2676,7 +2678,7 @@ const expenses=[
 ["✈️","Tromsø → Rovaniemi","16,572","Trip.com"],
 ["🚆","Rovaniemi → Helsinki","12,017","VR.fi"],
 ["🚌","奧斯陸市區交通","未填","Ruter"],
-["🚌","羅弗敦公路交通","未填","Reis"],
+["🚌","羅弗敦公路交通","未填","Entur"],
 ["🚌","特羅姆瑟市區交通","未填","Svipper"],
 ["🚌","羅瓦涅米市區交通","未填","Waltti"],
 ["🚌","赫爾辛基市區交通","未填","HSL"],
