@@ -1821,7 +1821,7 @@ body{font-family:Inter,"Noto Sans TC",Arial,system-ui,sans-serif;letter-spacing:
 .brand{letter-spacing:.16em}.hero{padding-top:38px;padding-bottom:26px}h1{letter-spacing:-.055em;font-weight:850}.dates{border:1px solid var(--line);background:#fffefa;border-radius:4px;font-weight:750}
 .tabs{border-bottom:1px solid var(--line);gap:8px}.tab{border:1px solid var(--line);border-radius:5px 5px 0 0;background:#eeece6;font-weight:750}.tab.active{background:var(--ink);color:white;border-color:var(--ink)}
 .sidebar{border:1px solid var(--line);border-radius:8px;box-shadow:0 5px 18px #2228230a}.sidehead{border-radius:7px 7px 0 0}.daylink.active{background:#e8ded2}.daylink.active small{color:#56564f}
-.dayhead{border-radius:8px;border-left:5px solid var(--orange);background:#29332f}.stopcard,.alt-details,.appcard,.expense,.citycard{border:1px solid var(--line);border-radius:7px;box-shadow:0 3px 12px #22282308}.stopcard.transport,.stopcard.walk{border-left:4px solid var(--orange)}.section-label{letter-spacing:.18em}
+.backup-details{border:1px solid var(--blue);border-radius:7px;background:var(--panel);margin:12px 0;padding:0}.backup-details>summary{cursor:pointer;padding:14px 16px;font-weight:800;color:var(--blue);background:#f1f3f6}.backup-content{padding:10px}.backup-step{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start;margin:10px 0}.step-number{display:grid;place-items:center;border-radius:50%;width:28px;height:28px;background:var(--blue);color:#fff;font-weight:800}.dayhead{border-radius:8px;border-left:5px solid var(--orange);background:#29332f}.stopcard,.alt-details,.appcard,.expense,.citycard{border:1px solid var(--line);border-radius:7px;box-shadow:0 3px 12px #22282308}.stopcard.transport,.stopcard.walk{border-left:4px solid var(--orange)}.section-label{letter-spacing:.18em}
 .weather-panel{background:#edf1ef;border:1px solid #d6dfda;border-radius:9px;padding:17px;box-shadow:none}.weather-card{border:1px solid #e1e5e1;border-radius:7px;box-shadow:0 2px 8px #2333290a;padding:14px}.weather-legend span{border-radius:20px;border-color:#d5ded8}.weather-metric{border:0;border-radius:5px;background:#f4f6f3}.weather-alert{border-radius:4px}.weather-source{font-size:10px}
 .notes-panel{border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:8px;box-shadow:0 3px 14px #2228230a}.notes-panel textarea{border:1px solid var(--line);border-radius:5px}.notes-tools button,.notes-upload{border:0;border-radius:5px;background:#29332f}.notes-tools .export-notes{background:#e8ded2;color:#29332f}.footer{border-top:1px solid var(--line)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans TC",system-ui,sans-serif}
@@ -2634,12 +2634,11 @@ for(const d of days) for(const it of d.items){
    {type:"place",title:"寄放行李（主要方案：K-Market Toriportti）",desc:"主要寄放點：K-Market Toriportti。備用方案：Rovaniemi Railway Station 火車站行李櫃。請依店家／車站當日可用情況寄存。",address:"K-Market Toriportti, Rovaniemi, Finland",map:true},
    {type:"place",title:"備用行李寄存：Rovaniemi Railway Station",desc:"若 K-Market Toriportti 無法寄存，改用火車站行李櫃。地址：Ratakatu 3, 96100 Rovaniemi, Finland。",address:"Rovaniemi Railway Station, Ratakatu 3, 96100 Rovaniemi, Finland",map:true},
    {type:"transport",title:"Railway station → SantaPark（聖誕老人地下村）",from:"Rovaniemi railway station, Rovaniemi, Finland",to:"Neulastie L, Rovaniemi, Finland",mode:"市區公車",desc:"寄放行李後搭公車：Rovaniemi railway station 站上車，Neulastie L 站下車。",map:true,app:"Waltti"},
-   {type:"place",title:"SantaPark（聖誕老人地下村）",desc:"地址：Tarvantie 1, 96930 Rovaniemi, Finland。",address:"Tarvantie 1, 96930 Rovaniemi, Finland",map:true},
-   {type:"transport",title:"備案 1：SantaPark → Santa Claus Village（聖誕老人村）",from:"Neulastie L, Rovaniemi, Finland",to:"Napapiiri L, Rovaniemi, Finland",mode:"市區公車",desc:"若前一天尚未逛完聖誕老人村，可在 SantaPark 結束後前往；Neulastie L 站上車，Napapiiri L 站下車。",map:true,app:"Waltti"},
-   {type:"place",title:"Santa Claus Village（聖誕老人村）—備案 1",desc:"地址：Tähtikuja 1, 96930 Rovaniemi, Finland。若前一天已逛完，可略過此站直接前往餐廳。",address:"Tähtikuja 1, 96930 Rovaniemi, Finland",map:true},
-   {type:"transport",title:"備案：Santa Claus Village → Osaka Teppanyaki",from:"Napapiiri L, Rovaniemi, Finland",to:"Porokulma E, Rovaniemi, Finland",mode:"市區公車",desc:"若前往聖誕老人村，搭市區公車由 Napapiiri L 站上車，Porokulma E 站下車，再步行至 Osaka Teppanyaki。",map:true,app:"Waltti"},
-   {type:"transport",title:"備案：SantaPark → Osaka Teppanyaki",from:"Neulastie L, Rovaniemi, Finland",to:"Porokulma E, Rovaniemi, Finland",mode:"市區公車",desc:"若不再前往聖誕老人村，從 SantaPark 前往餐廳：Neulastie L 站上車，Porokulma E 站下車，再步行至 Osaka Teppanyaki。",map:true,app:"Waltti"},
-   {type:"place",title:"Osaka Teppanyaki Rovaniemi（生魚片）",desc:"地址：Kauppakeskus Rinteenkulma 1.krs, Koskikatu 25, 96200 Rovaniemi, Finland。用餐後接續第 6 點起原有行程。",address:"Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland",map:true}
+   {type:"place",title:"SantaPark（聖誕老人地下村）—主要行程",desc:"主要行程，不是備案。地址：Tarvantie 1, 96930 Rovaniemi, Finland。",address:"Tarvantie 1, 96930 Rovaniemi, Finland",map:true},
+   {type:"transport",title:"備案：SantaPark → Santa Claus Village（聖誕老人村）",from:"Neulastie L, Rovaniemi, Finland",to:"Napapiiri L, Rovaniemi, Finland",mode:"市區公車",desc:"SantaPark 為主要行程；若前一天尚未逛完聖誕老人村，可於此備案延伸前往。Neulastie L 站上車，Napapiiri L 站下車。",map:true,app:"Waltti",backupGroup:true},
+   {type:"place",title:"備案：Santa Claus Village（聖誕老人村）",desc:"地址：Tähtikuja 1, 96930 Rovaniemi, Finland。若前一天已逛完，可略過此站。",address:"Tähtikuja 1, 96930 Rovaniemi, Finland",map:true,backupGroup:true},
+   {type:"place",title:"備案：前往 Osaka Teppanyaki（生魚片）",desc:"若有前往聖誕老人村：搭市區公車 Napapiiri L 站上車、Porokulma E 站下車。若由主要行程 SantaPark 直接前往：Neulastie L 站上車、Porokulma E 站下車。兩種路線皆於 Porokulma E 下車後步行至餐廳。",address:"Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland",map:true,backupGroup:true},
+   {type:"place",title:"Osaka Teppanyaki Rovaniemi（生魚片）",desc:"地址：Kauppakeskus Rinteenkulma 1.krs, Koskikatu 25, 96200 Rovaniemi, Finland。用餐後接續後續主要行程。",address:"Kauppakeskus Rinteenkulma, Koskikatu 25, 96200 Rovaniemi, Finland",map:true}
   ];
   const later=afterDinner.filter(x=>!x.title.includes("Osaka Teppanyaki"));
   d4.items=[...prefix,...later];
@@ -3022,6 +3021,7 @@ function renderDay(i){
  const d=days[i]; let h=notesPanelHTML("itinerary-"+d.date, "DAY "+String(i+1).padStart(2,"0")+" · "+d.date+" 個人筆記")+`<div class="dayhead"><div><div class="eyebrow">${esc(d.city)} · ${esc(d.date)} / 2026（星期${esc(d.dow)}）</div><h2>${esc(d.title)}</h2><p>DAY ${String(i+1).padStart(2,"0")} / ${d.items.length} 個行程節點</p></div><div class="daynum">${String(i+1).padStart(2,"0")}</div></div>`;
  (d.alerts||[]).forEach(x=>h+=`<div class="alert"><strong>時間／交通提醒</strong><br>${esc(x)}</div>`);
  h+=`<div class="section-label">ROUTE & STOPS / 站點與行程</div><div class="timeline">`;
+ let displayNo=0; let backupRendered=false;
  d.items.forEach((it,n)=>{
   const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk"||(it.mode||"").includes("步行");
   const makeCard=()=>{
@@ -3030,7 +3030,7 @@ function renderDay(i){
    if(it.optional)c+=`<div class="meetflag">OPTIONAL / MAY CANCEL</div>`;
    if(it.type==="place" && /集合$/.test(it.title))c+=`<div class="meetflag">MEETING POINT</div>`;
    else if(it.type==="place" && /機場報到|碼頭（獨立節點）/.test(it.title))c+=`<div class="meetflag">DEPARTURE POINT</div>`;
-   c+=`<h3>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
+   c+=`<h3><span class="main-step-number" data-main-num="${displayNo}">${displayNo}. </span>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
    if(it.from||it.to)c+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;
    if(it.desc)c+=`<p>${esc(it.desc)}</p>`;
    if(it.duration||it.mode||it.price)c+=`<div class="meta">${it.mode?`<span class="pill">${esc(it.mode)}</span>`:""}${it.duration?`<span class="pill">${esc(it.duration)}</span>`:""}${it.price?`<span class="pill warn">${esc(it.price)}</span>`:""}</div>`;
@@ -3041,16 +3041,47 @@ function renderDay(i){
    if(it.map&&!it.from&&!it.to){const q=it.address||it.desc||it.title;c+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}">Google Maps 地點 ↗</a>`;}
    c+=`</div></article>`;return c;
   };
+  if(it.backupGroup){
+   if(backupRendered)return;
+   backupRendered=true;
+   const group=d.items.filter(x=>x.backupGroup);
+   let groupHTML="";
+   group.forEach((item,j)=>{
+    const saved=it;
+    // Reuse the existing card renderer with the current backup item.
+    const card=renderBackupCard(item,j+7);
+    groupHTML+=card;
+   });
+   h+=`<details class="backup-details"><summary>備案行程（第 7–9 點）｜點擊展開／收合</summary><div class="backup-content">${groupHTML}</div></details>`;
+   displayNo=6;
+   return;
+  }
+  displayNo++;
   if(it.alternative)h+=`<details class="alt-details"><summary>替代交通方案｜點擊展開查看</summary>${makeCard()}</details>`;
   else h+=makeCard();
  });
  h+=`</div>`;
  document.getElementById("dayContent").innerHTML=h;
+ const backupDetails=document.querySelector(".backup-details");
+ if(backupDetails)backupDetails.addEventListener("toggle",()=>{document.querySelectorAll(".main-step-number").forEach(el=>{const n=Number(el.dataset.mainNum);el.textContent=(backupDetails.open?n:n-3)+". ";});});
  bindNotes(document.getElementById("dayContent"));
  loadWeatherForDay(i);
  document.getElementById("prevDay").disabled=i===0;document.getElementById("prevDay").onclick=()=>showDay(i-1);
  document.getElementById("nextDay").disabled=i===days.length-1;document.getElementById("nextDay").onclick=()=>showDay(i+1);
  document.getElementById("daySelect").value=i;
+}
+function renderBackupCard(it,num){
+ const transport=["transport","ticket"].includes(it.type); const walking=it.type==="walk"||(it.mode||"").includes("步行");
+ let c=`<div class="backup-step"><span class="step-number">${num}</span><article class="stopcard ${transport||walking?"transport":""} ${it.alternative?"alternative":""}">`;
+ if(it.time)c+=`<span class="time">${esc(it.time)}</span>`;
+ c+=`<h3><span class="main-step-number" data-main-num="${displayNo}">${displayNo}. </span>${transport||walking?"↗ ":""}${esc(it.title)}</h3>`;
+ if(it.from||it.to)c+=`<div class="stations"><div class="station"><small>${walking?"START / 起點":"BOARD / 上車站"}</small><b>${esc(it.from||"待確認")}</b></div><div class="station to"><small>${walking?"END / 終點":"EXIT / 下車站"}</small><b>${esc(it.to||"待確認")}</b></div></div>`;
+ if(it.desc)c+=`<p>${esc(it.desc)}</p>`;
+ if(it.mode)c+=`<div class="meta"><span class="pill">${esc(it.mode)}</span></div>`;
+ c+=`<div class="actions">`;
+ if(it.map&&it.from&&it.to)c+=`<a class="linkbtn orange" target="_blank" rel="noopener" href="${mapUrl(it.from,it.to,it.mapMode||(walking?"walking":"transit"))}">Google Maps ${walking?"步行導航":"交通路線"} ↗</a>`;
+ if(it.map&&!it.from&&!it.to)c+=`<a class="linkbtn light" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(it.address||it.title)}">Google Maps 地點 ↗</a>`;
+ c+=`</div></article></div>`;return c;
 }
 function showDay(i){if(i<0||i>=days.length)return;document.querySelectorAll(".daylink").forEach((e,n)=>e.classList.toggle("active",n===i));renderDay(i);document.getElementById("dayContent").scrollIntoView({behavior:"smooth",block:"start"});}
 async function initializePage(){
